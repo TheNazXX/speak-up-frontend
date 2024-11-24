@@ -1,24 +1,57 @@
 {
-  "name": "red-planner-frontend",
+  "name": "speak-up-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.1.0",
+    "@dnd-kit/sortable": "^8.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@hello-pangea/dnd": "^16.6.0",
+    "@hookform/resolvers": "^3.9.0",
+    "@radix-ui/react-alert-dialog": "^1.1.1",
+    "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.2",
+    "@reduxjs/toolkit": "^2.2.7",
+    "@tanstack/react-query": "^5.51.24",
+    "@tanstack/react-query-devtools": "^5.51.24",
+    "@tinymce/tinymce-react": "^5.1.1",
+    "axios": "^1.7.4",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.12",
+    "framer-motion": "^11.5.4",
+    "js-cookie": "^3.0.5",
+    "lodash.debounce": "^4.0.8",
+    "lucide-react": "^0.428.0",
+    "next": "14.2.5",
     "react": "^18",
+    "react-day-picker": "^9.0.8",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "react-hook-form": "^7.53.0",
+    "react-redux": "^9.1.2",
+    "sass": "^1.77.8",
+    "sonner": "^1.5.0",
+    "tailwind-merge": "^2.5.2",
+    "tailwind-variants": "^0.2.1",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/js-cookie": "^3.0.6",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
