@@ -1,15 +1,16 @@
 class DASHBOARD {
-  private root = "";
+  private root = '';
 
-  HOME = "/";
+  HOME = '/';
   PROFILE = `/profile`;
   WORDS = `/words`;
-  WORDS_CREATE = "/words/create";
+  WORDS_CREATE = '/words/create';
   UNITS = `/units`;
   TEXTS = `/texts`;
-  TEXTS_CREATE = "/texts/create";
-  TEXTS_EDIT = "/texts/edit";
-  REPEAT_WORDS = "/repeat-words";
+  TEXTS_CREATE = '/texts/create';
+  TEXTS_EDIT = '/texts/edit';
+  REPEAT_WORDS = '/repeat-words';
+  EXPRESSIONS = '/expressions';
 }
 
 export const DASHBOARD_PAGES = new DASHBOARD();

@@ -1,37 +1,55 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Input from "@/components/ui/input/Input";
-import Button from "@/components/ui/button/Button";
-import { useEffect } from "react";
-import { toast, Toaster } from "sonner";
-import { wordsService } from "@/app/(pages)/words/model/services/words.service";
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Input from '@/components/ui/input/Input';
+import Button from '@/components/ui/button/Button';
+import { useEffect } from 'react';
+import { toast, Toaster } from 'sonner';
+import { wordsService } from '@/app/(pages)/words/model/services/words.service';
 import {
   IWord,
   IWordPostDto,
-} from "@/app/(pages)/words/model/types/word.types";
-import { useMutation } from "@tanstack/react-query";
-import { errorCatch } from "@/app/api/error";
-import Loader from "@/components/ui/loader/Loader";
-import { useRouter } from "next/navigation";
-import { DASHBOARD_PAGES } from "@/config/pages-url.config";
+} from '@/app/(pages)/words/model/types/word.types';
+import { useMutation } from '@tanstack/react-query';
+import { errorCatch } from '@/app/api/error';
+import Loader from '@/components/ui/loader/Loader';
+import Select, { SelectOption } from '@/components/ui/select/select';
+import Textarea from '@/components/ui/textarea/textarea';
+import { SentenceForm } from './SentenceForm';
+
+const partOfSpeech: SelectOption[] = [
+  {
+    label: 'Unknown',
+    value: 'unknown',
+  },
+  {
+    label: 'Verb',
+    value: 'verb',
+  },
+  {
+    label: 'Noun',
+    value: 'noun',
+  },
+];
 
 const createWordSchema = z.object({
   en: z
     .string()
-    .min(2, "Field word must be a minumim 2 symbols")
-    .regex(/^[^\d]*$/, "Field word must not contain numbers"),
+    .min(2, 'Field word must be a minumim 2 symbols')
+    .regex(/^[^\d]*$/, 'Field word must not contain numbers'),
   translate: z
     .string()
-    .min(2, "Field translate must be minimum 2 symbols")
-    .regex(/^[^\d]*$/, "Field word must not contain numbers"),
+    .min(2, 'Field translate must be minimum 2 symbols')
+    .regex(/^[^\d]*$/, 'Field word must not contain numbers'),
+  partOfSpeech: z.string().default('unknow'),
+  sentences: z.array(z.string()).optional().default([]),
 });
 
 type FormData = z.infer<typeof createWordSchema>;
 
-export type WordFormMode = "create" | "update";
+export type WordFormMode = 'create' | 'update';
 
 export interface IWordFromProps {
   en?: string;
@@ -40,15 +58,17 @@ export interface IWordFromProps {
   isToaster?: boolean;
   onSuccessCallback?: (data: IWord) => void;
   onErrorCallback?: (data: IWordPostDto, error?: string) => void;
+  onAddSentence: (text: string) => void;
 }
 
 export default function WordForm({
   en,
   word,
-  mode = "create",
+  mode = 'create',
   isToaster = true,
   onSuccessCallback,
   onErrorCallback,
+  onAddSentence,
 }: IWordFromProps) {
   const {
     register,
@@ -56,19 +76,20 @@ export default function WordForm({
     formState: { errors },
     setValue,
     reset,
+    getValues,
   } = useForm<FormData>({
     resolver: zodResolver(createWordSchema),
   });
 
   const { mutate, status } = useMutation({
     mutationFn: (data: IWordPostDto) =>
-      mode === "create"
-        ? wordsService.create(data)
+      mode === 'create'
+        ? wordsService.create({ ...data })
         : wordsService.update(word!.id, data),
     onSuccess: (data) => {
-      mode === "create"
-        ? toast.success("Word was created successfully")
-        : toast.success("Word was updated successfully");
+      mode === 'create'
+        ? toast.success('Word was created successfully')
+        : toast.success('Word was updated successfully');
       reset();
 
       if (onSuccessCallback) {
@@ -90,7 +111,7 @@ export default function WordForm({
       translate: [
         ...new Set(
           data.translate
-            .split(",")
+            .split(',')
             .map((item) => item.trim())
             .filter((item) => item)
         ),
@@ -112,44 +133,69 @@ export default function WordForm({
 
   useEffect(() => {
     if (word) {
-      setValue("en", word.en);
-      setValue("translate", word.translate.join(", "));
+      setValue('en', word.en);
+      setValue('translate', word.translate.join(', '));
     }
 
     if (en) {
-      setValue("en", en);
+      setValue('en', en);
     }
   }, [word, setValue]);
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="px-layout">
-        <div className="flex flex-col gap-3">
-          <label className="mb-3" htmlFor="word">
-            <div className="mb-2">Word:</div>
-            <Input
-              {...register("en")}
-              variant={"dark"}
-              placeholder="Write the word in english"
-              isError={errors.hasOwnProperty("en")}
+      <form onSubmit={handleSubmit(onSubmit)} className="px-layout relative">
+        <div className="flex gap-10">
+          <div className="flex flex-col gap-3">
+            <label className="mb-3" htmlFor="word">
+              <div className="mb-2">Word:</div>
+              <Input
+                className="w-80"
+                {...register('en')}
+                variant={'dark'}
+                placeholder="Write the word in english"
+                isError={errors.hasOwnProperty('en')}
+              />
+            </label>
+            <label className="mb-3" htmlFor="translate">
+              <div className="mb-2">Translate:</div>
+              <Input
+                className="w-80"
+                {...register('translate')}
+                variant={'dark'}
+                placeholder="Write the translate"
+                isError={errors.hasOwnProperty('translate')}
+              />
+            </label>
+            <label className="mb-3" htmlFor="word">
+              <div className="mb-2">Part of speech:</div>
+
+              <Select
+                isError={errors.hasOwnProperty('partOfSpeech')}
+                variant={'dark'}
+                {...register('partOfSpeech')}
+                options={partOfSpeech}
+              />
+            </label>
+          </div>
+          <div className="">
+            <SentenceForm
+              onAddSentence={(sentence: string) => {
+                onAddSentence(sentence);
+                setValue('sentences', [
+                  ...(getValues('sentences') || []),
+                  sentence,
+                ]);
+              }}
             />
-          </label>
-          <label className="mb-3" htmlFor="word">
-            <div className="mb-2">Translate:</div>
-            <Input
-              {...register("translate")}
-              variant={"dark"}
-              placeholder="Write the translate"
-              isError={errors.hasOwnProperty("translate")}
-            />
-          </label>
+          </div>
         </div>
 
-        <div className="flex justify-end mt-6">
-          {status === "pending" ? (
+        <div className="absolute top-0 right-6 flex justify-end mt-6 ml-auto">
+          {status === 'pending' ? (
             <Loader />
-          ) : mode === "create" ? (
-            <Button>+ Add</Button>
+          ) : mode === 'create' ? (
+            <Button>+ Create</Button>
           ) : (
             <Button>Update</Button>
           )}

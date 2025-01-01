@@ -1,9 +1,9 @@
-import { axiosClassic } from "@/app/api/interceptors";
-import { IResponse } from "@/app/types/root.types";
-import { IWord, IWordPostDto } from "../types/word.types";
+import { axiosClassic } from '@/app/api/interceptors';
+import { IResponse } from '@/app/types/root.types';
+import { IWord, IWordPostDto } from '../types/word.types';
 
 class WordsService {
-  private BASE_URL = "/words";
+  private BASE_URL = '/words';
 
   async get(slug: string) {
     const response = await axiosClassic.get<IResponse<IWord>>(
