@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '@/components/ui/input/Input';
 import Button from '@/components/ui/button/Button';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast, Toaster } from 'sonner';
 import { wordsService } from '@/app/(pages)/words/model/services/words.service';
 import {
@@ -16,7 +16,6 @@ import { useMutation } from '@tanstack/react-query';
 import { errorCatch } from '@/app/api/error';
 import Loader from '@/components/ui/loader/Loader';
 import Select, { SelectOption } from '@/components/ui/select/select';
-import Textarea from '@/components/ui/textarea/textarea';
 import { SentenceForm } from './SentenceForm';
 
 const partOfSpeech: SelectOption[] = [
@@ -53,12 +52,14 @@ export type WordFormMode = 'create' | 'update';
 
 export interface IWordFromProps {
   en?: string;
-  word?: IWord;
+  word?: IWord | null;
+  partOfSpeech?: string;
   mode?: WordFormMode;
   isToaster?: boolean;
   onSuccessCallback?: (data: IWord) => void;
   onErrorCallback?: (data: IWordPostDto, error?: string) => void;
-  onAddSentence: (text: string) => void;
+  onAddSentence: (sentence: string) => void;
+  onResetSentences: () => void;
 }
 
 export default function WordForm({
@@ -69,6 +70,7 @@ export default function WordForm({
   onSuccessCallback,
   onErrorCallback,
   onAddSentence,
+  onResetSentences,
 }: IWordFromProps) {
   const {
     register,
@@ -91,6 +93,7 @@ export default function WordForm({
         ? toast.success('Word was created successfully')
         : toast.success('Word was updated successfully');
       reset();
+      onResetSentences();
 
       if (onSuccessCallback) {
         onSuccessCallback(data.data!);
@@ -135,6 +138,7 @@ export default function WordForm({
     if (word) {
       setValue('en', word.en);
       setValue('translate', word.translate.join(', '));
+      setValue('partOfSpeech', word.partOfSpeech.name);
     }
 
     if (en) {

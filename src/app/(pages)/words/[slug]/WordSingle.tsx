@@ -1,35 +1,26 @@
-"use client";
+'use client';
 
-import { wordsService } from "@/app/(pages)/words/model/services/words.service";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import Loader from "@/components/ui/loader/Loader";
-import Button from "@/components/ui/button/Button";
-import { Edit, Trash2 } from "lucide-react";
-import Error from "@/components/ui/error/Error";
-import { errorCatch } from "@/app/api/error";
-import { toast, Toaster } from "sonner";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import WordForm from "../create/WordForm";
-import { IWord } from "../model/types/word.types";
-import { useRouter } from "next/navigation";
-import { DASHBOARD_PAGES } from "@/config/pages-url.config";
-import { WithHeaderState } from "@/app/hoc/WithHeaderState";
+import { wordsService } from '@/app/(pages)/words/model/services/words.service';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import Loader from '@/components/ui/loader/Loader';
+import Button from '@/components/ui/button/Button';
+import { Edit, Trash2 } from 'lucide-react';
+import Error from '@/components/ui/error/Error';
+import { errorCatch } from '@/app/api/error';
+import { toast, Toaster } from 'sonner';
+import { IWord } from '../model/types/word.types';
+import { useRouter } from 'next/navigation';
+import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { WithHeaderState } from '@/app/hoc/WithHeaderState';
+import Link from 'next/link';
 
 function WordSingle({ slug }: { slug: string }) {
-  const [isDialogUpdateOpen, setIsDialogUpdateOpen] = useState(false);
   const [localWordData, setLocalWordData] = useState<null | IWord>(null);
   const { replace, push } = useRouter();
 
   const { data, isFetching, error } = useQuery({
-    queryKey: ["/words/:en"],
+    queryKey: ['/words/:en'],
     queryFn: () => wordsService.get(slug),
     retry: 1,
     staleTime: 0,
@@ -38,19 +29,13 @@ function WordSingle({ slug }: { slug: string }) {
   const { mutate, status } = useMutation({
     mutationFn: (en: string) => wordsService.deleteByEn(en),
     onSuccess: () => {
-      toast.success("Word deleted successfully");
+      toast.success('Word deleted successfully');
       push(DASHBOARD_PAGES.WORDS);
     },
     onError: (error: unknown) => {
       toast.error(errorCatch(error));
     },
   });
-
-  const onSuccessUpdate = (data: IWord) => {
-    setIsDialogUpdateOpen(false);
-    setLocalWordData(data);
-    replace(`${DASHBOARD_PAGES.WORDS}/${data.en}`);
-  };
 
   const onHandleDelete = (en: string) => {
     mutate(en);
@@ -59,7 +44,7 @@ function WordSingle({ slug }: { slug: string }) {
   useEffect(() => {
     if (!(error || isFetching) && data?.data) {
       setLocalWordData(data.data);
-      toast.success("Word was found");
+      toast.success('Word was found');
     }
   }, [data, isFetching]);
 
@@ -74,7 +59,7 @@ function WordSingle({ slug }: { slug: string }) {
       {!error && (
         <>
           <div className="pb-2 border-b border-blue-600 flex justify-between">
-            {isFetching || status === "pending" ? (
+            {isFetching || status === 'pending' ? (
               <div className="mb-1">
                 <Loader />
               </div>
@@ -84,38 +69,18 @@ function WordSingle({ slug }: { slug: string }) {
               </span>
             )}
             <div className="flex gap-2">
-              <Dialog open={isDialogUpdateOpen}>
-                <DialogTrigger
-                  onClick={() => setIsDialogUpdateOpen(true)}
-                  className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 px-4 disabled:pointer-events-none bg-blue-600 text-white hover:bg-blue-700 h-10"
-                  disabled={isFetching}
-                >
-                  <Edit />
-                </DialogTrigger>
-                <DialogContent
-                  onClose={() => setIsDialogUpdateOpen(false)}
-                  className="bg-black"
-                  title="form form update word"
-                >
-                  <DialogTitle className="text-blue-600 text-center">
-                    Update word
-                  </DialogTitle>
-                  <DialogHeader>
-                    <WordForm
-                      word={localWordData!}
-                      mode="update"
-                      isToaster={false}
-                      onSuccessCallback={onSuccessUpdate}
-                    />
-                  </DialogHeader>
-                </DialogContent>
-              </Dialog>
+              <Link
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none h-10 px-4 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-blue-600 text-white hover:bg-blue-700"
+                href={`${DASHBOARD_PAGES.WORDS_EDIT}/${localWordData?.en}`}
+              >
+                <Edit />
+              </Link>
 
               <Button
                 onClick={() => {
                   onHandleDelete(localWordData!.en);
                 }}
-                variant={"danger"}
+                variant={'danger'}
                 disabled={isFetching}
               >
                 <Trash2 />
@@ -125,7 +90,7 @@ function WordSingle({ slug }: { slug: string }) {
 
           <div className="mt-4">
             <span className="mb-2 block">Translate:</span>
-            {isFetching || status === "pending" ? (
+            {isFetching || status === 'pending' ? (
               <Loader />
             ) : (
               <ul className="pl-5 list-disc">
@@ -143,4 +108,4 @@ function WordSingle({ slug }: { slug: string }) {
   );
 }
 
-export default WithHeaderState(WordSingle, "words");
+export default WithHeaderState(WordSingle, 'words');

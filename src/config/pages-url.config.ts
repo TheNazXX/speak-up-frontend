@@ -5,6 +5,7 @@ class DASHBOARD {
   PROFILE = `/profile`;
   WORDS = `/words`;
   WORDS_CREATE = '/words/create';
+  WORDS_EDIT = '/words/edit';
   UNITS = `/units`;
   TEXTS = `/texts`;
   TEXTS_CREATE = '/texts/create';
