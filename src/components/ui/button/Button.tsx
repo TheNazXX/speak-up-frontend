@@ -13,10 +13,11 @@ const buttonVariants = cva(
         outline: 'border border-gray-300 text-gray-700 hover:bg-gray-100',
         ghost: 'bg-transparent hover:bg-gray-200',
         danger: 'bg-red-500 hover:bg-red-600',
+        success: 'bg-green-500 hover:bg-green-600',
       },
       size: {
         zero: 'h-0 px-0 py-0',
-        sm: 'h-8 px-3',
+        sm: 'h-6 px-2 rounded-[4px]',
         md: 'h-10 px-4',
         lg: 'h-12 px-6',
       },

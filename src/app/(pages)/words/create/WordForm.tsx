@@ -17,6 +17,9 @@ import { errorCatch } from '@/app/api/error';
 import Loader from '@/components/ui/loader/Loader';
 import Select, { SelectOption } from '@/components/ui/select/select';
 import { SentenceForm } from './SentenceForm';
+import { useRouter } from 'next/navigation';
+import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { ISentence } from '../model/types/sentence.types';
 
 const partOfSpeech: SelectOption[] = [
   {
@@ -58,7 +61,7 @@ export interface IWordFromProps {
   isToaster?: boolean;
   onSuccessCallback?: (data: IWord) => void;
   onErrorCallback?: (data: IWordPostDto, error?: string) => void;
-  onAddSentence: (sentence: string) => void;
+  onAddSentence: (text: string) => void;
   onResetSentences: () => void;
 }
 
@@ -83,17 +86,20 @@ export default function WordForm({
     resolver: zodResolver(createWordSchema),
   });
 
+  const { push } = useRouter();
+
   const { mutate, status } = useMutation({
     mutationFn: (data: IWordPostDto) =>
       mode === 'create'
         ? wordsService.create({ ...data })
-        : wordsService.update(word!.id, data),
+        : wordsService.update(word!.en, data),
     onSuccess: (data) => {
       mode === 'create'
         ? toast.success('Word was created successfully')
         : toast.success('Word was updated successfully');
       reset();
       onResetSentences();
+      push(`${DASHBOARD_PAGES.WORDS}/${data.data?.en}`);
 
       if (onSuccessCallback) {
         onSuccessCallback(data.data!);
@@ -182,17 +188,19 @@ export default function WordForm({
               />
             </label>
           </div>
-          <div className="">
-            <SentenceForm
-              onAddSentence={(sentence: string) => {
-                onAddSentence(sentence);
-                setValue('sentences', [
-                  ...(getValues('sentences') || []),
-                  sentence,
-                ]);
-              }}
-            />
-          </div>
+          {mode === 'create' && (
+            <div className="">
+              <SentenceForm
+                onAddSentence={(sentence: string) => {
+                  onAddSentence(sentence);
+                  setValue('sentences', [
+                    ...(getValues('sentences') || []),
+                    sentence,
+                  ]);
+                }}
+              />
+            </div>
+          )}
         </div>
 
         <div className="absolute top-0 right-6 flex justify-end mt-6 ml-auto">

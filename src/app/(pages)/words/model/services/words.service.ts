@@ -25,9 +25,9 @@ class WordsService {
     return response.data;
   }
 
-  async update(id: string, data: IWordPostDto) {
-    const response = await axiosClassic.put<IResponse<IWord>>(
-      `${this.BASE_URL}/${id}`,
+  async update(en: string, data: IWordPostDto) {
+    const response = await axiosClassic.patch<IResponse<IWord>>(
+      `${this.BASE_URL}/${en}`,
       {
         ...data,
       }

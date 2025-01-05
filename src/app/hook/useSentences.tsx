@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ISentence } from '../(pages)/words/model/types/sentence.types';
 
 export interface IUseSentences {
   sentences: string[];
