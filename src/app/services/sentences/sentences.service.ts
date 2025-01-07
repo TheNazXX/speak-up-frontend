@@ -17,7 +17,12 @@ class SentencesService {
   }
 
   async getByWord(en: string) {
-    const response = await axiosClassic.get(`${this.BASE_URL}?word=${en}`);
+    const response = await axiosClassic.get(`${this.BASE_URL}/word?en=${en}`);
+    return response;
+  }
+
+  async getByPhrase(en: string) {
+    const response = await axiosClassic.get(`${this.BASE_URL}/phrase?en=${en}`);
     return response;
   }
 }

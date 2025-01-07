@@ -4,28 +4,13 @@ import { BookAudio, Boxes, SquareUser, Text } from 'lucide-react';
 
 export const MenuData: IMenuItem[] = [
   {
-    label: 'Profile',
-    url: DASHBOARD_PAGES.PROFILE,
-    icon: SquareUser,
-  },
-  {
     label: 'Words',
     url: DASHBOARD_PAGES.WORDS,
     icon: BookAudio,
   },
   {
-    label: 'Texts',
-    url: DASHBOARD_PAGES.TEXTS,
-    icon: Text,
-  },
-  {
-    label: 'Expressions',
-    url: DASHBOARD_PAGES.EXPRESSIONS,
-    icon: Boxes,
-  },
-  {
-    label: 'Units',
-    url: DASHBOARD_PAGES.UNITS,
-    icon: Boxes,
+    label: 'Phrases',
+    url: DASHBOARD_PAGES.PHRASES,
+    icon: BookAudio,
   },
 ];

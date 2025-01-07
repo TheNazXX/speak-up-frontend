@@ -66,10 +66,6 @@ export default function WordEditPage({ slug }: { slug: string }) {
     onError: (error, data) => {},
   });
 
-  useEffect(() => {
-    console.log(localSentencesData, '123');
-  }, [localSentencesData]);
-
   const onAddSentence = () => {};
   const onResetSentences = () => {};
 

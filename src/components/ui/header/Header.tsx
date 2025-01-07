@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { PropsWithChildren } from "react";
-import { useSelector } from "react-redux";
-import Locations from "../locations/Locations";
-import { Plus, RefreshCcw } from "lucide-react";
-import Link from "next/link";
-import { DASHBOARD_PAGES } from "@/config/pages-url.config";
-import { getHeaderState } from "@/app/store/headerSlice/headerSelectors";
-import { HeaderPageState } from "@/app/store/headerSlice/headerSlice";
-import Button from "../button/Button";
+import { PropsWithChildren } from 'react';
+import { useSelector } from 'react-redux';
+import Locations from '../locations/Locations';
+import { Plus, RefreshCcw } from 'lucide-react';
+import Link from 'next/link';
+import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { getHeaderState } from '@/app/store/headerSlice/headerSelectors';
+import { HeaderPageState } from '@/app/store/headerSlice/headerSlice';
+import Button from '../button/Button';
 
 export default function Header({ children }: PropsWithChildren) {
   const header: HeaderPageState = useSelector(getHeaderState);
@@ -16,7 +16,7 @@ export default function Header({ children }: PropsWithChildren) {
   let content;
 
   switch (header) {
-    case "words": {
+    case 'words': {
       content = (
         <div className="flex items-center gap-2">
           <Link
@@ -35,7 +35,7 @@ export default function Header({ children }: PropsWithChildren) {
       );
       break;
     }
-    case "texts":
+    case 'texts':
       content = (
         <Link
           className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
@@ -45,7 +45,17 @@ export default function Header({ children }: PropsWithChildren) {
         </Link>
       );
       break;
-    case "repeat-words":
+    case 'phrases':
+      content = (
+        <Link
+          className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
+          href={DASHBOARD_PAGES.PHRASES_CREATE}
+        >
+          <Plus />
+        </Link>
+      );
+      break;
+    case 'repeat-words':
       content = (
         <div className="flex items-center">
           <span className="text-[22px] text-blue-500">Get random words:</span>
@@ -65,7 +75,7 @@ export default function Header({ children }: PropsWithChildren) {
       );
       break;
     default: {
-      content = "";
+      content = '';
       break;
     }
   }
