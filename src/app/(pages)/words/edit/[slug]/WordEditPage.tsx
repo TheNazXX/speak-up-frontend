@@ -45,14 +45,13 @@ export default function WordEditPage({ slug }: { slug: string }) {
     staleTime: 0,
   });
 
-  const { mutate, status } = useMutation({
+  const { mutate, status: updateSentenceStatus } = useMutation({
     mutationFn: ({ id, text }: ISentencePatchDto) =>
       sentencesService.update(id, text),
     onSuccess: (data) => {
       setLocalSentencesData((state) => [
         ...state.map((sentence) => {
           if (sentence.id === data.id) {
-            console.log('1');
             return {
               ...sentence,
               text: data.text,
@@ -66,12 +65,36 @@ export default function WordEditPage({ slug }: { slug: string }) {
     onError: (error, data) => {},
   });
 
-  const onAddSentence = () => {};
-  const onResetSentences = () => {};
+  const { mutate: addSentenceMutation, status: addSentenceMutationStatus } =
+    useMutation({
+      mutationFn: ({ en, sentence }: { en: string; sentence: string }) =>
+        wordsService.createSentence(en, sentence),
+      onSuccess: (data: IWord) => {
+        setLocalSentencesData(data.sentences);
+        toast.success('Sentence successfully added');
+      },
+      onError: (error: any) => {
+        toast.success('Something went wrong');
+      },
+    });
 
-  const onEditSentence = (id: string, text: string) => {
-    mutate({ id, text });
-  };
+  const {
+    mutate: deleteSentenceMutation,
+    status: deleteSentenceMutationStatus,
+  } = useMutation({
+    mutationFn: ({ id }: { id: string }) => sentencesService.delete(id),
+    onSuccess: (data: ISentence) => {
+      setLocalSentencesData((state) => [
+        ...state.filter((currentSentences) => {
+          return currentSentences.id !== data.id;
+        }),
+      ]);
+      toast.success('Sentence successfully deleted');
+    },
+    onError: (error: any) => {
+      toast.success('Something went wrong');
+    },
+  });
 
   useEffect(() => {
     if (!(sentencesError || sentencesIsFetching) && sentencesData?.data) {
@@ -86,9 +109,22 @@ export default function WordEditPage({ slug }: { slug: string }) {
     }
   }, [data, isFetching]);
 
+  const onResetSentences = () => {};
+
+  const onEditSentence = (id: string, text: string) => {
+    mutate({ id, text });
+  };
+
+  const onDeleteSentence = (id: string) => {
+    deleteSentenceMutation({ id });
+  };
+
+  const onAddSentence = (text: string) => {
+    addSentenceMutation({ en: localWordData!.en, sentence: text });
+  };
+
   return (
     <>
-      {isFetching && <Loader />}
       {localWordData && !isFetching && (
         <>
           <WordForm
@@ -100,21 +136,19 @@ export default function WordEditPage({ slug }: { slug: string }) {
           />
           <hr className="my-10 border-blue-500" />
           <div className="pb-6 pl-6">
-            {status === 'pending' ? (
-              <Loader />
-            ) : (
-              <div className="flex gap-2 items-center mb-4">
-                <Button size={'sm'}>
-                  <Plus className="h-4 w-4" />
-                </Button>
-                <span className="">Add sentece</span>
-              </div>
-            )}
-            {sentencesIsFetching && <Loader />}
-            {!sentencesIsFetching && !!sentencesData?.data.length && (
+            {(sentencesIsFetching ||
+              addSentenceMutationStatus === 'pending') && <Loader />}
+            {!sentencesIsFetching && (
               <SentencesEditForm
+                isFetch={
+                  addSentenceMutationStatus === 'pending' ||
+                  deleteSentenceMutationStatus === 'pending' ||
+                  updateSentenceStatus === 'pending'
+                }
                 sentences={localSentencesData}
                 onEditSentence={onEditSentence}
+                onDeleteSentence={onDeleteSentence}
+                onAddSentence={onAddSentence}
               />
             )}
           </div>

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { InputHTMLAttributes, forwardRef } from 'react';
 
 const inputVariants = cva(
-  'w-full bg-transpartnet px-3 py-2 outline-none focues:outline-none rounded-sm placeholder:text-[14px]/[17px] text-[14px]/[17px]',
+  'bg-transpartnet px-3 py-2 outline-none focues:outline-none rounded-sm placeholder:text-[14px]/[17px] text-[14px]/[17px]',
   {
     variants: {
       variant: {

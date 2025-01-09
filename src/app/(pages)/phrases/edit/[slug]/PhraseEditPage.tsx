@@ -15,6 +15,7 @@ import {
   ISentencePatchDto,
 } from '@/app/(pages)/words/model/types/sentence.types';
 import { SentencesEditForm } from '@/components/Sentences/SentencesEditForm';
+import { IPhrase } from '../../model/types/phrase.types';
 
 const PhraseEditPage = ({ slug }: { slug: string }) => {
   const [localSentencesData, setLocalSentencesData] = useState<ISentence[]>([]);
@@ -37,14 +38,13 @@ const PhraseEditPage = ({ slug }: { slug: string }) => {
     staleTime: 0,
   });
 
-  const { mutate, status } = useMutation({
+  const { mutate, status: updateSentenceStatus } = useMutation({
     mutationFn: ({ id, text }: ISentencePatchDto) =>
       sentencesService.update(id, text),
     onSuccess: (data) => {
       setLocalSentencesData((state) => [
         ...state.map((sentence) => {
           if (sentence.id === data.id) {
-            console.log('1');
             return {
               ...sentence,
               text: data.text,
@@ -58,6 +58,33 @@ const PhraseEditPage = ({ slug }: { slug: string }) => {
     onError: (error, data) => {},
   });
 
+  const { mutate: deletingPhraseMutation, status: deletingSentenceStatus } =
+    useMutation({
+      mutationFn: ({ id }: { id: string }) => sentencesService.delete(id),
+      onSuccess: (data) => {
+        setLocalSentencesData((state) =>
+          state.filter((sentence) => sentence.id !== data.id)
+        );
+        toast.success('Sentence successfully deleted');
+      },
+      onError: (error, data) => {
+        toast.error('Something went wrong');
+      },
+    });
+
+  const { mutate: addingPhraseMutation, status: addingPhraseMutationStatus } =
+    useMutation({
+      mutationFn: ({ en, sentence }: { en: string; sentence: string }) =>
+        phrasesService.addSentences(en, sentence),
+      onSuccess: (data: IPhrase) => {
+        setLocalSentencesData(data.sentences);
+        toast.success('Sentence successfully added');
+      },
+      onError: (error, data) => {
+        toast.error('Something went wrong');
+      },
+    });
+
   useEffect(() => {
     if (!(sentencesError || sentencesIsFetching) && sentencesData?.data) {
       setLocalSentencesData(sentencesData.data);
@@ -68,6 +95,14 @@ const PhraseEditPage = ({ slug }: { slug: string }) => {
     mutate({ id, text });
   };
 
+  const onDeleteSentence = (id: string) => {
+    deletingPhraseMutation({ id });
+  };
+
+  const onAddSentence = (sentence: string) => {
+    addingPhraseMutation({ en: data!.data!.en, sentence });
+  };
+
   return (
     <>
       {isFetching && <Loader />}
@@ -76,21 +111,19 @@ const PhraseEditPage = ({ slug }: { slug: string }) => {
       )}
       <hr className="my-10 border-blue-500" />
       <div className="pb-6 pl-6">
-        {status === 'pending' ? (
-          <Loader />
-        ) : (
-          <div className="flex gap-2 items-center mb-4">
-            <Button size={'sm'}>
-              <Plus className="h-4 w-4" />
-            </Button>
-            <span className="">Add sentece</span>
-          </div>
-        )}
-        {sentencesIsFetching && <Loader />}
+        {sentencesIsFetching ||
+          (addingPhraseMutationStatus === 'pending' && <Loader />)}
         {!sentencesIsFetching && !!sentencesData?.data.length && (
           <SentencesEditForm
             sentences={localSentencesData}
             onEditSentence={onEditSentence}
+            onAddSentence={onAddSentence}
+            onDeleteSentence={onDeleteSentence}
+            isFetch={
+              updateSentenceStatus === 'pending' ||
+              deletingSentenceStatus === 'pending' ||
+              addingPhraseMutationStatus === 'pending'
+            }
           />
         )}
       </div>

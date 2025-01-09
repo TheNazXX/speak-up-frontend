@@ -28,7 +28,7 @@ export const Sentences = ({
           : sentece;
 
         return (
-          <li className="flex items-center gap-2" key={idx}>
+          <li className="" key={idx}>
             <span
               dangerouslySetInnerHTML={{
                 __html: capitalizeFirstLetter(highlightedText),

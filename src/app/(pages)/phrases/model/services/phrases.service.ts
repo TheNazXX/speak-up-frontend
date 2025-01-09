@@ -24,6 +24,16 @@ class PhrasesService {
     const response = await axiosClassic.patch(`${this.BASE_URL}/${en}`, data);
     return response;
   }
+
+  async addSentences(en: string, sentence: string) {
+    const response = await axiosClassic.post(
+      `${this.BASE_URL}/${en}/sentence`,
+      {
+        sentence,
+      }
+    );
+    return response.data;
+  }
 }
 
 export const phrasesService = new PhrasesService();

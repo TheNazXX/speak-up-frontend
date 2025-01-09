@@ -40,6 +40,15 @@ class WordsService {
     const response = await axiosClassic.delete(`${this.BASE_URL}/${en}`);
     return response.data;
   }
+
+  async createSentence(en: string, sentence: string) {
+    const response = await axiosClassic.post(
+      `${this.BASE_URL}/${en}/sentence`,
+      { sentence }
+    );
+
+    return response.data;
+  }
 }
 
 export const wordsService = new WordsService();

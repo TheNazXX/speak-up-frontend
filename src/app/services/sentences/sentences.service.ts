@@ -25,6 +25,11 @@ class SentencesService {
     const response = await axiosClassic.get(`${this.BASE_URL}/phrase?en=${en}`);
     return response;
   }
+
+  async delete(id: string): Promise<ISentence> {
+    const response = await axiosClassic.delete(`${this.BASE_URL}/${id}`);
+    return response.data;
+  }
 }
 
 export const sentencesService = new SentencesService();
