@@ -1,5 +1,6 @@
 import { IWord } from '../(pages)/words/model/types/word.types';
 import { axiosClassic } from '../api/interceptors';
+import { IRepeatWord } from '../types/repeat-words';
 import { IResponse } from '../types/root.types';
 
 class RepeatWordsService {
@@ -15,13 +16,18 @@ class RepeatWordsService {
     return response;
   }
 
-  public async postIncorrectWords(words: IWord[]) {
+  public async postIncorrectWords(words: IRepeatWord[]) {
     const response = await axiosClassic.post(
       `${this.BASE_URL}/incorrect-words`,
       words
     );
 
     return response;
+  }
+
+  public async getDailyRepeatWords(): Promise<IResponse<IRepeatWord[]>> {
+    const response = await axiosClassic(`${this.BASE_URL}/daily`);
+    return response.data;
   }
 }
 

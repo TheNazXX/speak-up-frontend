@@ -113,7 +113,7 @@ const PhraseEditPage = ({ slug }: { slug: string }) => {
       <div className="pb-6 pl-6">
         {sentencesIsFetching ||
           (addingPhraseMutationStatus === 'pending' && <Loader />)}
-        {!sentencesIsFetching && !!sentencesData?.data.length && (
+        {!sentencesIsFetching && (
           <SentencesEditForm
             sentences={localSentencesData}
             onEditSentence={onEditSentence}

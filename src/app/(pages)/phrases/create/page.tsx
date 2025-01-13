@@ -1,10 +1,11 @@
 import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import { CreatePhraseForm } from './PhraseForm';
+import { PhraseForm } from './PhraseForm';
+import CreatePhrasePage from './CreatePhrasePage';
 
-export default function CreatePhrasePage() {
+export default function CreatePhrase() {
   return (
     <DashboardLayout>
-      <CreatePhraseForm mode="create" />
+      <CreatePhrasePage />
     </DashboardLayout>
   );
 }

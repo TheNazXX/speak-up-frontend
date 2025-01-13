@@ -37,12 +37,16 @@ export interface ICreatePhraseFormProps {
   phrase?: IPhrase;
   mode: 'create' | 'update';
   isToaster?: boolean;
+  onAddSentence?: (text: string) => void;
+  onResetSentences?: () => void;
 }
 
 export const PhraseForm = ({
   phrase,
   mode,
   isToaster = true,
+  onAddSentence,
+  onResetSentences,
 }: ICreatePhraseFormProps) => {
   const {
     register,
@@ -67,19 +71,15 @@ export const PhraseForm = ({
         ? toast.success('Phrase was created successfully')
         : toast.success('Phrase was updated successfully');
       reset();
-      onResetSentences();
-      push(`${DASHBOARD_PAGES.PHRASES}`);
 
-      // if (onSuccessCallback) {
-      //   onSuccessCallback(data.data!);
-      // }
+      if (onResetSentences && mode === 'create') {
+        onResetSentences();
+      }
+
+      push(`${DASHBOARD_PAGES.PHRASES}`);
     },
     onError: (error, data) => {
       toast.error(errorCatch(error));
-
-      // if (onErrorCallback) {
-      //   onErrorCallback(data);
-      // }
     },
   });
 
@@ -89,8 +89,6 @@ export const PhraseForm = ({
       setValue('translate', phrase.translate.join(', '));
     }
   }, [phrase]);
-
-  const { sentences, onAddSentence, onResetSentences } = useSentences();
 
   const transformPhraseToDto = (data: PhraseFormData): IPostPhraseDto => {
     return {
@@ -140,7 +138,10 @@ export const PhraseForm = ({
             <div className="">
               <SentenceForm
                 onAddSentence={(sentence: string) => {
-                  onAddSentence(sentence);
+                  if (onAddSentence) {
+                    onAddSentence(sentence);
+                  }
+
                   setValue('sentences', [
                     ...(getValues('sentences') || []),
                     sentence,

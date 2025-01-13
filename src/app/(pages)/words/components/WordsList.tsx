@@ -1,9 +1,10 @@
-import { IWord } from "@/app/(pages)/words/model/types/word.types";
-import { motion } from "framer-motion";
-import Word from "./Word";
-import { animations } from "@/lib/motion";
+import { IWord } from '@/app/(pages)/words/model/types/word.types';
+import { motion } from 'framer-motion';
+import Word from './Word';
+import { animations } from '@/lib/motion';
+import { IRepeatWord } from '@/app/types/repeat-words';
 
-export default function WordsList({ data }: { data: IWord[] }) {
+export default function WordsList({ data }: { data: IWord[] | IRepeatWord[] }) {
   return (
     <div className="flex gap-2.5 flex-wrap gap-y-8">
       {data.map((item, idx) => (
