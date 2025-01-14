@@ -55,7 +55,7 @@ export const SentenceForm = ({ onAddSentence }: ISentenceFormProps) => {
         </div>
         <Textarea
           {...register('sentence')}
-          className="w-[320px] h-40"
+          className="w-[320px] h-40 text-[14px]"
           variant={'dark'}
           placeholder="Write the sentence"
           isError={errors.hasOwnProperty('sentence')}

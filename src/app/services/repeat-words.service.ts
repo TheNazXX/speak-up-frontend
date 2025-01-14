@@ -29,6 +29,15 @@ class RepeatWordsService {
     const response = await axiosClassic(`${this.BASE_URL}/daily`);
     return response.data;
   }
+
+  public async postCorrectWordsIdx(
+    data: string[]
+  ): Promise<IResponse<IRepeatWord[]>> {
+    const response = await axiosClassic.post(`${this.BASE_URL}/correct`, {
+      idx: data,
+    });
+    return response.data;
+  }
 }
 
 export const repeatWordsService = new RepeatWordsService();

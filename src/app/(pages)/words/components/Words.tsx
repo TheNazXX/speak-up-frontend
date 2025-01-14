@@ -11,8 +11,12 @@ import Error from '@/components/ui/error/Error';
 import { errorCatch } from '@/app/api/error';
 import WordsList from './WordsList';
 import { WithHeaderState } from '@/app/hoc/WithHeaderState';
+import { useEffect, useState } from 'react';
+import { IWord } from '../model/types/word.types';
 
 function Words() {
+  const [wordsData, setWordsData] = useState<null | IWord[]>(null);
+
   const { data, isFetching, error } = useQuery({
     queryKey: ['/words'],
     queryFn: () => wordsService.getAll(),
@@ -20,12 +24,14 @@ function Words() {
     staleTime: 0,
   });
 
-  let content;
+  useEffect(() => {
+    if (data?.data && !(isFetching || error)) {
+      toast.success('Words was successfully load');
+      setWordsData(data.data);
+    }
+  }, [data, isFetching]);
 
-  if (data?.data && !(isFetching || error)) {
-    toast.success('Words was successfully load');
-    content = <WordsList data={data.data} />;
-  }
+  let content;
 
   if (error && !isFetching) {
     content = (
@@ -47,6 +53,7 @@ function Words() {
   return (
     <div className="grid grid-cols-[1fe]">
       <div>{content}</div>
+      {!!wordsData?.length && <WordsList data={wordsData} />}
       <Toaster richColors />
     </div>
   );

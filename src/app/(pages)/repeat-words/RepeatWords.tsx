@@ -15,6 +15,8 @@ import Button from '@/components/ui/button/Button';
 import { useEffect, useState } from 'react';
 import { RepeatWordsModal } from './RepeatWordsModal';
 import { toast, Toaster } from 'sonner';
+import { IRepeatWord } from '@/app/types/repeat-words';
+import Word from '../words/components/Word';
 
 function RepeatWords() {
   const queryClient = useQueryClient();
@@ -26,6 +28,7 @@ function RepeatWords() {
     data,
     isFetching: isFetchingGet,
     error,
+    refetch: getRepeatWordsRefetch,
   } = useQuery({
     queryKey: ['repeat-words'],
     queryFn: () => repeatWordsService.getDailyRepeatWords(),
@@ -82,11 +85,18 @@ function RepeatWords() {
           <h5>Nothing to repeat</h5>
         )}
         {!isFetching && data?.data && data.data.length > 0 && (
-          <WordsList data={data.data} />
+          <div className="flex gap-2 mb-10">
+            {data.data.map((item: IRepeatWord, idx) => (
+              <div key={item.en}>
+                <Word item={item.word} />
+              </div>
+            ))}
+          </div>
         )}
 
         {!!data?.data && (
           <RepeatWordsModal
+            getRepeatWordsRefetch={getRepeatWordsRefetch}
             words={data.data}
             isOpen={isOpenRepeatingModal}
             onHandleClose={() => setIsOpenRepeatingModal(false)}

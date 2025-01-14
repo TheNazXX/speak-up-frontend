@@ -18,7 +18,7 @@ export const Sentences = ({
   };
 
   return (
-    <ul className="list-disc pl-6 pb-6 flex flex-col gap-2">
+    <ul className="list-disc pl-6 pb-6 flex flex-col gap-2 text-[14px]">
       {sentences.map((sentece: string, idx: number) => {
         const highlightedText = targetWord
           ? sentece.replace(

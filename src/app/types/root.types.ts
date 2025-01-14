@@ -1,7 +1,7 @@
 export interface IBase {
   id: string;
-  createAt: Date;
-  updateAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IResponse<T = any> {

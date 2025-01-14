@@ -114,7 +114,7 @@ export const PhraseForm = ({
         <div className="flex gap-10">
           <div className="flex flex-col gap-3">
             <label className="mb-3" htmlFor="word">
-              <div className="mb-2">Word:</div>
+              <div className="mb-2">Phrase:</div>
               <Input
                 className="w-80"
                 {...register('en')}

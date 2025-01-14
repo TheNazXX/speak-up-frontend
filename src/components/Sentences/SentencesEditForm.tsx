@@ -93,7 +93,7 @@ export const SentencesEditForm = ({
             : sentece.text;
 
           return (
-            <li className="flex items-center gap-2" key={idx}>
+            <li className="flex items-center gap-2 text-[14px]" key={idx}>
               {isLocalLoading === sentece.id ? (
                 <Loader />
               ) : (
