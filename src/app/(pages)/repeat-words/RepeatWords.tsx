@@ -13,7 +13,7 @@ import {
 import WordsList from '../words/components/WordsList';
 import Button from '@/components/ui/button/Button';
 import { useEffect, useState } from 'react';
-import { RepeatWordsModal } from './RepeatWordsModal';
+import { RepeatWordsModal } from '../../../components/ui/repeat-modal/RepeatModal';
 import { toast, Toaster } from 'sonner';
 import { IRepeatWord } from '@/app/types/repeat-words';
 import Word from '../words/components/Word';
@@ -70,7 +70,7 @@ function RepeatWords() {
             words
           </h3>
           <Button
-            disabled={!!!data?.data}
+            disabled={!!!data?.data?.length}
             className="ml-auto"
             onClick={() => setIsOpenRepeatingModal(true)}
           >
@@ -100,6 +100,7 @@ function RepeatWords() {
             words={data.data}
             isOpen={isOpenRepeatingModal}
             onHandleClose={() => setIsOpenRepeatingModal(false)}
+            mode="words"
           />
         )}
       </div>

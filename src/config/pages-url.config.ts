@@ -12,9 +12,11 @@ class DASHBOARD {
   TEXTS_EDIT = '/texts/edit';
   REPEAT_WORDS = '/repeat-words';
   EXPRESSIONS = '/expressions';
+
   PHRASES = '/phrases';
   PHRASES_CREATE = '/phrases/create';
   PHRASES_EDIT = '/phrases/edit';
+  REPEAT_PHRASES = '/repeat-phrases';
 }
 
 export const DASHBOARD_PAGES = new DASHBOARD();

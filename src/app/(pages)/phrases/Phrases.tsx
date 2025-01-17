@@ -8,9 +8,11 @@ import Loader from '@/components/ui/loader/Loader';
 import { Toaster, toast } from 'sonner';
 import { errorCatch } from '@/app/api/error';
 import PhrasesList from './PhrasesList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { IPhrase } from './model/types/phrase.types';
 
 function Phrases() {
+  const [localData, setLocalData] = useState<IPhrase[] | null>(null);
   const { data, isFetching, error } = useQuery({
     queryKey: ['/phrases'],
     queryFn: () => phrasesService.getAll(),
@@ -21,9 +23,14 @@ function Phrases() {
   let content;
 
   if (data?.data && !(isFetching || error)) {
-    toast.success('Phrase was successfully load');
-    content = <PhrasesList data={data.data} />;
   }
+
+  useEffect(() => {
+    if (data?.data && !(isFetching || error)) {
+      toast.success('Phrase was successfully load');
+      setLocalData(data.data);
+    }
+  }, [isFetching, data]);
 
   if (error && !isFetching) {
     content = (
@@ -45,6 +52,7 @@ function Phrases() {
   return (
     <div className="grid grid-cols-[1fe]">
       <div>{content}</div>
+      {localData && <PhrasesList data={localData} />}
       <Toaster richColors />
     </div>
   );

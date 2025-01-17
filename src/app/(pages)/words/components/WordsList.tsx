@@ -52,7 +52,7 @@ export default function WordsList({ data }: { data: IWord[] }) {
               <div
                 key={date}
                 {...animations.appearance(idx * 0.1)}
-                className="flex gap-2 mb-10 border-b border-blue-500 pb-6"
+                className="flex flex-wrap gap-x-2 gap-y-6 mb-10 border-b border-blue-500 pb-6"
               >
                 {words.map((item, idx) => (
                   <div key={item.en}>

@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { IWord } from '../words/model/types/word.types';
+import { IWord } from '../../../app/(pages)/words/model/types/word.types';
 import { useEffect, useState } from 'react';
 import Button from '@/components/ui/button/Button';
 import Input from '@/components/ui/input/Input';
@@ -22,6 +22,7 @@ interface IRepeatModal {
   onHandleClose: () => void;
   isOpen: boolean;
   getRepeatWordsRefetch: () => void;
+  mode: 'words' | 'phrases';
 }
 
 type RepeatType = 'en' | 'ua';
@@ -31,12 +32,17 @@ export const RepeatWordsModal = ({
   isOpen,
   words,
   getRepeatWordsRefetch,
+  mode,
 }: IRepeatModal) => {
   const [repeatType, setRepeatType] = useState<RepeatType | null>(null);
 
   const [inccorectWords, setInccorectWords] = useState<IRepeatWord[]>([]);
   const [correctWords, setCorrectWords] = useState<IRepeatWord[]>([]);
   const [wordsQueue, setWordsQueue] = useState<IRepeatWord[]>(words);
+
+  useEffect(() => {
+    console.log(wordsQueue, 'QUEUE');
+  }, [isOpen]);
 
   const [currentAnswer, setCurrentAnswer] = useState<string>('');
 
@@ -81,7 +87,6 @@ export const RepeatWordsModal = ({
   }, [words]);
 
   const onResetSession = (data: IRepeatWord[]) => {
-    console.log(data, '123');
     onHandleClose();
     setRepeatType(null);
     setCorrectWords([]);
@@ -191,6 +196,7 @@ export const RepeatWordsModal = ({
                         if (!!correctWords.length) {
                           postCorrectWords(correctWords);
                         } else {
+                          setWordsQueue(inccorectWords);
                           onResetSession(inccorectWords);
                         }
                       }}
@@ -249,9 +255,10 @@ const RepeatStep = ({
       return (
         <div className="text-center pt-8">
           <div className="mb-4 text-left">
-            {word.word.translate.map((item) => (
+            {word.word.translate.map((item, i) => (
               <span className="capitalize" key={item}>
                 {item}
+                {i + 1 !== word.word.translate.length && <>,&nbsp;</>}
               </span>
             ))}
           </div>

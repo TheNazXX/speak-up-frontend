@@ -37,22 +37,32 @@ export default function Header({ children }: PropsWithChildren) {
     }
     case 'texts':
       content = (
-        <Link
-          className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
-          href={DASHBOARD_PAGES.TEXTS_CREATE}
-        >
-          <Plus />
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
+            href={DASHBOARD_PAGES.TEXTS_CREATE}
+          >
+            <Plus />
+          </Link>
+        </div>
       );
       break;
     case 'phrases':
       content = (
-        <Link
-          className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
-          href={DASHBOARD_PAGES.PHRASES_CREATE}
-        >
-          <Plus />
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
+            href={DASHBOARD_PAGES.PHRASES_CREATE}
+          >
+            <Plus />
+          </Link>
+          <Link
+            className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
+            href={DASHBOARD_PAGES.REPEAT_PHRASES}
+          >
+            <RefreshCcw />
+          </Link>
+        </div>
       );
       break;
     case 'repeat-words':
