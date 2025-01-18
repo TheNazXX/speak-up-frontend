@@ -85,7 +85,7 @@ function RepeatWords() {
           <h5>Nothing to repeat</h5>
         )}
         {!isFetching && data?.data && data.data.length > 0 && (
-          <div className="flex gap-2 mb-10">
+          <div className="flex flex-wrap gap-x-2 gap-y-6 mb-10">
             {data.data.map((item: IRepeatWord, idx) => (
               <div key={item.en}>
                 <Word item={item.word} />

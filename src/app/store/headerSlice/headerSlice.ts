@@ -4,7 +4,8 @@ export type HeaderPageState =
   | 'texts'
   | 'words'
   | 'repeat-words'
-  | 'phrases';
+  | 'phrases'
+  | 'repeat-phrases';
 
 const initialState: HeaderPageState = 'default';
 

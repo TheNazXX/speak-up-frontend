@@ -16,12 +16,14 @@ import { toast } from 'sonner';
 import { Ban, Check } from 'lucide-react';
 import { IResponse } from '@/app/types/root.types';
 import Loader from '@/components/ui/loader/Loader';
+import { IRepeatPhrase } from '@/app/(pages)/repeat-phrases/model/types/repeat-phrases.types';
+import { RepeatModalDataTypes } from './model/repeatModal.types';
 
 interface IRepeatModal {
-  words: IRepeatWord[];
+  data: RepeatModalDataTypes[];
   onHandleClose: () => void;
   isOpen: boolean;
-  getRepeatWordsRefetch: () => void;
+  getRepeatEntityRefetch: () => void;
   mode: 'words' | 'phrases';
 }
 
@@ -30,15 +32,17 @@ type RepeatType = 'en' | 'ua';
 export const RepeatWordsModal = ({
   onHandleClose,
   isOpen,
-  words,
-  getRepeatWordsRefetch,
+  data,
+  getRepeatEntityRefetch,
   mode,
 }: IRepeatModal) => {
   const [repeatType, setRepeatType] = useState<RepeatType | null>(null);
 
-  const [inccorectWords, setInccorectWords] = useState<IRepeatWord[]>([]);
-  const [correctWords, setCorrectWords] = useState<IRepeatWord[]>([]);
-  const [wordsQueue, setWordsQueue] = useState<IRepeatWord[]>(words);
+  const [inccorectWords, setInccorectWords] = useState<RepeatModalDataTypes[]>(
+    []
+  );
+  const [correctWords, setCorrectWords] = useState<RepeatModalDataTypes[]>([]);
+  const [wordsQueue, setWordsQueue] = useState<RepeatModalDataTypes[]>(data);
 
   useEffect(() => {
     console.log(wordsQueue, 'QUEUE');
@@ -48,11 +52,11 @@ export const RepeatWordsModal = ({
 
   const { mutate: postCorrectWords, status: postCorrectWordsLoading } =
     useMutation({
-      mutationFn: (data: IRepeatWord[]) =>
+      mutationFn: (data: RepeatModalDataTypes[]) =>
         repeatWordsService.postCorrectWordsIdx(
-          data.map((item: IRepeatWord) => item.id)
+          data.map((item: RepeatModalDataTypes) => item.id)
         ),
-      onSuccess: (data: IResponse<IRepeatWord[]>) => {
+      onSuccess: (data: IResponse<RepeatModalDataTypes[]>) => {
         onResetSession(data?.data || []);
         toast.success('Repeat words successfully updated');
       },
@@ -86,7 +90,7 @@ export const RepeatWordsModal = ({
     setWordsQueue(words);
   }, [words]);
 
-  const onResetSession = (data: IRepeatWord[]) => {
+  const onResetSession = (data: RepeatModalDataTypes[]) => {
     onHandleClose();
     setRepeatType(null);
     setCorrectWords([]);
@@ -141,7 +145,7 @@ export const RepeatWordsModal = ({
               <RepeatStep
                 currentAnswer={currentAnswer}
                 setCurrectAnswer={setCurrentAnswer}
-                word={wordsQueue[0]}
+                current={wordsQueue[0]}
                 repeatType={repeatType}
                 onSkipWord={onSkipWord}
                 onHandleNext={onHandleNext}
@@ -217,14 +221,15 @@ export const RepeatWordsModal = ({
 };
 
 const RepeatStep = ({
-  word,
+  current,
   repeatType,
+  
   onSkipWord,
   onHandleNext,
   currentAnswer,
   setCurrectAnswer,
 }: {
-  word: IRepeatWord;
+  current: RepeatModalDataTypes;
   repeatType: RepeatType;
   onSkipWord: () => void;
   onHandleNext: () => void;
@@ -236,7 +241,7 @@ const RepeatStep = ({
     case 'en': {
       return (
         <div className="text-center pt-8">
-          <div className="mb-4 text-left">{word.en}</div>
+          <div className="mb-4 text-left">{current.}</div>
           <Input
             value={currentAnswer}
             onChange={(e) => setCurrectAnswer(e.target.value)}
@@ -255,10 +260,10 @@ const RepeatStep = ({
       return (
         <div className="text-center pt-8">
           <div className="mb-4 text-left">
-            {word.word.translate.map((item, i) => (
+            {current.word.translate.map((item, i) => (
               <span className="capitalize" key={item}>
                 {item}
-                {i + 1 !== word.word.translate.length && <>,&nbsp;</>}
+                {i + 1 !== current.word.translate.length && <>,&nbsp;</>}
               </span>
             ))}
           </div>
