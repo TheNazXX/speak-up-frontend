@@ -12,8 +12,8 @@ import {
 
 import WordsList from '../words/components/WordsList';
 import Button from '@/components/ui/button/Button';
-import { useEffect, useState } from 'react';
-import { RepeatWordsModal } from '../../../components/ui/repeat-modal/RepeatModal';
+import { use, useEffect, useState } from 'react';
+import { RepeatEntityModal } from '@/components/ui/repeat-modal/RepeatModal';
 import { toast, Toaster } from 'sonner';
 import { IRepeatWord } from '@/app/types/repeat-words';
 import Word from '../words/components/Word';
@@ -21,7 +21,7 @@ import Word from '../words/components/Word';
 function RepeatWords() {
   const queryClient = useQueryClient();
   const [isFetching, setIsFetching] = useState(false);
-
+  const [localData, setLocalData] = useState<IRepeatWord[] | null>(null);
   const [isOpenRepeatingModal, setIsOpenRepeatingModal] = useState(false);
 
   const {
@@ -35,7 +35,8 @@ function RepeatWords() {
   });
 
   useEffect(() => {
-    if (data?.data?.length && !isFetching) {
+    if (!!data?.data && !isFetchingGet) {
+      setLocalData(data.data);
       toast.success(data.message);
     }
   }, [data]);
@@ -65,12 +66,12 @@ function RepeatWords() {
           <h3 className="text-xl">
             You need to repeat -{' '}
             <span className="text-blue-500 underline  underline-offset-4">
-              {data?.data?.length}
+              {localData?.length || 0}
             </span>{' '}
             words
           </h3>
           <Button
-            disabled={!!!data?.data?.length}
+            disabled={!!!localData?.length}
             className="ml-auto"
             onClick={() => setIsOpenRepeatingModal(true)}
           >
@@ -80,13 +81,11 @@ function RepeatWords() {
             Delete all
           </Button>
         </div>
-        {isFetching && <Loader />}
-        {!isFetching && data?.data && data.data.length === 0 && (
-          <h5>Nothing to repeat</h5>
-        )}
-        {!isFetching && data?.data && data.data.length > 0 && (
+        {isFetchingGet && <Loader />}
+        {!isFetchingGet && !!!localData?.length && <h5>Nothing to repeat</h5>}
+        {!isFetching && localData && localData.length > 0 && (
           <div className="flex flex-wrap gap-x-2 gap-y-6 mb-10">
-            {data.data.map((item: IRepeatWord, idx) => (
+            {localData.map((item: IRepeatWord, idx) => (
               <div key={item.en}>
                 <Word item={item.word} />
               </div>
@@ -94,13 +93,13 @@ function RepeatWords() {
           </div>
         )}
 
-        {!!data?.data && (
-          <RepeatWordsModal
-            getRepeatWordsRefetch={getRepeatWordsRefetch}
-            words={data.data}
+        {!!localData?.length && (
+          <RepeatEntityModal
+            getRepeatEntitiesRefetch={getRepeatWordsRefetch}
+            data={localData}
             isOpen={isOpenRepeatingModal}
             onHandleClose={() => setIsOpenRepeatingModal(false)}
-            mode="words"
+            repeatVariant="word"
           />
         )}
       </div>

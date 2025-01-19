@@ -12,6 +12,15 @@ class RepeatPhrasesService {
     const response = await axiosClassic.get(`${this.BASE_URL}/daily`);
     return response.data;
   }
+
+  async postCorrectPhrasesIdx(
+    idx: string[]
+  ): Promise<IResponse<IRepeatPhrase[]>> {
+    const response = await axiosClassic.post(`${this.BASE_URL}/correct`, {
+      idx,
+    });
+    return response.data;
+  }
 }
 
 export const repeatPhrasesService = new RepeatPhrasesService();

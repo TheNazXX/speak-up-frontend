@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { IRepeatPhrase } from './model/types/repeat-phrases.types';
 import Button from '@/components/ui/button/Button';
 import Loader from '@/components/ui/loader/Loader';
-import { RepeatWordsModal } from '@/components/ui/repeat-modal/RepeatModal';
+import { RepeatEntityModal } from '@/components/ui/repeat-modal/RepeatModal';
 import { Toaster } from 'sonner';
 import { WithHeaderState } from '@/app/hoc/WithHeaderState';
 import Link from 'next/link';
@@ -17,13 +17,18 @@ const RepeatPhrases = () => {
   const [isOpenRepeatingModal, setIsOpenRepeatingModal] =
     useState<boolean>(false);
 
-  const { data, isFetching, error } = useQuery({
+  const {
+    data,
+    isFetching,
+    error,
+    refetch: getDailyPhrases,
+  } = useQuery({
     queryKey: ['getRepeatPhrases'],
     queryFn: () => repeatPhrasesService.getDailyPhrases(),
   });
 
   useEffect(() => {
-    if (data?.data?.length && !isFetching && !error) {
+    if (data?.data && !isFetching && !error) {
       setLocalData(data.data);
     }
   }, [data, isFetching]);
@@ -42,7 +47,7 @@ const RepeatPhrases = () => {
           <Button
             disabled={!!!data?.data?.length}
             className="ml-auto"
-            onClick={() => {}}
+            onClick={() => setIsOpenRepeatingModal(true)}
           >
             Start
           </Button>
@@ -69,12 +74,12 @@ const RepeatPhrases = () => {
         )}
 
         {!!localData?.length && (
-          <RepeatWordsModal
-            getRepeatEntityRefetch={() => {}}
+          <RepeatEntityModal
+            getRepeatEntitiesRefetch={getDailyPhrases}
             data={localData}
             isOpen={isOpenRepeatingModal}
             onHandleClose={() => setIsOpenRepeatingModal(false)}
-            mode="phrases"
+            repeatVariant="phrase"
           />
         )}
       </div>

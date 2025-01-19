@@ -18,111 +18,119 @@ import { IResponse } from '@/app/types/root.types';
 import Loader from '@/components/ui/loader/Loader';
 import { IRepeatPhrase } from '@/app/(pages)/repeat-phrases/model/types/repeat-phrases.types';
 import { RepeatModalDataTypes } from './model/repeatModal.types';
+import { IPhrase } from '@/app/(pages)/phrases/model/types/phrase.types';
+import { repeatPhrasesService } from '@/app/services/repeat-pharases.service';
 
-interface IRepeatModal {
+interface IRepeatModalProps {
   data: RepeatModalDataTypes[];
   onHandleClose: () => void;
   isOpen: boolean;
-  getRepeatEntityRefetch: () => void;
-  mode: 'words' | 'phrases';
+  getRepeatEntitiesRefetch: () => void;
+  repeatVariant: 'word' | 'phrase';
 }
 
 type RepeatType = 'en' | 'ua';
 
-export const RepeatWordsModal = ({
+export const RepeatEntityModal = ({
   onHandleClose,
   isOpen,
   data,
-  getRepeatEntityRefetch,
-  mode,
-}: IRepeatModal) => {
+  getRepeatEntitiesRefetch,
+  repeatVariant,
+}: IRepeatModalProps) => {
   const [repeatType, setRepeatType] = useState<RepeatType | null>(null);
 
-  const [inccorectWords, setInccorectWords] = useState<RepeatModalDataTypes[]>(
+  const [incorrectEnities, setIncorrectEnities] = useState<
+    RepeatModalDataTypes[]
+  >([]);
+  const [correctEnities, setCorrectEnities] = useState<RepeatModalDataTypes[]>(
     []
   );
-  const [correctWords, setCorrectWords] = useState<RepeatModalDataTypes[]>([]);
-  const [wordsQueue, setWordsQueue] = useState<RepeatModalDataTypes[]>(data);
-
-  useEffect(() => {
-    console.log(wordsQueue, 'QUEUE');
-  }, [isOpen]);
+  const [repeatsQueue, setRepeatsQueue] =
+    useState<RepeatModalDataTypes[]>(data);
 
   const [currentAnswer, setCurrentAnswer] = useState<string>('');
 
   const { mutate: postCorrectWords, status: postCorrectWordsLoading } =
     useMutation({
       mutationFn: (data: RepeatModalDataTypes[]) =>
-        repeatWordsService.postCorrectWordsIdx(
-          data.map((item: RepeatModalDataTypes) => item.id)
-        ),
+        repeatVariant === 'word'
+          ? repeatWordsService.postCorrectWordsIdx(
+              data.map((item: RepeatModalDataTypes) => item.id)
+            )
+          : repeatPhrasesService.postCorrectPhrasesIdx(
+              data.map((item: RepeatModalDataTypes) => item.id)
+            ),
       onSuccess: (data: IResponse<RepeatModalDataTypes[]>) => {
         onResetSession(data?.data || []);
-        toast.success('Repeat words successfully updated');
+        toast.success('Repeats successfully updated');
       },
       onError: (error, data) => {},
     });
 
   const onSkipWord = () => {
-    setWordsQueue((words) => {
-      setInccorectWords((words) => [...words, wordsQueue.slice(0, 1)[0]]);
+    setRepeatsQueue((repeatsQueue) => {
+      setIncorrectEnities((incorrectEnities) => [
+        ...incorrectEnities,
+        repeatsQueue.slice(0, 1)[0],
+      ]);
       setCurrentAnswer('');
-      return words.slice(1);
+      return repeatsQueue.slice(1);
     });
   };
 
   const onHandleNext = () => {
-    if (checkAnswer(repeatType!, currentAnswer, wordsQueue[0].word)) {
-      setCorrectWords((words) => [...words, wordsQueue[0]]);
+    if (
+      checkAnswer(
+        repeatType!,
+        currentAnswer,
+        // @ts-ignore
+        repeatsQueue[0][repeatVariant]
+      )
+    ) {
+      setCorrectEnities((repeats) => [...repeats, repeatsQueue[0]]);
       toast.success('Right!');
     } else {
-      setInccorectWords((words) => [...words, wordsQueue[0]]);
+      setIncorrectEnities((incorrectEntities) => [
+        ...incorrectEntities,
+        repeatsQueue[0],
+      ]);
       toast.error('Wrong!');
     }
 
     setCurrentAnswer('');
-    setWordsQueue((words) => {
-      return words.slice(1);
+    setRepeatsQueue((repeats) => {
+      return repeats.slice(1);
     });
   };
-
-  useEffect(() => {
-    setWordsQueue(words);
-  }, [words]);
 
   const onResetSession = (data: RepeatModalDataTypes[]) => {
     onHandleClose();
     setRepeatType(null);
-    setCorrectWords([]);
-    setInccorectWords([]);
-    getRepeatWordsRefetch();
+    setRepeatsQueue(data);
+    setCorrectEnities([]);
+    setIncorrectEnities([]);
+    getRepeatEntitiesRefetch();
   };
-
-  useEffect(() => {
-    if (!!!wordsQueue.length) {
-      // mutate(inccorectWords);
-      // onHandleClose();
-    }
-  }, [wordsQueue]);
 
   const checkAnswer = (
     type: RepeatType,
     answer: string,
-    currentWord: IWord
+    currentRepeat: IWord | IPhrase
   ) => {
     switch (type) {
       case 'ua': {
-        return answer.trim() === currentWord.en;
+        return answer.trim() === currentRepeat.en;
       }
       case 'en': {
-        const initialLength = currentWord.translate.length;
+        const initialLength = currentRepeat.translate.length;
 
         return (
           currentAnswer.split(', ').length === initialLength &&
           initialLength ===
             currentAnswer
               .split(', ')
-              .filter((item) => currentWord.translate.includes(item)).length
+              .filter((item) => currentRepeat.translate.includes(item)).length
         );
       }
     }
@@ -133,7 +141,7 @@ export const RepeatWordsModal = ({
       <DialogContent className="opacity-100 bg-black">
         <DialogHeader>
           <DialogTitle className="capitalize text-center text-blue-500">
-            Repeat Words
+            Repeat {repeatVariant === 'phrase' ? 'Phrases' : 'Words'}
           </DialogTitle>
           <div>
             {!repeatType ? (
@@ -141,14 +149,15 @@ export const RepeatWordsModal = ({
                 <Button onClick={() => setRepeatType('en')}>In Ua</Button>
                 <Button onClick={() => setRepeatType('ua')}>In Eu</Button>
               </div>
-            ) : wordsQueue.length > 0 ? (
+            ) : repeatsQueue.length > 0 ? (
               <RepeatStep
                 currentAnswer={currentAnswer}
                 setCurrectAnswer={setCurrentAnswer}
-                current={wordsQueue[0]}
+                current={repeatsQueue[0]}
                 repeatType={repeatType}
                 onSkipWord={onSkipWord}
                 onHandleNext={onHandleNext}
+                repeatVariant={repeatVariant}
               />
             ) : (
               <>
@@ -158,13 +167,13 @@ export const RepeatWordsModal = ({
                     <h3 className="font-medium">Correct Words</h3>
                   </div>
                   <div className="flex flex-wrap gap-2 mb-8">
-                    {!!correctWords.length ? (
-                      correctWords.map((word) => (
+                    {!!correctEnities.length ? (
+                      correctEnities.map((entity) => (
                         <div
-                          key={word.en}
+                          key={entity.en}
                           className="bg-green-600 px-2 py-1 rounded-md font-medium"
                         >
-                          {word.en}
+                          {entity.en}
                         </div>
                       ))
                     ) : (
@@ -177,13 +186,13 @@ export const RepeatWordsModal = ({
                     <h3 className="font-medium">Incorrect Words</h3>
                   </div>
                   <div className="flex flex-wrap gap-2 mb-8">
-                    {true ? (
-                      inccorectWords.map((word) => (
+                    {!!incorrectEnities.length ? (
+                      incorrectEnities.map((entity) => (
                         <div
-                          key={word.en}
+                          key={entity.en}
                           className="bg-red-600 px-2 py-1 rounded-md font-medium"
                         >
-                          {word.en}
+                          {entity.en}
                         </div>
                       ))
                     ) : (
@@ -197,12 +206,7 @@ export const RepeatWordsModal = ({
                   ) : (
                     <Button
                       onClick={() => {
-                        if (!!correctWords.length) {
-                          postCorrectWords(correctWords);
-                        } else {
-                          setWordsQueue(inccorectWords);
-                          onResetSession(inccorectWords);
-                        }
+                        postCorrectWords(correctEnities);
                       }}
                       className="w-full"
                       variant={'primary'}
@@ -223,16 +227,18 @@ export const RepeatWordsModal = ({
 const RepeatStep = ({
   current,
   repeatType,
-  
+
   onSkipWord,
   onHandleNext,
   currentAnswer,
   setCurrectAnswer,
+  repeatVariant,
 }: {
   current: RepeatModalDataTypes;
   repeatType: RepeatType;
   onSkipWord: () => void;
   onHandleNext: () => void;
+  repeatVariant: 'word' | 'phrase';
 
   currentAnswer: string;
   setCurrectAnswer: (answer: string) => void;
@@ -241,7 +247,7 @@ const RepeatStep = ({
     case 'en': {
       return (
         <div className="text-center pt-8">
-          <div className="mb-4 text-left">{current.}</div>
+          <div className="mb-4 text-left">{current.en}</div>
           <Input
             value={currentAnswer}
             onChange={(e) => setCurrectAnswer(e.target.value)}
@@ -260,12 +266,23 @@ const RepeatStep = ({
       return (
         <div className="text-center pt-8">
           <div className="mb-4 text-left">
-            {current.word.translate.map((item, i) => (
-              <span className="capitalize" key={item}>
-                {item}
-                {i + 1 !== current.word.translate.length && <>,&nbsp;</>}
-              </span>
-            ))}
+            {
+              // @ts-ignore
+              current[repeatVariant].translate.map(
+                (item: string, i: number) => (
+                  <span className="capitalize" key={item}>
+                    {item}
+
+                    {
+                      // @ts-ignore
+                      i + 1 !== current[repeatVariant].translate.length && (
+                        <>,&nbsp;</>
+                      )
+                    }
+                  </span>
+                )
+              )
+            }
           </div>
           <Input
             value={currentAnswer}

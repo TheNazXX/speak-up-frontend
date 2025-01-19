@@ -17,6 +17,8 @@ class DASHBOARD {
   PHRASES_CREATE = '/phrases/create';
   PHRASES_EDIT = '/phrases/edit';
   REPEAT_PHRASES = '/repeat-phrases';
+
+  VOCABULARY = '/vocabulary';
 }
 
 export const DASHBOARD_PAGES = new DASHBOARD();
