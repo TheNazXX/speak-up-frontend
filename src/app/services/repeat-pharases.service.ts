@@ -21,6 +21,11 @@ class RepeatPhrasesService {
     });
     return response.data;
   }
+
+  async postPhrases(idx: string[]) {
+    const response = await axiosClassic.post(this.BASE_URL, { idx });
+    return response;
+  }
 }
 
 export const repeatPhrasesService = new RepeatPhrasesService();

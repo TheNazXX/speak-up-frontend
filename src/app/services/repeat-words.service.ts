@@ -38,6 +38,11 @@ class RepeatWordsService {
     });
     return response.data;
   }
+
+  async postWords(idx: string[]) {
+    const response = await axiosClassic.post(this.BASE_URL, { idx });
+    return response;
+  }
 }
 
 export const repeatWordsService = new RepeatWordsService();

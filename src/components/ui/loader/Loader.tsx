@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import { LoaderCircle } from "lucide-react";
+import clsx from 'clsx';
+import { LoaderCircle } from 'lucide-react';
 
-export default function Loader() {
+export default function Loader({ className }: { className?: string }) {
   return (
     <div className="animate-spin text-blue-300 w-max">
-      <LoaderCircle className="w-10 h-10" />
+      <LoaderCircle className={clsx('w-10 h-10', className)} />
     </div>
   );
 }

@@ -4,12 +4,39 @@ import { Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Word from './Word';
 import { animations } from '@/lib/motion';
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
+import { useState } from 'react';
+import { repeatWordsService } from '@/app/services/repeat-words.service';
+import { useRouter } from 'next/navigation';
+import { errorCatch } from '@/app/api/error';
+import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import Button from '@/components/ui/button/Button';
+import Loader from '@/components/ui/loader/Loader';
+import { RefreshCcw } from 'lucide-react';
 
 interface IWordByDate {
   [date: string]: IWord[];
 }
 
 export default function WordsList({ data }: { data: IWord[] }) {
+  const [localFetchingPost, setLocalFetchingPost] = useState<string>('');
+
+  const { push } = useRouter();
+
+  const { mutate: postRepeatWords, status: postRepeatWordsStatus } =
+    useMutation({
+      mutationFn: (idx: string[]) => repeatWordsService.postWords(idx),
+      onSuccess: () => {
+        push(DASHBOARD_PAGES.REPEAT_WORDS);
+        setLocalFetchingPost('');
+      },
+      onError: (error) => {
+        toast.error(errorCatch(error));
+        setLocalFetchingPost('');
+      },
+    });
+
   const transformData = (data: IWord[]): IWordByDate => {
     const wordsSortedByDate: IWordByDate = {};
 
@@ -44,7 +71,21 @@ export default function WordsList({ data }: { data: IWord[] }) {
             >
               <div className="pl-2 font-semibold text-blue-500 mb-4">
                 <div className="flex gap-2 items-center">
-                  <Calendar className="text-[#fff] w-4 h-4" />
+                  {postRepeatWordsStatus === 'pending' &&
+                  localFetchingPost === date ? (
+                    <Loader className="w-5 h-5" />
+                  ) : (
+                    <Button
+                      className="bg-green-600 hover:bg-green-700"
+                      size={'sm'}
+                      onClick={() => {
+                        postRepeatWords(words.map((word) => word.id));
+                        setLocalFetchingPost(date);
+                      }}
+                    >
+                      <RefreshCcw className="text-[#fff] w-4 h-4" />
+                    </Button>
+                  )}
                   {date}
                   <span className="text-green-600">[{words.length}]</span>
                 </div>

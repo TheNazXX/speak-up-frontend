@@ -120,10 +120,16 @@ export const RepeatEntityModal = ({
   ) => {
     switch (type) {
       case 'ua': {
+        console.log(answer.trim(), 'CURRENT ANSWER');
+        console.log(currentRepeat.en, 'translate');
+
         return answer.trim() === currentRepeat.en;
       }
       case 'en': {
         const initialLength = currentRepeat.translate.length;
+
+        console.log(currentAnswer.split(', '), 'CURRENT ANSWER');
+        console.log(currentRepeat.translate, 'translate');
 
         return (
           currentAnswer.split(', ').length === initialLength &&
