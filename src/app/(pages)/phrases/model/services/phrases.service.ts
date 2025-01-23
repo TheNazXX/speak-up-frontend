@@ -34,6 +34,11 @@ class PhrasesService {
     );
     return response.data;
   }
+
+  async delete(en: string) {
+    const response = await axiosClassic.delete(`${this.BASE_URL}/${en}`);
+    return response.data;
+  }
 }
 
 export const phrasesService = new PhrasesService();

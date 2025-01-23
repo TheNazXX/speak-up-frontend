@@ -29,6 +29,15 @@ function PhraseSingle({ slug }: { slug: string }) {
     staleTime: 0,
   });
 
+  const { mutate: onDeletePhraseMutate, status: onDeleteMutateStatus } =
+    useMutation({
+      mutationFn: (en: string) => phrasesService.delete(en),
+      onSuccess: () => {
+        toast.success('Phrase was deleted');
+        push(DASHBOARD_PAGES.PHRASES);
+      },
+    });
+
   // const { mutate, status } = useMutation({
   //   mutationFn: (en: string) => wordsService.deleteByEn(en),
   //   onSuccess: () => {
@@ -40,7 +49,9 @@ function PhraseSingle({ slug }: { slug: string }) {
   //   },
   // });
 
-  const onHandleDelete = (en: string) => {};
+  const onHandleDelete = (en: string) => {
+    onDeletePhraseMutate(en);
+  };
 
   useEffect(() => {
     if (!(error || isFetching) && data?.data) {
@@ -77,15 +88,19 @@ function PhraseSingle({ slug }: { slug: string }) {
                 <Edit />
               </Link>
 
-              <Button
-                onClick={() => {
-                  onHandleDelete(localPharseData!.en);
-                }}
-                variant={'danger'}
-                disabled={isFetching}
-              >
-                <Trash2 />
-              </Button>
+              {onDeleteMutateStatus === 'pending' ? (
+                <Loader />
+              ) : (
+                <Button
+                  onClick={() => {
+                    onHandleDelete(localPharseData!.en);
+                  }}
+                  variant={'danger'}
+                  disabled={isFetching}
+                >
+                  <Trash2 />
+                </Button>
+              )}
             </div>
           </div>
           <div className="mt-4">

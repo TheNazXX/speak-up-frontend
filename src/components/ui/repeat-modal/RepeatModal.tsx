@@ -62,6 +62,10 @@ export const RepeatEntityModal = ({
               data.map((item: RepeatModalDataTypes) => item.id)
             ),
       onSuccess: (data: IResponse<RepeatModalDataTypes[]>) => {
+        if (data?.data?.length === 0) {
+          getRepeatEntitiesRefetch();
+        }
+
         onResetSession(data?.data || []);
         toast.success('Repeats successfully updated');
       },
