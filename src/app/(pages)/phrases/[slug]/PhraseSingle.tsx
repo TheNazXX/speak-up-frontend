@@ -38,17 +38,6 @@ function PhraseSingle({ slug }: { slug: string }) {
       },
     });
 
-  // const { mutate, status } = useMutation({
-  //   mutationFn: (en: string) => wordsService.deleteByEn(en),
-  //   onSuccess: () => {
-  //     toast.success('Word deleted successfully');
-  //     push(DASHBOARD_PAGES.WORDS);
-  //   },
-  //   onError: (error: unknown) => {
-  //     toast.error(errorCatch(error));
-  //   },
-  // });
-
   const onHandleDelete = (en: string) => {
     onDeletePhraseMutate(en);
   };
