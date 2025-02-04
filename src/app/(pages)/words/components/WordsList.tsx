@@ -28,7 +28,7 @@ export default function WordsList({ data }: { data: IWord[] }) {
     useMutation({
       mutationFn: (idx: string[]) => repeatWordsService.postWords(idx),
       onSuccess: () => {
-        push(DASHBOARD_PAGES.REPEAT_WORDS);
+        // push(DASHBOARD_PAGES.REPEAT_WORDS);
         setLocalFetchingPost('');
       },
       onError: (error) => {

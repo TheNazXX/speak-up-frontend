@@ -39,7 +39,7 @@ function RepeatWords() {
       setLocalData(data.data);
       toast.success(data.message);
     }
-  }, [data]);
+  }, [data, isFetching]);
 
   const deleteAllQuery = useMutation({
     mutationFn: () => repeatWordsService.deleteAll(),

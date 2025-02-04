@@ -26,7 +26,7 @@ export default function PhrasesList({ data }: { data: IPhrase[] }) {
     useMutation({
       mutationFn: (idx: string[]) => repeatPhrasesService.postPhrases(idx),
       onSuccess: () => {
-        push(DASHBOARD_PAGES.REPEAT_PHRASES);
+        // push(DASHBOARD_PAGES.REPEAT_PHRASES);
         setLocalFetchingPost('');
       },
       onError: (error) => {
