@@ -14,6 +14,12 @@ import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 import Button from '@/components/ui/button/Button';
 import Loader from '@/components/ui/loader/Loader';
 import { RefreshCcw } from 'lucide-react';
+import { DragDropProvider } from '@dnd-kit/react';
+import { move } from '@dnd-kit/helpers';
+import { useDroppable } from '@dnd-kit/react';
+import { CollisionPriority } from '@dnd-kit/abstract';
+import { useSortable } from '@dnd-kit/react/sortable';
+import { WordsListRow } from './WordsListRow';
 
 interface IWordByDate {
   [date: string]: IWord[];
@@ -21,8 +27,6 @@ interface IWordByDate {
 
 export default function WordsList({ data }: { data: IWord[] }) {
   const [localFetchingPost, setLocalFetchingPost] = useState<string>('');
-
-  const { push } = useRouter();
 
   const { mutate: postRepeatWords, status: postRepeatWordsStatus } =
     useMutation({
@@ -95,11 +99,14 @@ export default function WordsList({ data }: { data: IWord[] }) {
                 {...animations.appearance(idx * 0.1)}
                 className="flex flex-wrap gap-x-2 gap-y-6 mb-10 border-b border-blue-500 pb-6"
               >
-                {words.map((item, idx) => (
-                  <div key={item.en}>
-                    <Word item={item} />
-                  </div>
-                ))}
+                <WordsListRow words={words} />
+                {/* {words.map((item, idx) => (
+                  // <div key={item.en}>
+                  //   <Word item={item} />
+                  // </div>
+
+                 
+                ))} */}
               </div>
             </motion.div>
           );
