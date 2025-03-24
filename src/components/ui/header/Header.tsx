@@ -1,17 +1,27 @@
 'use client';
 
 import { PropsWithChildren } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Locations from '../locations/Locations';
 import { Plus, RefreshCcw } from 'lucide-react';
 import Link from 'next/link';
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
-import { getHeaderState } from '@/app/store/headerSlice/headerSelectors';
-import { HeaderPageState } from '@/app/store/headerSlice/headerSlice';
+import { selectHeader } from './model/headerSlice';
+import { HeaderPageState } from '@/components/ui/header/model/headerSlice';
 import Button from '../button/Button';
+import { btns } from '@/app/vocabulary/model/data';
+import {
+  ActiveVocabulary,
+  selectActiveVocabulary,
+  setActiveVocabulary,
+} from '@/app/vocabulary/model/vocabularySlice';
+import { useRouter } from 'next/navigation';
 
 export default function Header({ children }: PropsWithChildren) {
-  const header: HeaderPageState = useSelector(getHeaderState);
+  const header: HeaderPageState = useSelector(selectHeader);
+  const dispatch = useDispatch();
+  const activeVocabulary = useSelector(selectActiveVocabulary);
+  const router = useRouter();
 
   let content;
 
@@ -103,6 +113,49 @@ export default function Header({ children }: PropsWithChildren) {
         </div>
       );
       break;
+    case 'vocabulary':
+      content = (
+        <div className="flex items-center gap-2">
+          <div className="border-r-2 border-primary mr-3 pr-4 flex items-center gap-2">
+            <Button
+              size={'sm'}
+              className="px-0 py-4 leading-[12px]"
+              onClick={() =>
+                router.push(
+                  activeVocabulary === 'phrases'
+                    ? DASHBOARD_PAGES.PHRASES_CREATE
+                    : DASHBOARD_PAGES.WORDS_CREATE
+                )
+              }
+            >
+              <Plus />
+            </Button>
+            <Button
+              size={'sm'}
+              className="px-0 py-4 leading-[12px]"
+              onClick={() =>
+                router.push(
+                  activeVocabulary === 'phrases'
+                    ? DASHBOARD_PAGES.REPEAT_PHRASES
+                    : DASHBOARD_PAGES.REPEAT_WORDS
+                )
+              }
+            >
+              <RefreshCcw />
+            </Button>
+          </div>
+          {btns.map(({ label, value }) => (
+            <Button
+              disabled={activeVocabulary === value}
+              onClick={() => dispatch(setActiveVocabulary(value))}
+              className="flex items-center justify-between bg-primary border border-primaryLight rounded-sm py-1 px-2 transition-all hover:bg-primaryLight w-max text-sm"
+            >
+              {label}
+            </Button>
+          ))}
+        </div>
+      );
+      break;
     default: {
       content = '';
       break;
@@ -110,7 +163,7 @@ export default function Header({ children }: PropsWithChildren) {
   }
 
   return (
-    <header className="p-layout bg-primary rounded-lg opacity_anim">
+    <header className="p-layout bg-backgroundPrimary rounded-sm opacity_anim">
       <div className="flex items-center justify-between">
         {content}
 

@@ -49,6 +49,16 @@ class WordsService {
 
     return response.data;
   }
+
+  async postOldWords(data: string[]) {
+    const response = await axiosClassic.post<IResponse<IWord[]>>(
+      `${this.BASE_URL}/old`,
+      {
+        words: data,
+      }
+    );
+    return response.data;
+  }
 }
 
 export const wordsService = new WordsService();

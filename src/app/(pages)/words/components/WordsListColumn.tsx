@@ -23,7 +23,7 @@ export function WordsListColumn({
 
   return (
     <div
-      className={clsx('flex flex-wrap gap-x-2 gap-y-4 p-4', className)}
+      className={clsx('flex flex-wrap gap-x-2 gap-y-4 py-4', className)}
       ref={ref}
     >
       {children}

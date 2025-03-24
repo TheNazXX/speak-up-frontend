@@ -1,25 +1,27 @@
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
-import { ArrowBigRight } from 'lucide-react';
-import Link from 'next/link';
+'use client';
 
-export const VocabularyPage = () => {
-  return (
-    <div className="flex flex-col gap-8">
-      <Link
-        href={DASHBOARD_PAGES.WORDS}
-        className="flex items-center justify-between bg-blue-600 px-4 py-8 rounded-md transition-all hover:bg-blue-700 max-w-[20%] hover:max-w-[25%]"
-      >
-        Words
-        <ArrowBigRight />
-      </Link>
+import { useSelector } from 'react-redux';
+import { WithHeaderState } from '../hoc/WithHeaderState';
+import { selectActiveVocabulary } from './model/vocabularySlice';
+import Words from '../(pages)/words/components/Words';
+import Phrases from '../(pages)/phrases/Phrases';
 
-      <Link
-        href={DASHBOARD_PAGES.PHRASES}
-        className="flex items-center justify-between bg-blue-600 px-4 py-8 rounded-md transition-all hover:bg-blue-700 max-w-[20%] hover:max-w-[25%]"
-      >
-        Phrases
-        <ArrowBigRight />
-      </Link>
-    </div>
-  );
-};
+function VocabularyPage() {
+  const activeVocabulary = useSelector(selectActiveVocabulary);
+  let content;
+
+  switch (activeVocabulary) {
+    case 'words': {
+      content = <div>{<Words />}</div>;
+      break;
+    }
+    case 'phrases': {
+      content = <div>{<Phrases />}</div>;
+      break;
+    }
+  }
+
+  return <div className="flex gap-4">{content}</div>;
+}
+
+export default WithHeaderState(VocabularyPage, 'vocabulary');

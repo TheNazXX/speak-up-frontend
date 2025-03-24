@@ -1,6 +1,6 @@
-import { PropsWithChildren } from "react";
-import Sidebar from "../sidebar/Sidebar";
-import Header from "../header/Header";
+import { PropsWithChildren } from 'react';
+import Sidebar from '../sidebar/Sidebar';
+import Header from '../header/Header';
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
 
       <main className="p-big-layout overflow-x-hidden max-h-screen relative">
         <Header />
-        <div className="bg-primary min-h-[85%] mt-4 rounded-lg p-layout opacity_anim ralatice">
+        <div className="bg-backgroundPrimary min-h-[85%] mt-4 rounded-sm p-layout opacity_anim ralatice">
           {children}
         </div>
       </main>

@@ -18,6 +18,13 @@ import { toast } from 'sonner';
 import { errorCatch } from '@/app/api/error';
 import { useState } from 'react';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+
 export default function PhrasesList({ data }: { data: IPhrase[] }) {
   const { push } = useRouter();
   const [localFetchingPost, setLocalFetchingPost] = useState<string>('');
@@ -67,14 +74,14 @@ export default function PhrasesList({ data }: { data: IPhrase[] }) {
               key={date}
               {...animations.appearance(idx * 0.1)}
             >
-              <div className="pl-2 font-semibold text-blue-500 mb-4">
+              <div className="text-[16px] font-medium  text-grayLight mb-4">
                 <div className="flex gap-2 items-center">
                   {postRepeatPhrasesStatus === 'pending' &&
                   localFetchingPost === date ? (
                     <Loader className="w-5 h-5" />
                   ) : (
                     <Button
-                      className="bg-green-600 hover:bg-green-700"
+                      className="bg-primary hover:bg-primaryLight transition-al"
                       size={'sm'}
                       onClick={() => {
                         postRepeatPhrases(phrases.map((phrase) => phrase.id));
@@ -85,25 +92,35 @@ export default function PhrasesList({ data }: { data: IPhrase[] }) {
                     </Button>
                   )}
                   {date}
-                  <span className="text-green-600">[{phrases.length}]</span>
                 </div>
               </div>
               <div
                 key={date}
                 {...animations.appearance(idx * 0.1)}
-                className="flex flex-wrap gap-x-2 gap-y-6 mb-10 border-b border-blue-500 pb-6"
+                className="flex flex-wrap gap-x-2 gap-y-6 border-b border-gray pb-6"
               >
                 {phrases.map((item, idx) => (
                   <motion.div
                     key={item.en}
                     {...animations.appearance(idx * 0.1)}
                   >
-                    <Link
-                      className="text-white p-2 bg-blue-600 rounded-md leading-6 hover:opacity-80 transition-opacity text-sm"
-                      href={`${DASHBOARD_PAGES.PHRASES}/${item.en}`}
-                    >
-                      {item.en}
-                    </Link>
+                    <TooltipProvider delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Link
+                            className="text-white px-2.5 py-1.5 bg-primary border border-gray rounded-xl leading-4 hover:opacity-60 transition-opacity text-[15px] relative whitespace-nowrapm"
+                            href={`${DASHBOARD_PAGES.PHRASES}/${item.en}`}
+                          >
+                            {item.en}
+                          </Link>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-black rounded-2xl text-[12px]">
+                          <p>
+                            <p>{item.translate?.join(', ')}</p>
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </motion.div>
                 ))}
               </div>

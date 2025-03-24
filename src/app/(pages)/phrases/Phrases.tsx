@@ -58,4 +58,4 @@ function Phrases() {
   );
 }
 
-export default WithHeaderState(Phrases, 'phrases');
+export default WithHeaderState(Phrases, 'vocabulary');

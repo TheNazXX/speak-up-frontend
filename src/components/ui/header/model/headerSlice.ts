@@ -5,7 +5,8 @@ export type HeaderPageState =
   | 'words'
   | 'repeat-words'
   | 'phrases'
-  | 'repeat-phrases';
+  | 'repeat-phrases'
+  | 'vocabulary';
 
 const initialState: HeaderPageState = 'default';
 
@@ -22,3 +23,4 @@ export const HeaderSlice = createSlice({
 
 export const { changeHeaderState } = HeaderSlice.actions;
 export default HeaderSlice.reducer;
+export const selectHeader = (state: any) => state.header;

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   changeHeaderState,
   HeaderPageState,
-} from "../store/headerSlice/headerSlice";
+} from '../../components/ui/header/model/headerSlice';
 
 export function WithHeaderState(
   Component: React.ComponentType<any>,
@@ -18,7 +18,7 @@ export function WithHeaderState(
       dispatch(changeHeaderState(header));
 
       return () => {
-        dispatch(changeHeaderState("default"));
+        dispatch(changeHeaderState('default'));
       };
     });
 

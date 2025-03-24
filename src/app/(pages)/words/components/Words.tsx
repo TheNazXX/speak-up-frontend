@@ -59,4 +59,4 @@ function Words() {
   );
 }
 
-export default WithHeaderState(Words, 'words');
+export default WithHeaderState(Words, 'vocabulary');

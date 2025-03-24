@@ -73,14 +73,14 @@ export default function WordsList({ data }: { data: IWord[] }) {
               key={date}
               {...animations.appearance(idx * 0.1)}
             >
-              <div className="pl-2 font-semibold text-blue-500 mb-4">
-                <div className="flex gap-2 items-center">
+              <div className="text-[16px] font-medium  text-grayLight">
+                <div className="flex gap-2.5 items-center">
                   {postRepeatWordsStatus === 'pending' &&
                   localFetchingPost === date ? (
                     <Loader className="w-5 h-5" />
                   ) : (
                     <Button
-                      className="bg-green-600 hover:bg-green-700"
+                      className="bg-primary hover:bg-primaryLight transition-all"
                       size={'sm'}
                       onClick={() => {
                         postRepeatWords(words.map((word) => word.id));
@@ -91,22 +91,14 @@ export default function WordsList({ data }: { data: IWord[] }) {
                     </Button>
                   )}
                   {date}
-                  <span className="text-green-600">[{words.length}]</span>
                 </div>
               </div>
               <div
                 key={date}
                 {...animations.appearance(idx * 0.1)}
-                className="flex flex-wrap gap-x-2 gap-y-6 mb-10 border-b border-blue-500 pb-6"
+                className="flex flex-wrap gap-x-2 mb-6 border-b border-grayLight"
               >
                 <WordsListRow words={words} />
-                {/* {words.map((item, idx) => (
-                  // <div key={item.en}>
-                  //   <Word item={item} />
-                  // </div>
-
-                 
-                ))} */}
               </div>
             </motion.div>
           );
