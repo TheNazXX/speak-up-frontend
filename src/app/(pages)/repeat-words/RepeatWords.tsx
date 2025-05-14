@@ -62,10 +62,10 @@ function RepeatWords() {
   return (
     <>
       <div>
-        <div className="mb-6 flex gap-4 items-center border-b border-blue-500 pb-6">
+        <div className="mb-6 flex gap-4 items-center border-b border-grayLight pb-6">
           <h3 className="text-xl">
             You need to repeat -{' '}
-            <span className="text-blue-500 underline  underline-offset-4">
+            <span className="text-gray underline  underline-offset-4">
               {localData?.length || 0}
             </span>{' '}
             words
@@ -84,7 +84,7 @@ function RepeatWords() {
         {isFetchingGet && <Loader />}
         {!isFetchingGet && !!!localData?.length && <h5>Nothing to repeat</h5>}
         {!isFetching && localData && localData.length > 0 && (
-          <div className="flex flex-wrap gap-x-2 gap-y-6 mb-10">
+          <div className="flex flex-wrap gap-x-2 gap-y-4 mb-10">
             {localData.map((item: IRepeatWord, idx) => (
               <div key={item.en}>
                 <Word item={item.word} />

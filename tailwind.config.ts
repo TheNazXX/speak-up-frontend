@@ -41,6 +41,19 @@ const config: Config = {
         inset: 'inset 0px 18px 22px',
         darkinset: '0px 4px 4px inset',
       },
+      animation: {
+        'scale-pulse': 'scale-pulse 1.4s ease-in-out infinite',
+      },
+      keyframes: {
+        'scale-pulse': {
+          '0%, 100%': { transform: 'scale(0.3)', opacity: '0.2' },
+          '50%': { transform: 'scale(1)', opacity: '1' },
+        },
+      },
+      animationDelay: {
+        '200': '200ms',
+        '400': '400ms',
+      },
     },
 
     colors: {

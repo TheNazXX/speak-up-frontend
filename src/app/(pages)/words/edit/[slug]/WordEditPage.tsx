@@ -134,8 +134,8 @@ export default function WordEditPage({ slug }: { slug: string }) {
             onAddSentence={onAddSentence}
             onResetSentences={onResetSentences}
           />
-          <hr className="my-10 border-blue-500" />
-          <div className="pb-6 pl-6">
+          <hr className="my-10 border-gray" />
+          <div className="pb-6">
             {(sentencesIsFetching ||
               addSentenceMutationStatus === 'pending') && <Loader />}
             {!sentencesIsFetching && (

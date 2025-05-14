@@ -5,7 +5,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import Loader from '@/components/ui/loader/Loader';
 import Button from '@/components/ui/button/Button';
-import { Edit, Trash2 } from 'lucide-react';
+import { Edit, Plus, Trash2 } from 'lucide-react';
 import Error from '@/components/ui/error/Error';
 import { errorCatch } from '@/app/api/error';
 import { toast, Toaster } from 'sonner';
@@ -59,19 +59,19 @@ function PhraseSingle({ slug }: { slug: string }) {
 
       {!error && (
         <>
-          <div className="pb-2 border-b border-blue-600 flex justify-between">
+          <div className="pb-2 border-b border-grayLight flex justify-between">
             {isFetching || status === 'pending' ? (
               <div className="mb-1">
                 <Loader />
               </div>
             ) : (
-              <span className="text-blue-500 text-2xl">
+              <span className="text-[#fff] text-2xl">
                 {localPharseData?.en}
               </span>
             )}
             <div className="flex gap-2">
               <Link
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none h-10 px-4 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-blue-600 text-white hover:bg-blue-700"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none h-10 px-4 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-primary text-white hover:bg-primaryLight"
                 href={`${DASHBOARD_PAGES.PHRASES_EDIT}/${localPharseData?.en}`}
               >
                 <Edit />
@@ -84,7 +84,6 @@ function PhraseSingle({ slug }: { slug: string }) {
                   onClick={() => {
                     onHandleDelete(localPharseData!.en);
                   }}
-                  variant={'danger'}
                   disabled={isFetching}
                 >
                   <Trash2 />
@@ -93,7 +92,7 @@ function PhraseSingle({ slug }: { slug: string }) {
             </div>
           </div>
           <div className="mt-4">
-            <span className="mb-2 block">Translate:</span>
+            <span className="mb-2 block text-grayLight">Translate:</span>
             {isFetching || status === 'pending' ? (
               <Loader />
             ) : (
@@ -107,10 +106,10 @@ function PhraseSingle({ slug }: { slug: string }) {
           <div className="mt-10 mb-4 flex items-center gap-3">
             <div className="">Sentences:</div>
             <Link
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none h-8 px-2 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-blue-600 text-white hover:bg-blue-700"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none h-8 px-2 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-primary text-white hover:bg-primaryLight"
               href={`${DASHBOARD_PAGES.PHRASES_EDIT}/${localPharseData?.en}`}
             >
-              Add
+              <Plus />
             </Link>
           </div>
           {isFetching ? (

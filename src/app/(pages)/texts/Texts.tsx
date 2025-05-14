@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { textService } from "@/app/services/texts.service";
-import Loader from "@/components/ui/loader/Loader";
-import { useQuery } from "@tanstack/react-query";
-import { toast, Toaster } from "sonner";
-import TextsList from "./components/TextsList";
-import Error from "@/components/ui/error/Error";
-import { errorCatch } from "@/app/api/error";
-import { WithHeaderState } from "@/app/hoc/WithHeaderState";
+import { textService } from '@/app/services/texts.service';
+import Loader from '@/components/ui/loader/Loader';
+import { useQuery } from '@tanstack/react-query';
+import { toast, Toaster } from 'sonner';
+import TextsList from './ui/TextsList';
+import Error from '@/components/ui/error/Error';
+import { errorCatch } from '@/app/api/error';
+import { WithHeaderState } from '@/app/hoc/WithHeaderState';
 
 function Texts() {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["/texts"],
+    queryKey: ['/texts'],
     queryFn: () => textService.getAll(),
     retry: 1,
     staleTime: 0,
@@ -20,7 +20,7 @@ function Texts() {
   let content;
 
   if (data?.data && !(isLoading || error)) {
-    toast.success("Words was successfully load");
+    toast.success('Words was successfully load');
     content = <TextsList data={data.data} />;
   }
 
@@ -49,4 +49,4 @@ function Texts() {
   );
 }
 
-export default WithHeaderState(Texts, "texts");
+export default WithHeaderState(Texts, 'texts');

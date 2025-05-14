@@ -8,4 +8,9 @@ export const MenuData: IMenuItem[] = [
     url: DASHBOARD_PAGES.VOCABULARY,
     icon: BookAudio,
   },
+  {
+    label: 'Texts',
+    url: DASHBOARD_PAGES.TEXTS,
+    icon: Text,
+  },
 ];

@@ -146,7 +146,7 @@ export const RepeatEntityModal = ({
     <Dialog open={isOpen} onOpenChange={onHandleClose}>
       <DialogContent className="opacity-100 bg-black max-h-[75%] overflow-y-scroll">
         <DialogHeader>
-          <DialogTitle className="capitalize text-center text-blue-500">
+          <DialogTitle className="capitalize text-center text-[#fff]">
             Repeat {repeatVariant === 'phrase' ? 'Phrases' : 'Words'}
           </DialogTitle>
           <div>

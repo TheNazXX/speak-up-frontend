@@ -16,6 +16,12 @@ import {
   setActiveVocabulary,
 } from '@/app/vocabulary/model/vocabularySlice';
 import { useRouter } from 'next/navigation';
+import { HeaderWordsType } from './ui/HeaderWordsType';
+import { HeaderTextType } from './ui/HeaderTextType';
+import { HeaderPhrasesType } from './ui/HeaderPhrasesType';
+import { HeaderRepeatWordsType } from './ui/HeaderRepeatWordsType';
+import { HeaderRepeatPhrasesType } from './ui/HeaderRepeatPhrasesType';
+import { HeaderVocabularyType } from './ui/HeadeVocabularyType';
 
 export default function Header({ children }: PropsWithChildren) {
   const header: HeaderPageState = useSelector(selectHeader);
@@ -27,134 +33,23 @@ export default function Header({ children }: PropsWithChildren) {
 
   switch (header) {
     case 'words': {
-      content = (
-        <div className="flex items-center gap-2">
-          <Link
-            className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
-            href={DASHBOARD_PAGES.WORDS_CREATE}
-          >
-            <Plus />
-          </Link>
-          <Link
-            className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
-            href={DASHBOARD_PAGES.REPEAT_WORDS}
-          >
-            <RefreshCcw />
-          </Link>
-        </div>
-      );
+      content = <HeaderWordsType />;
       break;
     }
     case 'texts':
-      content = (
-        <div className="flex items-center gap-2">
-          <Link
-            className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
-            href={DASHBOARD_PAGES.TEXTS_CREATE}
-          >
-            <Plus />
-          </Link>
-        </div>
-      );
+      content = <HeaderTextType />;
       break;
     case 'phrases':
-      content = (
-        <div className="flex items-center gap-2">
-          <Link
-            className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
-            href={DASHBOARD_PAGES.PHRASES_CREATE}
-          >
-            <Plus />
-          </Link>
-          <Link
-            className="px-2 py-1 bg-blue-600 flex gap-1 items-center rounded-md hover:opacity-80 transition-opacity"
-            href={DASHBOARD_PAGES.REPEAT_PHRASES}
-          >
-            <RefreshCcw />
-          </Link>
-        </div>
-      );
+      content = <HeaderPhrasesType />;
       break;
     case 'repeat-words':
-      content = (
-        <div className="flex items-center">
-          <span className="text-[22px] text-blue-500">Get random words:</span>
-          <Button className="ml-6 px-1.5 flex items-center gap-0.5">
-            <Plus className="w-5 h-5" />
-            <span className="text-[16px]">5</span>
-          </Button>
-          <Button className="ml-2 px-1.5 flex items-center gap-0.5">
-            <Plus className="w-5 h-5" />
-            <span className="text-[16px]">10</span>
-          </Button>
-          <Button className="ml-2 px-1.5 flex items-center gap-0.5">
-            <Plus className="w-5 h-5" />
-            <span className="text-[16px]">15</span>
-          </Button>
-        </div>
-      );
+      content = <HeaderRepeatWordsType />;
       break;
     case 'repeat-phrases':
-      content = (
-        <div className="flex items-center">
-          <span className="text-[22px] text-blue-500">Get random phrases:</span>
-          <Button className="ml-6 px-1.5 flex items-center gap-0.5">
-            <Plus className="w-5 h-5" />
-            <span className="text-[16px]">5</span>
-          </Button>
-          <Button className="ml-2 px-1.5 flex items-center gap-0.5">
-            <Plus className="w-5 h-5" />
-            <span className="text-[16px]">10</span>
-          </Button>
-          <Button className="ml-2 px-1.5 flex items-center gap-0.5">
-            <Plus className="w-5 h-5" />
-            <span className="text-[16px]">15</span>
-          </Button>
-        </div>
-      );
+      content = <HeaderRepeatPhrasesType />;
       break;
     case 'vocabulary':
-      content = (
-        <div className="flex items-center gap-2">
-          <div className="border-r-2 border-primary mr-3 pr-4 flex items-center gap-2">
-            <Button
-              size={'sm'}
-              className="px-0 py-4 leading-[12px]"
-              onClick={() =>
-                router.push(
-                  activeVocabulary === 'phrases'
-                    ? DASHBOARD_PAGES.PHRASES_CREATE
-                    : DASHBOARD_PAGES.WORDS_CREATE
-                )
-              }
-            >
-              <Plus />
-            </Button>
-            <Button
-              size={'sm'}
-              className="px-0 py-4 leading-[12px]"
-              onClick={() =>
-                router.push(
-                  activeVocabulary === 'phrases'
-                    ? DASHBOARD_PAGES.REPEAT_PHRASES
-                    : DASHBOARD_PAGES.REPEAT_WORDS
-                )
-              }
-            >
-              <RefreshCcw />
-            </Button>
-          </div>
-          {btns.map(({ label, value }) => (
-            <Button
-              disabled={activeVocabulary === value}
-              onClick={() => dispatch(setActiveVocabulary(value))}
-              className="flex items-center justify-between bg-primary border border-primaryLight rounded-sm py-1 px-2 transition-all hover:bg-primaryLight w-max text-sm"
-            >
-              {label}
-            </Button>
-          ))}
-        </div>
-      );
+      content = <HeaderVocabularyType />;
       break;
     default: {
       content = '';

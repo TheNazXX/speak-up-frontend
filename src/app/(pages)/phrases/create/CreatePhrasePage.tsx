@@ -15,7 +15,7 @@ export default function CreatePhrasePage() {
         onAddSentence={onAddSentence}
         onResetSentences={onResetSentences}
       />
-      <hr className="my-10 border-blue-400" />
+      <hr className="my-10 border-grayLight" />
       <Sentences sentences={sentences} />
     </>
   );

@@ -1,5 +1,5 @@
-import DashboardLayout from "@/components/ui/dashboard-layout/DashboardLayout";
-import TextSingle from "../components/TextContainer";
+import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
+import TextSingle from '../ui/TextContainer';
 
 export default function TextPage({
   params: { name },

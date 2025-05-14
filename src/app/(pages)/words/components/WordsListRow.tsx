@@ -42,7 +42,7 @@ export function WordsListRow({ words }: { words: IWord[] }) {
           <WordsListColumn
             className={clsx(
               'relative',
-              index === 0 ? 'w-[65%]' : 'bg-black w-[30%] rounded-lg'
+              index === 0 ? 'w-[100%]' : 'bg-black w-[30%] px-3'
             )}
             key={column}
             id={column}
@@ -57,7 +57,7 @@ export function WordsListRow({ words }: { words: IWord[] }) {
               />
             ))}
 
-            {index === 1 && postOldWordsStatus !== 'pending' && (
+            {/* {index === 1 && postOldWordsStatus !== 'pending' && (
               <Button
                 className="absolute right-1.5 top-4 hover:opacity-80 transition-all"
                 size={'zero'}
@@ -65,7 +65,7 @@ export function WordsListRow({ words }: { words: IWord[] }) {
               >
                 <Plus className="text-blue-600" />
               </Button>
-            )}
+            )} */}
 
             {index === 1 && postOldWordsStatus === 'pending' && (
               <div className="absolute right-1 top-0">

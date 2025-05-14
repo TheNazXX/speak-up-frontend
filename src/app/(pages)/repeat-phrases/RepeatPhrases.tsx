@@ -12,6 +12,13 @@ import { WithHeaderState } from '@/app/hoc/WithHeaderState';
 import Link from 'next/link';
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+
 const RepeatPhrases = () => {
   const [localData, setLocalData] = useState<IRepeatPhrase[] | null>(null);
   const [isOpenRepeatingModal, setIsOpenRepeatingModal] =
@@ -36,10 +43,10 @@ const RepeatPhrases = () => {
   return (
     <>
       <div>
-        <div className="mb-6 flex gap-4 items-center border-b border-blue-500 pb-6">
+        <div className="mb-6 flex gap-4 items-center border-b border-grayLight pb-6">
           <h3 className="text-xl">
             You need to repeat -{' '}
-            <span className="text-blue-500 underline  underline-offset-4">
+            <span className="text-gray underline  underline-offset-4">
               {data?.data?.length}
             </span>{' '}
             phrases
@@ -51,7 +58,7 @@ const RepeatPhrases = () => {
           >
             Start
           </Button>
-          <Button onClick={() => {}} className="" variant={'danger'}>
+          <Button onClick={() => {}} className="">
             Delete all
           </Button>
         </div>
@@ -62,13 +69,23 @@ const RepeatPhrases = () => {
         {!isFetching && data?.data && data.data.length > 0 && (
           <div className="flex flex-wrap gap-x-2 gap-y-4 mb-10">
             {data.data.map((item: IRepeatPhrase, idx) => (
-              <Link
-                key={item.en}
-                className="text-white p-2 bg-blue-600 rounded-md leading-6 hover:opacity-80 transition-opacity text-sm relative"
-                href={`${DASHBOARD_PAGES.PHRASES}/${item.en}`}
-              >
-                {item.en}
-              </Link>
+              <TooltipProvider delayDuration={100}>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Link
+                      className="text-white px-2.5 py-1.5 bg-primary border border-gray rounded-xl leading-4 hover:opacity-60 transition-opacity text-[15px] relative whitespace-nowrapm"
+                      href={`${DASHBOARD_PAGES.PHRASES}/${item.en}`}
+                    >
+                      {item.en}
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-black rounded-2xl text-[12px]">
+                    <p>
+                      <p>{item.phrase.translate?.join(', ')}</p>
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             ))}
           </div>
         )}

@@ -8,7 +8,7 @@ const selectVariants = cva(
     variants: {
       variant: {
         default: '',
-        dark: 'bg-black text-blue-300 border-b border-blue-300',
+        dark: 'bg-black text-grayLight border-b border-grayLight',
         success: '',
       },
       size: {
@@ -32,7 +32,7 @@ export interface SelectOption {
 interface SelectProps
   extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'>,
     VariantProps<typeof selectVariants> {
-  options?: SelectOption[]; // Массив опций
+  options?: SelectOption[];
   isError?: boolean;
 }
 

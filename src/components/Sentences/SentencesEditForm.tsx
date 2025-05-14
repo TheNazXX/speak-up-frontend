@@ -5,6 +5,8 @@ import { ISentence } from '@/app/(pages)/words/model/types/sentence.types';
 import Input from '../ui/input/Input';
 import { Plus } from 'lucide-react';
 import Loader from '../ui/loader/Loader';
+import { AudioTranscriber } from '@/app/components/AudioTranscriber';
+import { LoaderSecondary } from '../ui/loader-secondary/LoaderSecondary';
 
 export const SentencesEditForm = ({
   sentences,
@@ -21,6 +23,8 @@ export const SentencesEditForm = ({
   onDeleteSentence: (id: string) => void;
   onAddSentence: (text: string) => void;
 }) => {
+  const [isProcessingAudio, setIsProcessingAudio] = useState(false);
+
   const capitalizeFirstLetter = (text: string) => {
     if (!text) return text;
     return text.charAt(0).toUpperCase() + text.slice(1);
@@ -44,13 +48,35 @@ export const SentencesEditForm = ({
 
   return (
     <>
-      <div className="flex gap-2 items-center mb-4">
+      <div className="flex gap-3 items-center mb-4">
+        {isAddingLoading ? null : (
+          <>
+            {isAddingSentence ? (
+              <div className="relative w-max">
+                <Input
+                  className="w-[363px] pr-8"
+                  variant={'dark'}
+                  value={addingSentenceValue}
+                  onChange={(e) => setAddingSentenceValue(e.target.value)}
+                />
+
+                <AudioTranscriber
+                  className="absolute top-1/2 right-2"
+                  setText={setAddingSentenceValue}
+                  setIsProcessing={setIsProcessingAudio}
+                />
+              </div>
+            ) : (
+              <div className="h-10 flex items-center">Add sentece</div>
+            )}
+          </>
+        )}
         {isAddingLoading ? null : (
           <>
             {isAddingSentence ? (
               <Button
-                size={'sm'}
-                variant={'success'}
+                className=""
+                disabled={isProcessingAudio || addingSentenceValue.length < 1}
                 onClick={() => {
                   setIsAddingSentence(false);
                   onAddSentence(addingSentenceValue);
@@ -58,27 +84,16 @@ export const SentencesEditForm = ({
                   setIsAddingLoading(true);
                 }}
               >
-                <Save className="w-4 h-4" />
+                {!isProcessingAudio ? (
+                  <Save className="w-5 h-5" />
+                ) : (
+                  <LoaderSecondary />
+                )}
               </Button>
             ) : (
               <Button size={'sm'} onClick={() => setIsAddingSentence(true)}>
                 <Plus className="h-4 w-4" />
               </Button>
-            )}
-          </>
-        )}
-
-        {isAddingLoading ? null : (
-          <>
-            {isAddingSentence ? (
-              <Input
-                className="w-1/2"
-                variant={'dark'}
-                value={addingSentenceValue}
-                onChange={(e) => setAddingSentenceValue(e.target.value)}
-              />
-            ) : (
-              <div className="h-10 flex items-center">Add sentece</div>
             )}
           </>
         )}

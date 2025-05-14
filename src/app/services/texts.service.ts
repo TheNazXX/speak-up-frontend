@@ -1,11 +1,11 @@
-import { IPostText } from "../(pages)/texts/components/TextsCreate";
-import { IText } from "../(pages)/texts/model/types/text.types";
-import { IWord } from "../(pages)/words/model/types/word.types";
-import { axiosClassic } from "../api/interceptors";
-import { IResponse } from "../types/root.types";
+import { IPostText } from '../(pages)/texts/ui/TextsCreate';
+import { IText } from '../(pages)/texts/model/types/text.types';
+import { IWord } from '../(pages)/words/model/types/word.types';
+import { axiosClassic } from '../api/interceptors';
+import { IResponse } from '../types/root.types';
 
 class TextService {
-  private BASE_URL = "/texts";
+  private BASE_URL = '/texts';
 
   async create(data: IPostText, words?: IWord[]) {
     const response = await axiosClassic.post(this.BASE_URL, { data, words });
