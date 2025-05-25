@@ -9,24 +9,19 @@ import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 import { selectHeader } from './model/headerSlice';
 import { HeaderPageState } from '@/components/ui/header/model/headerSlice';
 import Button from '../button/Button';
-import { btns } from '@/app/vocabulary/model/data';
-import {
-  ActiveVocabulary,
-  selectActiveVocabulary,
-  setActiveVocabulary,
-} from '@/app/vocabulary/model/vocabularySlice';
+
 import { useRouter } from 'next/navigation';
 import { HeaderWordsType } from './ui/HeaderWordsType';
 import { HeaderTextType } from './ui/HeaderTextType';
 import { HeaderPhrasesType } from './ui/HeaderPhrasesType';
 import { HeaderRepeatWordsType } from './ui/HeaderRepeatWordsType';
 import { HeaderRepeatPhrasesType } from './ui/HeaderRepeatPhrasesType';
-import { HeaderVocabularyType } from './ui/HeadeVocabularyType';
+import { HeaderVocabularyType } from './ui/HeaderVocabularyType';
 
 export default function Header({ children }: PropsWithChildren) {
   const header: HeaderPageState = useSelector(selectHeader);
   const dispatch = useDispatch();
-  const activeVocabulary = useSelector(selectActiveVocabulary);
+
   const router = useRouter();
 
   let content;

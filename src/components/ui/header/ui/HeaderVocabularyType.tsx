@@ -1,19 +1,15 @@
 import { Plus, RefreshCcw } from 'lucide-react';
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 
-import { btns } from '@/app/vocabulary/model/data';
-import {
-  selectActiveVocabulary,
-  setActiveVocabulary,
-} from '@/app/vocabulary/model/vocabularySlice';
-import { Button } from '../../button';
+import Button from '../../button/Button';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
 export const HeaderVocabularyType = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const activeVocabulary = useSelector(selectActiveVocabulary);
+  const [activeVocabulary, setActiveVocabulary] = useState('words');
 
   return (
     <div className="flex items-center gap-2">
@@ -45,15 +41,6 @@ export const HeaderVocabularyType = () => {
           <RefreshCcw />
         </Button>
       </div>
-      {btns.map(({ label, value }) => (
-        <Button
-          disabled={activeVocabulary === value}
-          onClick={() => dispatch(setActiveVocabulary(value))}
-          className="flex items-center justify-between bg-primary border border-primaryLight rounded-sm py-1 px-2 transition-all hover:bg-primaryLight w-max text-sm"
-        >
-          {label}
-        </Button>
-      ))}
     </div>
   );
 };

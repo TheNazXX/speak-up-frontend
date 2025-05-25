@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 import { WithHeaderState } from '@/app/hoc/WithHeaderState';
 import Link from 'next/link';
-import { Sentences } from '@/components/Sentences/Sentences';
+import { Sentences } from '@/components/sentences/Sentences';
 import { ISentence } from '../model/types/sentence.types';
 import { AudioTranscriber } from '@/app/components/AudioTranscriber';
 

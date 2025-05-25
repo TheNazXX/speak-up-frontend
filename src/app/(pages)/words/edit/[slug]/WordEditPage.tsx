@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Sentences } from '@/components/Sentences/Sentences';
+import { Sentences } from '@/components/sentences/Sentences';
 import WordForm from '../../create/WordForm';
 import { IWord } from '../../model/types/word.types';
 import { IUseSentences, useSentences } from '@/app/hook/useSentences';
@@ -10,7 +10,7 @@ import { wordsService } from '../../model/services/words.service';
 import { useQuery } from '@tanstack/react-query';
 import { toast, Toaster } from 'sonner';
 import Loader from '@/components/ui/loader/Loader';
-import { SentencesEditForm } from '@/components/Sentences/SentencesEditForm';
+import { SentencesEditForm } from '@/components/sentences/SentencesEditForm';
 import { sentencesService } from '@/app/services/sentences/sentences.service';
 import { useMutation } from '@tanstack/react-query';
 

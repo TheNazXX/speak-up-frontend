@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
 
       <main className="p-big-layout overflow-x-hidden max-h-screen relative">
         <Header />
-        <div className="bg-backgroundPrimary min-h-[85%] mt-4 rounded-sm p-layout opacity_anim ralatice">
+        <div className="bg-backgroundPrimary min-h-[85%] mt-4 rounded-sm p-layout opacity_anim ralative">
           {children}
         </div>
       </main>

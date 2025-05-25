@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 import { WithHeaderState } from '@/app/hoc/WithHeaderState';
 import Link from 'next/link';
-import { Sentences } from '@/components/Sentences/Sentences';
+import { Sentences } from '@/components/sentences/Sentences';
 import { IPhrase } from '../model/types/phrase.types';
 import { phrasesService } from '../model/services/phrases.service';
 import { ISentence } from '@/app/(pages)/words/model/types/sentence.types';

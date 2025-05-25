@@ -2,7 +2,7 @@
 
 import { useSentences, IUseSentences } from '@/app/hook/useSentences';
 import { PhraseForm } from './PhraseForm';
-import { Sentences } from '@/components/Sentences/Sentences';
+import { Sentences } from '@/components/sentences/Sentences';
 
 export default function CreatePhrasePage() {
   const { sentences, onAddSentence, onResetSentences }: IUseSentences =

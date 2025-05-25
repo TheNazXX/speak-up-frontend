@@ -14,7 +14,7 @@ import {
   ISentence,
   ISentencePatchDto,
 } from '@/app/(pages)/words/model/types/sentence.types';
-import { SentencesEditForm } from '@/components/Sentences/SentencesEditForm';
+import { SentencesEditForm } from '@/components/sentences/SentencesEditForm';
 import { IPhrase } from '../../model/types/phrase.types';
 
 const PhraseEditPage = ({ slug }: { slug: string }) => {

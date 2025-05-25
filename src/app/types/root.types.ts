@@ -4,9 +4,9 @@ export interface IBase {
   updatedAt: Date;
 }
 
-export interface IResponse<T = any> {
+export interface IResponse<T> {
   status: number;
-  message: string;
+  message?: string;
   data?: T;
   error?: string;
 }
