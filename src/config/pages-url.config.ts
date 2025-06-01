@@ -1,3 +1,5 @@
+import { VocabularyTypes } from '@/app/(pages)/vocabulary/model/vocabularySlice';
+
 class DASHBOARD {
   private root = '';
 
@@ -19,6 +21,8 @@ class DASHBOARD {
   REPEAT_PHRASES = '/repeat-phrases';
 
   VOCABULARY = '/vocabulary';
+  VOCABULARY_WORDS = `/vocabulary?type=${VocabularyTypes.WORDS}`;
+  VOCABULARY_PHRASES = `/vocabulary?type=${VocabularyTypes.PHRASES}`;
 }
 
 export const DASHBOARD_PAGES = new DASHBOARD();

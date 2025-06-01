@@ -96,14 +96,14 @@ export default function TextsCreate({
     <FormProvider {...methods}>
       <div className="">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex gap-2 items-center mb-8">
+          <div className="flex gap-4 items-center mb-8">
             <LetterText className="" />
             <Input
               {...register('title')}
               variant={'dark'}
               placeholder="Title"
               isError={!!methods.formState.errors.title}
-              className="max-w-48"
+              className="w-full"
             />
             <Button className="ml-auto" type="submit">
               {mode === 'edit' ? 'Update' : 'Create'}
@@ -111,10 +111,12 @@ export default function TextsCreate({
           </div>
         </form>
 
-        <TextEditor
-          onChange={onChangeContent}
-          initialValue={contentValue || ''}
-        />
+        <div className="editor-wrapper">
+          <TextEditor
+            onChange={onChangeContent}
+            initialValue={contentValue || ''}
+          />
+        </div>
       </div>
 
       <Toaster expand richColors />

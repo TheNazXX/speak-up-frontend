@@ -9,6 +9,7 @@ body {
 a {
   color: #4099ff;
 }
+
 table {
   border-collapse: collapse;
 }
@@ -68,4 +69,10 @@ code {
 .editor-wrapper ul {
   list-style: disc !important;
   padding-left: 1rem !important;
+}
+.editor-wrapper p {
+  margin: 10px 0 !important;
+}
+strong {
+  color: #3598db;
 }

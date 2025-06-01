@@ -24,6 +24,7 @@ export default function TextEditor({ onChange, initialValue = '' }: IEditor) {
           'customUnknownWordsButton | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         skin: 'oxide-dark',
         content_css: '/editor-style.css',
+
         mergetags_list: [
           { value: 'First.Name', title: 'First Name' },
           { value: 'Email', title: 'Email' },
@@ -35,13 +36,30 @@ export default function TextEditor({ onChange, initialValue = '' }: IEditor) {
         setup: (editor) => {
           editor.ui.registry.addButton('customUnknownWordsButton', {
             icon: 'help',
-            tooltip: 'Add Unknown Word',
+            tooltip: 'Add unknown vocabulary',
             onAction: () => {
-              const word = prompt('Enter unknown word:');
+              const word = prompt('Enter unknown vocabulary:');
               if (word) {
                 editor.insertContent(
-                  `<b style="color: #3b82f6 " class="unknown-word">${word}</b>&nbsp;`
+                  `<span class="unknown-vocabulary">${word}</span>&nbsp;`
                 );
+              }
+            },
+          });
+
+          editor.ui.registry.addButton('highlightSentenceButton', {
+            text: 'Highlight Sentence',
+            tooltip: 'Wrap selected sentence in class',
+            onAction: () => {
+              const selectedText = editor.selection.getContent({
+                format: 'html',
+              });
+
+              if (selectedText) {
+                const wrapped = `<span class="selected-vocabulary">${selectedText}</span>`;
+                editor.selection.setContent(wrapped);
+              } else {
+                alert('Please select a sentence first.');
               }
             },
           });

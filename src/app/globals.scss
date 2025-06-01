@@ -118,3 +118,22 @@ input:checked.defaultCheckbox::before {
 .text-shadow {
   text-shadow: 0px 0px 20px white;
 }
+
+.editor-wrapper p {
+  margin: 30px 0 !important;
+}
+
+.editor-wrapper ul {
+  padding-left: 10px;
+  list-style: disc;
+}
+.editor-wrapper ul {
+  list-style: disc !important;
+  padding-left: 1rem !important;
+}
+.editor-wrapper p {
+  margin: 10px 0 !important;
+}
+.editor-wrapper strong {
+  color: #3598db;
+}

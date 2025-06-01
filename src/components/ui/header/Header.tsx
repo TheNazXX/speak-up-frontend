@@ -27,21 +27,8 @@ export default function Header({ children }: PropsWithChildren) {
   let content;
 
   switch (header) {
-    case 'words': {
-      content = <HeaderWordsType />;
-      break;
-    }
     case 'texts':
       content = <HeaderTextType />;
-      break;
-    case 'phrases':
-      content = <HeaderPhrasesType />;
-      break;
-    case 'repeat-words':
-      content = <HeaderRepeatWordsType />;
-      break;
-    case 'repeat-phrases':
-      content = <HeaderRepeatPhrasesType />;
       break;
     case 'vocabulary':
       content = <HeaderVocabularyType />;

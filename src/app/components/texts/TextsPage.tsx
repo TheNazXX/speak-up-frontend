@@ -23,7 +23,7 @@ const TextsPage = ({ data }: { data: IText[] }) => {
 
             <div className="px-2 relative">
               <div
-                className="text-[12px]/[15px] overflow-hidden mb-4 text-grayLight h-[65px] editor-wrapper"
+                className="text-[12px]/[15px] overflow-hidden mb-4 text-grayLight h-[65px]"
                 dangerouslySetInnerHTML={{
                   __html: item.content,
                 }}

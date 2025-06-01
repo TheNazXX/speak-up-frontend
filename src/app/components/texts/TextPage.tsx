@@ -5,6 +5,8 @@ import { IText } from '@/app/(pages)/texts/model/types/text.types';
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 import Link from 'next/link';
 import { WithHeaderState } from '@/app/hoc/WithHeaderState';
+import { QuickAddVocabulary } from '../vocabulary/QuickAddVocabulary';
+import { Toaster } from 'sonner';
 
 const TextPage = ({ data }: { data: IText }) => {
   return (
@@ -20,12 +22,14 @@ const TextPage = ({ data }: { data: IText }) => {
           Edit
         </Link>
       </div>
+      <QuickAddVocabulary inputStyles="w-1/2" />
       <div
         className="editor-wrapper"
         dangerouslySetInnerHTML={{
           __html: data.content,
         }}
       ></div>
+      <Toaster richColors />
     </>
   );
 };

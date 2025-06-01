@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export enum VocabularyType {
+export enum VocabularyTypes {
   WORDS = 'words',
   PHRASES = 'phrases',
 }
 
-export const LOCAL_STORAGE_ACTIVE_VOCABULARY_KEY = 'ACTIVE_VOCABULARY';
+export const LOCAL_STORAGE_ACTIVE_VOCABULARY_KEY = 'ACTIVE_VOCABULARY_PAGE';
 
 const initialState = {
-  activeVocabulary: VocabularyType.WORDS,
+  activeVocabulary: VocabularyTypes.WORDS,
 };
 
 const vocabularySlice = createSlice({
