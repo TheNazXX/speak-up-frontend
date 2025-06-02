@@ -1,9 +1,7 @@
 import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import VocabularyPage from './ui/VocabularyPage';
+import VocabularyPage from '@/components/vocabulary/VocabularyPage';
 import { VocabularyTypes } from './model/vocabularySlice';
-import { IVocabularyItem } from './model/types';
 import { vocabularyService } from '@/app/services/vocabulary/vocabulary.service';
-import Loader from '@/components/ui/loader/Loader';
 
 type Props = {
   searchParams: {
@@ -14,7 +12,7 @@ type Props = {
 export default async function Page({ searchParams }: Props) {
   const type = searchParams['type'] || VocabularyTypes.WORDS;
 
-  const response = await vocabularyService.getVocabularyType(type);
+  const response = await vocabularyService.getVocabulary(type);
 
   return (
     <DashboardLayout>

@@ -6,7 +6,8 @@ export type HeaderPageState =
   | 'repeat-words'
   | 'phrases'
   | 'repeat-phrases'
-  | 'vocabulary';
+  | 'vocabulary'
+  | 'vocabulary-repeat';
 
 const initialState: HeaderPageState = 'default';
 

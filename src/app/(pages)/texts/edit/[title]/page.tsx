@@ -1,5 +1,5 @@
 import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import TextPageCreate from '@/app/components/texts/TextPageCreate';
+import TextPageCreate from '@/components/texts/TextPageCreate';
 import { textService } from '@/app/services/texts.service';
 
 export default async function Page({

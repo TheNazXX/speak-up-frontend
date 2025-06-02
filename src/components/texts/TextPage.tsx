@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { IText } from '@/app/(pages)/texts/model/types/text.types';
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 import Link from 'next/link';
 import { WithHeaderState } from '@/app/hoc/WithHeaderState';
-import { QuickAddVocabulary } from '../vocabulary/QuickAddVocabulary';
+import { QuickAddVocabulary } from '@/components/vocabulary/ui/QuickAddVocabulary';
 import { Toaster } from 'sonner';
 
 const TextPage = ({ data }: { data: IText }) => {

@@ -1,9 +1,5 @@
 import { IBase } from '@/app/types/root.types';
 
-export interface IVocabularyByDate {
-  [date: string]: IVocabularyItem[];
-}
-
 export type IVocabularyType = 'word' | 'phrase';
 
 export interface IVocabularyItem extends IBase {

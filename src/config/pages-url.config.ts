@@ -21,6 +21,11 @@ class DASHBOARD {
   REPEAT_PHRASES = '/repeat-phrases';
 
   VOCABULARY = '/vocabulary';
+  VOCABULARY_CREATE = '/vocabulary/create';
+  VOCABULARY_EDIT = '/vocabulary/edit';
+  VOCABULARY_REPEAT = '/vocabulary/repeat';
+  VOCABULARY_REPEAT_SESSION = '/vocabulary/repeat/session';
+
   VOCABULARY_WORDS = `/vocabulary?type=${VocabularyTypes.WORDS}`;
   VOCABULARY_PHRASES = `/vocabulary?type=${VocabularyTypes.PHRASES}`;
 }

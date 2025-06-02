@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 import {
   TooltipProvider,
@@ -10,10 +9,14 @@ import {
 } from '@radix-ui/react-tooltip';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { IVocabularyByDate, IVocabularyItem } from '../model/types';
+import { IVocabularyItem } from '@/app/(pages)/vocabulary/model/types';
 import { animations } from '@/lib/motion';
 
-export const VocabularyList = ({ data }: { data: IVocabularyByDate }) => {
+export interface IVocabularyByDate {
+  [date: string]: IVocabularyItem[];
+}
+
+export const VocabularyListByDate = ({ data }: { data: IVocabularyByDate }) => {
   return (
     <>
       {Object.entries(data).map(

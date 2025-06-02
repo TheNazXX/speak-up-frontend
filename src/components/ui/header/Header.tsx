@@ -3,20 +3,13 @@
 import { PropsWithChildren } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Locations from '../locations/Locations';
-import { Plus, RefreshCcw } from 'lucide-react';
-import Link from 'next/link';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 import { selectHeader } from './model/headerSlice';
 import { HeaderPageState } from '@/components/ui/header/model/headerSlice';
-import Button from '../button/Button';
 
 import { useRouter } from 'next/navigation';
-import { HeaderWordsType } from './ui/HeaderWordsType';
 import { HeaderTextType } from './ui/HeaderTextType';
-import { HeaderPhrasesType } from './ui/HeaderPhrasesType';
-import { HeaderRepeatWordsType } from './ui/HeaderRepeatWordsType';
-import { HeaderRepeatPhrasesType } from './ui/HeaderRepeatPhrasesType';
 import { HeaderVocabularyType } from './ui/HeaderVocabularyType';
+import { HeaderRepeatVocabulary } from './ui/HeaderRepeatVocabulary';
 
 export default function Header({ children }: PropsWithChildren) {
   const header: HeaderPageState = useSelector(selectHeader);
@@ -32,6 +25,9 @@ export default function Header({ children }: PropsWithChildren) {
       break;
     case 'vocabulary':
       content = <HeaderVocabularyType />;
+      break;
+    case 'vocabulary-repeat':
+      content = <HeaderRepeatVocabulary />;
       break;
     default: {
       content = '';

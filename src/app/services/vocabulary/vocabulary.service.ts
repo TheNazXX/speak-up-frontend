@@ -11,12 +11,21 @@ class VocabularyService {
 
   constructor() {}
 
-  async getVocabularyType(
-    vocabularyType: VocabularyTypes
+  async getVocabulary(
+    vocabularyType?: VocabularyTypes | null,
+    createdAt?: string,
+    repeatedAt?: string
   ): Promise<IResponse<IVocabularyItem[]>> {
+    const params = new URLSearchParams();
+
+    if (vocabularyType) params.append('type', vocabularyType);
+    if (createdAt) params.append('createdAt', createdAt);
+    if (repeatedAt) params.append('repeatedAt', repeatedAt);
+
     const response = await axiosClassic.get(
-      this.BASE_URL + '?type=' + vocabularyType
+      `${this.BASE_URL}?${params.toString()}`
     );
+
     return response;
   }
 
@@ -24,6 +33,23 @@ class VocabularyService {
     data: IVocabularyPostDto
   ): Promise<IResponse<IVocabularyItem>> {
     const response = await axiosClassic.post(this.BASE_URL, data);
+    return response.data;
+  }
+
+  async getVocabularyDates(
+    datesType: 'created-dates' | 'repeated-dates',
+    vocabularyType?: VocabularyTypes | null
+  ): Promise<IResponse<string[]>> {
+    const params = new URLSearchParams();
+
+    if (vocabularyType) {
+      params.append('type', vocabularyType);
+    }
+
+    const response = await axiosClassic.get(
+      `${this.BASE_URL}/${datesType}?${params.toString()}`
+    );
+
     return response.data;
   }
 }

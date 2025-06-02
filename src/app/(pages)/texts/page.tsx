@@ -1,7 +1,7 @@
 import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import TextList from '@/app/components/texts/TextsPage';
+import TextList from '@/components/texts/TextsPage';
 import { textService } from '@/app/services/texts.service';
-import TextsPage from '@/app/components/texts/TextsPage';
+import TextsPage from '@/components/texts/TextsPage';
 
 export default async function Page() {
   const data = await textService.getAll();
