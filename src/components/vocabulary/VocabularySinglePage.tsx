@@ -1,10 +1,10 @@
 'use client';
 
-import { IVocabularyItem } from '@/app/(pages)/vocabulary/model/types';
+import { IVocabularyItem } from '@/src/app/(pages)/vocabulary/model/types';
 import { Pen, Scroll, Settings, SpellCheck, Trash } from 'lucide-react';
 import Button from '../ui/button/Button';
 import { useRouter } from 'next/navigation';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import { format } from 'date-fns';
 
 export const VocabularySinglePage = ({ data }: { data: IVocabularyItem }) => {

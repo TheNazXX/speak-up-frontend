@@ -1,4 +1,4 @@
-import { IPhrase } from '@/app/(pages)/phrases/model/types/phrase.types';
+import { IPhrase } from '@/src/app/(pages)/phrases/model/types/phrase.types';
 
 export interface IRepeatPhrase {
   id: string;

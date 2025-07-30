@@ -4,22 +4,21 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from '@/src/components/ui/dialog';
 import { IWord } from '../../../app/(pages)/words/model/types/word.types';
 import { useEffect, useState } from 'react';
-import Button from '@/components/ui/button/Button';
-import Input from '@/components/ui/input/Input';
+import Button from '@/src/components/ui/button/Button';
+import Input from '@/src/components/ui/input/Input';
 import { useMutation } from '@tanstack/react-query';
-import { repeatWordsService } from '@/app/services/repeat-words.service';
-import { IRepeatWord } from '@/app/types/repeat-words';
+import { repeatWordsService } from '@/src/app/services/repeat-words.service';
 import { toast } from 'sonner';
 import { Ban, Check } from 'lucide-react';
-import { IResponse } from '@/app/types/root.types';
-import Loader from '@/components/ui/loader/Loader';
-import { IRepeatPhrase } from '@/app/(pages)/repeat-phrases/model/types/repeat-phrases.types';
+import { IResponse } from '@/src/app/types/root.types';
+import Loader from '@/src/components/ui/loader/Loader';
+import { IRepeatPhrase } from '@/src/app/(pages)/repeat-phrases/model/types/repeat-phrases.types';
 import { RepeatModalDataTypes } from './model/repeatModal.types';
-import { IPhrase } from '@/app/(pages)/phrases/model/types/phrase.types';
-import { repeatPhrasesService } from '@/app/services/repeat-pharases.service';
+import { IPhrase } from '@/src/app/(pages)/phrases/model/types/phrase.types';
+import { repeatPhrasesService } from '@/src/app/services/repeat-pharases.service';
 
 interface IRepeatModalProps {
   data: RepeatModalDataTypes[];

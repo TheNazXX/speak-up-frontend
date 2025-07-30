@@ -1,9 +1,9 @@
 'use client';
 
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
-import { transformVocabularyByDate } from '@/app/(pages)/vocabulary/model/libs';
-import { IVocabularyItem } from '@/app/(pages)/vocabulary/model/types';
-import { VocabularyListByDate } from '@/components/vocabulary/ui/VocabularyListByDate';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
+import { transformVocabularyByDate } from '@/src/app/(pages)/vocabulary/model/libs';
+import { IVocabularyItem } from '@/src/app/(pages)/vocabulary/model/types';
+import { VocabularyListByDate } from '@/src/components/vocabulary/ui/VocabularyListByDate';
 
 type VocabularyPageProps = IVocabularyItem[];
 

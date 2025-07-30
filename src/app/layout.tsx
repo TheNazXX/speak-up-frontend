@@ -3,7 +3,7 @@ import { Roboto } from 'next/font/google';
 
 import './globals.scss';
 
-import { SITE_NAME } from '@/constants/seo.constants';
+import { SITE_NAME } from '@/src/constants/seo.constants';
 import { Provider } from './providers';
 
 const zen = Roboto({

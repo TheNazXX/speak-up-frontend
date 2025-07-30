@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import WordForm from './WordForm';
-import { Sentences } from '@/components/sentences/Sentences';
-import { IUseSentences, useSentences } from '@/app/hook/useSentences';
+import { Sentences } from '@/src/components/sentences/Sentences';
+import { IUseSentences, useSentences } from '@/src/app/hook/useSentences';
 
 export default function WordCreatePage() {
   const { sentences, onAddSentence, onResetSentences }: IUseSentences =

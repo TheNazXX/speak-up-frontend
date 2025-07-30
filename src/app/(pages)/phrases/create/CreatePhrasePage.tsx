@@ -1,8 +1,8 @@
 'use client';
 
-import { useSentences, IUseSentences } from '@/app/hook/useSentences';
+import { useSentences, IUseSentences } from '@/src/app/hook/useSentences';
 import { PhraseForm } from './PhraseForm';
-import { Sentences } from '@/components/sentences/Sentences';
+import { Sentences } from '@/src/components/sentences/Sentences';
 
 export default function CreatePhrasePage() {
   const { sentences, onAddSentence, onResetSentences }: IUseSentences =

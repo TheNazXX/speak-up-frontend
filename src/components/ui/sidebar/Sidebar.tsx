@@ -2,9 +2,7 @@ import { PropsWithChildren } from 'react';
 import { MenuData } from './menu.data';
 import MenuItem from './MenuItem';
 import Link from 'next/link';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
-import Image from 'next/image';
-import Logo from '@/app/assets/logo.svg';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 
 export default function Sidebar({ children }: PropsWithChildren) {
   return (

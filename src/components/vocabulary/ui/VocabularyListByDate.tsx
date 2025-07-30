@@ -1,6 +1,6 @@
 'use client';
 
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import {
   TooltipProvider,
   Tooltip,
@@ -9,8 +9,8 @@ import {
 } from '@radix-ui/react-tooltip';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { IVocabularyItem } from '@/app/(pages)/vocabulary/model/types';
-import { animations } from '@/lib/motion';
+import { IVocabularyItem } from '@/src/app/(pages)/vocabulary/model/types';
+import { animations } from '@/src/lib/motion';
 
 export interface IVocabularyByDate {
   [date: string]: IVocabularyItem[];

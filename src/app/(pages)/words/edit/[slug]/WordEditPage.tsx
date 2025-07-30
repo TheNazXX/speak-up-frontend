@@ -1,21 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Sentences } from '@/components/sentences/Sentences';
 import WordForm from '../../create/WordForm';
 import { IWord } from '../../model/types/word.types';
-import { IUseSentences, useSentences } from '@/app/hook/useSentences';
 import { ISentence, ISentencePatchDto } from '../../model/types/sentence.types';
 import { wordsService } from '../../model/services/words.service';
 import { useQuery } from '@tanstack/react-query';
 import { toast, Toaster } from 'sonner';
-import Loader from '@/components/ui/loader/Loader';
-import { SentencesEditForm } from '@/components/sentences/SentencesEditForm';
-import { sentencesService } from '@/app/services/sentences/sentences.service';
+import Loader from '@/src/components/ui/loader/Loader';
+import { SentencesEditForm } from '@/src/components/sentences/SentencesEditForm';
+import { sentencesService } from '@/src/app/services/sentences/sentences.service';
 import { useMutation } from '@tanstack/react-query';
-
-import { Plus } from 'lucide-react';
-import Button from '@/components/ui/button/Button';
 
 export default function WordEditPage({ slug }: { slug: string }) {
   const [localWordData, setLocalWordData] = useState<null | IWord>(null);

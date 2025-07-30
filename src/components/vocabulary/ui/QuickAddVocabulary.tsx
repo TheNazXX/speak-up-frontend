@@ -1,10 +1,10 @@
 import {
   IVocabularyPostDto,
   IVocabularyType,
-} from '@/app/(pages)/vocabulary/model/types';
-import { vocabularyService } from '@/app/services/vocabulary/vocabulary.service';
-import Button from '@/components/ui/button/Button';
-import Input from '@/components/ui/input/Input';
+} from '@/src/app/(pages)/vocabulary/model/types';
+import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
+import Button from '@/src/components/ui/button/Button';
+import Input from '@/src/components/ui/input/Input';
 import { useMutation } from '@tanstack/react-query';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';

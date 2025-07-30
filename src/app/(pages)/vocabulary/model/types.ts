@@ -1,5 +1,5 @@
 
-import { IBase } from '@/app/types/root.types';
+import { IBase } from '@/src/app/types/root.types';
 
 export type IVocabularyType = 'word' | 'phrase';
 

@@ -1,6 +1,6 @@
-import { IVocabularyItem } from '@/app/(pages)/vocabulary/model/types';
-import Button from '@/components/ui/button/Button';
-import Input from '@/components/ui/input/Input';
+import { IVocabularyItem } from '@/src/app/(pages)/vocabulary/model/types';
+import Button from '@/src/components/ui/button/Button';
+import Input from '@/src/components/ui/input/Input';
 import { set } from 'date-fns';
 import { useEffect, useState } from 'react';
 

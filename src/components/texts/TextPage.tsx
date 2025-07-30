@@ -1,10 +1,10 @@
 'use client';
 
-import { IText } from '@/app/(pages)/texts/model/types/text.types';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { IText } from '@/src/app/(pages)/texts/model/types/text.types';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import Link from 'next/link';
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
-import { QuickAddVocabulary } from '@/components/vocabulary/ui/QuickAddVocabulary';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
+import { QuickAddVocabulary } from '@/src/components/vocabulary/ui/QuickAddVocabulary';
 import { Toaster } from 'sonner';
 
 const TextPage = ({ data }: { data: IText }) => {

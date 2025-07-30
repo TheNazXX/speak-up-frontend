@@ -1,6 +1,6 @@
-import { ISentence } from '@/app/(pages)/words/model/types/sentence.types';
-import { axiosClassic } from '@/app/api/interceptors';
-import { IResponse } from '@/app/types/root.types';
+import { ISentence } from '@/src/app/(pages)/words/model/types/sentence.types';
+import { axiosClassic } from '@/src/app/api/interceptors';
+import { IResponse } from '@/src/app/types/root.types';
 
 class SentencesService {
   private BASE_URL = '/sentences';

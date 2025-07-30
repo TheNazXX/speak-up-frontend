@@ -1,4 +1,4 @@
-import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
+import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
 import { PhraseForm } from './PhraseForm';
 import CreatePhrasePage from './CreatePhrasePage';
 

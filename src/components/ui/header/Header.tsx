@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Locations from '../locations/Locations';
 import { selectHeader } from './model/headerSlice';
-import { HeaderPageState } from '@/components/ui/header/model/headerSlice';
+import { HeaderPageState } from '@/src/components/ui/header/model/headerSlice';
 
 import { useRouter } from 'next/navigation';
 import { HeaderTextType } from './ui/HeaderTextType';

@@ -1,23 +1,23 @@
 'use client';
 
-import { repeatPhrasesService } from '@/app/services/repeat-pharases.service';
+import { repeatPhrasesService } from '@/src/app/services/repeat-pharases.service';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { IRepeatPhrase } from './model/types/repeat-phrases.types';
-import Button from '@/components/ui/button/Button';
-import Loader from '@/components/ui/loader/Loader';
-import { RepeatEntityModal } from '@/components/ui/repeat-modal/RepeatModal';
+import Button from '@/src/components/ui/button/Button';
+import Loader from '@/src/components/ui/loader/Loader';
+import { RepeatEntityModal } from '@/src/components/ui/repeat-modal/RepeatModal';
 import { Toaster } from 'sonner';
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
 import Link from 'next/link';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from '@/src/components/ui/tooltip';
 
 const RepeatPhrases = () => {
   const [localData, setLocalData] = useState<IRepeatPhrase[] | null>(null);

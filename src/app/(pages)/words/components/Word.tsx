@@ -1,6 +1,6 @@
-import { IWord } from '@/app/(pages)/words/model/types/word.types';
-import { IRepeatWord } from '@/app/types/repeat-words';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { IWord } from '@/src/app/(pages)/words/model/types/word.types';
+import { IRepeatWord } from '@/src/app/types/repeat-words';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import Link from 'next/link';
 
 import {
@@ -8,7 +8,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from '@/src/components/ui/tooltip';
 
 export default function Word({ item }: { item: IWord | IRepeatWord }) {
   return (

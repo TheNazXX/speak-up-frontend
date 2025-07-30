@@ -1,24 +1,15 @@
-import { IWord } from '@/app/(pages)/words/model/types/word.types';
+import { IWord } from '@/src/app/(pages)/words/model/types/word.types';
 import { format } from 'date-fns';
-import { Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Word from './Word';
-import { animations } from '@/lib/motion';
+import { animations } from '@/src/lib/motion';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useState } from 'react';
-import { repeatWordsService } from '@/app/services/repeat-words.service';
-import { useRouter } from 'next/navigation';
-import { errorCatch } from '@/app/api/error';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
-import Button from '@/components/ui/button/Button';
-import Loader from '@/components/ui/loader/Loader';
+import { repeatWordsService } from '@/src/app/services/repeat-words.service';
+import { errorCatch } from '@/src/app/api/error';
+import Button from '@/src/components/ui/button/Button';
+import Loader from '@/src/components/ui/loader/Loader';
 import { RefreshCcw } from 'lucide-react';
-import { DragDropProvider } from '@dnd-kit/react';
-import { move } from '@dnd-kit/helpers';
-import { useDroppable } from '@dnd-kit/react';
-import { CollisionPriority } from '@dnd-kit/abstract';
-import { useSortable } from '@dnd-kit/react/sortable';
 import { WordsListRow } from './WordsListRow';
 
 interface IWordByDate {

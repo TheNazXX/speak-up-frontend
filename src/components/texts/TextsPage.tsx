@@ -1,10 +1,9 @@
 'use client';
 
-import { IText } from '@/app/(pages)/texts/model/types/text.types';
+import { IText } from '@/src/app/(pages)/texts/model/types/text.types';
 import Link from 'next/link';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
-import { BookAudio } from 'lucide-react';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
 
 const TextsPage = ({ data }: { data: IText[] }) => {
   return (

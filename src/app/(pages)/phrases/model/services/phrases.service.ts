@@ -1,6 +1,6 @@
-import { axiosClassic } from '@/app/api/interceptors';
+import { axiosClassic } from '@/src/app/api/interceptors';
 import { IPhrase, IPostPhraseDto } from '../types/phrase.types';
-import { IResponse } from '@/app/types/root.types';
+import { IResponse } from '@/src/app/types/root.types';
 
 class PhrasesService {
   private BASE_URL = '/phrases';

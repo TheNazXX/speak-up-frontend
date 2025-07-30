@@ -4,19 +4,19 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Toaster } from 'sonner';
-import Input from '@/components/ui/input/Input';
-import Button from '@/components/ui/button/Button';
+import Input from '@/src/components/ui/input/Input';
+import Button from '@/src/components/ui/button/Button';
 import { SentenceForm } from '../../words/create/SentenceForm';
-import { useSentences } from '@/app/hook/useSentences';
-import { Sentences } from '@/components/sentences/Sentences';
+import { useSentences } from '@/src/app/hook/useSentences';
+import { Sentences } from '@/src/components/sentences/Sentences';
 import { useMutation } from '@tanstack/react-query';
 import { IPhrase, IPostPhraseDto } from '../model/types/phrase.types';
 import { phrasesService } from '../model/services/phrases.service';
 import { toast } from 'sonner';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import { useRouter } from 'next/navigation';
-import { errorCatch } from '@/app/api/error';
-import Loader from '@/components/ui/loader/Loader';
+import { errorCatch } from '@/src/app/api/error';
+import Loader from '@/src/components/ui/loader/Loader';
 import { useEffect } from 'react';
 
 const createPhraseSchema = z.object({

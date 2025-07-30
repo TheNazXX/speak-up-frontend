@@ -1,6 +1,6 @@
-import { vocabularyService } from '@/app/services/vocabulary/vocabulary.service';
-import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import RepeatPage from '@/components/vocabulary/RepeatPage';
+import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
+import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
+import RepeatPage from '@/src/components/vocabulary/RepeatPage';
 import { VocabularyTypes } from '../model/vocabularySlice';
 
 type Props = {

@@ -1,12 +1,12 @@
 'use client';
 
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
 import { useQuery } from '@tanstack/react-query';
 import { phrasesService } from './model/services/phrases.service';
-import Error from '@/components/ui/error/Error';
-import Loader from '@/components/ui/loader/Loader';
+import Error from '@/src/components/ui/error/Error';
+import Loader from '@/src/components/ui/loader/Loader';
 import { Toaster, toast } from 'sonner';
-import { errorCatch } from '@/app/api/error';
+import { errorCatch } from '@/src/app/api/error';
 import PhrasesList from './PhrasesList';
 import { useEffect, useState } from 'react';
 import { IPhrase } from './model/types/phrase.types';

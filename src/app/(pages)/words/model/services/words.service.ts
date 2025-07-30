@@ -1,5 +1,5 @@
-import { axiosClassic } from '@/app/api/interceptors';
-import { IResponse } from '@/app/types/root.types';
+import { axiosClassic } from '@/src/app/api/interceptors';
+import { IResponse } from '@/src/app/types/root.types';
 import { IWord, IWordPostDto } from '../types/word.types';
 
 class WordsService {

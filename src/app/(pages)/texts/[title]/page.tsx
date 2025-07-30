@@ -1,6 +1,6 @@
-import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import { textService } from '@/app/services/texts.service';
-import TextPage from '@/components/texts/TextPage';
+import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
+import { textService } from '@/src/app/services/texts.service';
+import TextPage from '@/src/components/texts/TextPage';
 
 export default async function Page({
   params: { title },

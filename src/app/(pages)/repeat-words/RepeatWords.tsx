@@ -1,21 +1,15 @@
 'use client';
 
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
-import { repeatWordsService } from '@/app/services/repeat-words.service';
-import Loader from '@/components/ui/loader/Loader';
-import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
+import { repeatWordsService } from '@/src/app/services/repeat-words.service';
+import Loader from '@/src/components/ui/loader/Loader';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import WordsList from '../words/components/WordsList';
-import Button from '@/components/ui/button/Button';
+import Button from '@/src/components/ui/button/Button';
 import { use, useEffect, useState } from 'react';
-import { RepeatEntityModal } from '@/components/ui/repeat-modal/RepeatModal';
+import { RepeatEntityModal } from '@/src/components/ui/repeat-modal/RepeatModal';
 import { toast, Toaster } from 'sonner';
-import { IRepeatWord } from '@/app/types/repeat-words';
+import { IRepeatWord } from '@/src/app/types/repeat-words';
 import Word from '../words/components/Word';
 
 function RepeatWords() {

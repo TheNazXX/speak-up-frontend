@@ -1,22 +1,21 @@
 'use client';
 
-import { wordsService } from '@/app/(pages)/words/model/services/words.service';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import Loader from '@/components/ui/loader/Loader';
-import Button from '@/components/ui/button/Button';
+import Loader from '@/src/components/ui/loader/Loader';
+import Button from '@/src/components/ui/button/Button';
 import { Edit, Plus, Trash2 } from 'lucide-react';
-import Error from '@/components/ui/error/Error';
-import { errorCatch } from '@/app/api/error';
+import Error from '@/src/components/ui/error/Error';
+import { errorCatch } from '@/src/app/api/error';
 import { toast, Toaster } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
 import Link from 'next/link';
-import { Sentences } from '@/components/sentences/Sentences';
+import { Sentences } from '@/src/components/sentences/Sentences';
 import { IPhrase } from '../model/types/phrase.types';
 import { phrasesService } from '../model/services/phrases.service';
-import { ISentence } from '@/app/(pages)/words/model/types/sentence.types';
+import { ISentence } from '@/src/app/(pages)/words/model/types/sentence.types';
 
 function PhraseSingle({ slug }: { slug: string }) {
   const [localPharseData, setLocalPhraseData] = useState<null | IPhrase>(null);

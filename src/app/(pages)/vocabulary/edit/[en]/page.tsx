@@ -1,6 +1,6 @@
-import { vocabularyService } from '@/app/services/vocabulary/vocabulary.service';
-import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import { VocabularyCreatePage } from '@/components/vocabulary/VocabularyCreatePage';
+import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
+import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
+import { VocabularyCreatePage } from '@/src/components/vocabulary/VocabularyCreatePage';
 
 export default async function Page({ params }: { params: { en: string } }) {
   const { en } = params;

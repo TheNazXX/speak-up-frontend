@@ -1,7 +1,7 @@
-import { vocabularyService } from '@/app/services/vocabulary/vocabulary.service';
-import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import { RepeatSessionPage } from '@/components/vocabulary/RepeatSessionPage';
-import { VocabularyTypes } from '@/app/(pages)/vocabulary/model/vocabularySlice';
+import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
+import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
+import { RepeatSessionPage } from '@/src/components/vocabulary/RepeatSessionPage';
+import { VocabularyTypes } from '@/src/app/(pages)/vocabulary/model/vocabularySlice';
 
 type Props = {
   searchParams: {

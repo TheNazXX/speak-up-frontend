@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { DragDropProvider } from '@dnd-kit/react';
 import { move } from '@dnd-kit/helpers';
-
 import { WordsListColumn } from './WordsListColumn';
 import { WordsListItem } from './WordsListItem';
 import { IWord } from '../model/types/word.types';
-import { Plus } from 'lucide-react';
-import Button from '@/components/ui/button/Button';
 import clsx from 'clsx';
 import { wordsService } from '../model/services/words.service';
 import { useMutation } from '@tanstack/react-query';
-import Loader from '@/components/ui/loader/Loader';
+import Loader from '@/src/components/ui/loader/Loader';
 import { toast } from 'sonner';
 
 export function WordsListRow({ words }: { words: IWord[] }) {

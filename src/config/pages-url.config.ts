@@ -1,4 +1,4 @@
-import { VocabularyTypes } from '@/app/(pages)/vocabulary/model/vocabularySlice';
+import { VocabularyTypes } from '@/src/app/(pages)/vocabulary/model/vocabularySlice';
 
 class DASHBOARD {
   private root = '';

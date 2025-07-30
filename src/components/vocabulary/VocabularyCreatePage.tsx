@@ -10,14 +10,14 @@ import { Check, Pen } from 'lucide-react';
 import {
   IVocabularyItem,
   IVocabularyPostDto,
-} from '@/app/(pages)/vocabulary/model/types';
+} from '@/src/app/(pages)/vocabulary/model/types';
 import { useMutation } from '@tanstack/react-query';
-import { vocabularyService } from '@/app/services/vocabulary/vocabulary.service';
+import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
 import { toast, Toaster } from 'sonner';
-import { errorCatch } from '@/app/api/error';
+import { errorCatch } from '@/src/app/api/error';
 import Checkbox from '../ui/checkbox/Checkbox';
 import { useRouter } from 'next/navigation';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 
 const partOfSpeech: SelectOption[] = [
   {
