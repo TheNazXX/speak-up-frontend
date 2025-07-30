@@ -1,20 +1,20 @@
 'use client';
 
-import { textService } from '@/app/services/texts.service';
-import TextEditor from '@/components/ui/text-editor/TextEditor';
+import { textService } from '@/src/app/services/texts.service';
+import TextEditor from '@/src/components/ui/text-editor/TextEditor';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import Button from '@/components/ui/button/Button';
+import Button from '@/src/components/ui/button/Button';
 import { useForm, FormProvider, useFormContext } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Toaster, toast } from 'sonner';
-import Input from '@/components/ui/input/Input';
+import Input from '@/src/components/ui/input/Input';
 import { z } from 'zod';
 import { LetterText } from 'lucide-react';
-import { IText } from '@/app/(pages)/texts/model/types/text.types';
+import { IText } from '@/src/app/(pages)/texts/model/types/text.types';
 import { useRouter } from 'next/navigation';
-import { IResponse } from '@/app/types/root.types';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { IResponse } from '@/src/app/types/root.types';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 
 const LOCAL_TEXT_CONTENT_KEY = 'text_content';
 

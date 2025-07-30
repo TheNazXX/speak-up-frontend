@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import Button from '@/components/ui/button/Button';
-import Textarea from '@/components/ui/textarea/textarea';
+import Button from '@/src/components/ui/button/Button';
+import Textarea from '@/src/components/ui/textarea/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';

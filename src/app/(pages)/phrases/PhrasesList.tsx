@@ -1,6 +1,6 @@
 import { IPhrase } from './model/types/phrase.types';
 import { motion } from 'framer-motion';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { Calendar, RefreshCcw } from 'lucide-react';
@@ -10,12 +10,12 @@ import { useRouter } from 'next/navigation';
 interface IPhraseByDate {
   [date: string]: IPhrase[];
 }
-import { animations } from '@/lib/motion';
-import Button from '@/components/ui/button/Button';
-import Loader from '@/components/ui/loader/Loader';
-import { repeatPhrasesService } from '@/app/services/repeat-pharases.service';
+import { animations } from '@/src/lib/motion';
+import Button from '@/src/components/ui/button/Button';
+import Loader from '@/src/components/ui/loader/Loader';
+import { repeatPhrasesService } from '@/src/app/services/repeat-pharases.service';
 import { toast } from 'sonner';
-import { errorCatch } from '@/app/api/error';
+import { errorCatch } from '@/src/app/api/error';
 import { useState } from 'react';
 
 import {
@@ -23,7 +23,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from '@/src/components/ui/tooltip';
 
 export default function PhrasesList({ data }: { data: IPhrase[] }) {
   const { push } = useRouter();

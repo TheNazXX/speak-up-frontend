@@ -1,11 +1,11 @@
 import { Brush, Edit, Save, Trash2 } from 'lucide-react';
 import Button from '../ui/button/Button';
 import { useEffect, useState } from 'react';
-import { ISentence } from '@/app/(pages)/words/model/types/sentence.types';
+import { ISentence } from '@/src/app/(pages)/words/model/types/sentence.types';
 import Input from '../ui/input/Input';
 import { Plus } from 'lucide-react';
 import Loader from '../ui/loader/Loader';
-import { AudioTranscriber } from '@/app/components/AudioTranscriber';
+import { AudioTranscriber } from '@/src/app/components/AudioTranscriber';
 import { LoaderSecondary } from '../ui/loader-secondary/LoaderSecondary';
 
 export const SentencesEditForm = ({

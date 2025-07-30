@@ -1,10 +1,10 @@
 import {
   IVocabularyItem,
   IVocabularyPostDto,
-} from '@/app/(pages)/vocabulary/model/types';
-import { VocabularyTypes } from '@/app/(pages)/vocabulary/model/vocabularySlice';
-import { axiosClassic } from '@/app/api/interceptors';
-import { IResponse } from '@/app/types/root.types';
+} from '@/src/app/(pages)/vocabulary/model/types';
+import { VocabularyTypes } from '@/src/app/(pages)/vocabulary/model/vocabularySlice';
+import { axiosClassic } from '@/src/app/api/interceptors';
+import { IResponse } from '@/src/app/types/root.types';
 
 class VocabularyService {
   private BASE_URL = '/vocabulary';

@@ -1,5 +1,5 @@
 import { PhraseForm } from '../../create/PhraseForm';
-import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
+import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
 import PhraseEditPage from './PhraseEditPage';
 
 export default function EditPhrasePage({

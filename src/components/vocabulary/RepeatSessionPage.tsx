@@ -1,6 +1,6 @@
 'use client';
 
-import { IVocabularyItem } from '@/app/(pages)/vocabulary/model/types';
+import { IVocabularyItem } from '@/src/app/(pages)/vocabulary/model/types';
 import { VocabularyList } from './ui/VocabularyList';
 import Button from '../ui/button/Button';
 import { ArrowBigRight, Check, CircleX, Clock, RefreshCcw } from 'lucide-react';
@@ -9,7 +9,7 @@ import { RepeatSessionEntity } from './ui/RepeatSessionEntity';
 import { toast, Toaster } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
-import { vocabularyService } from '@/app/services/vocabulary/vocabulary.service';
+import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
 import { RepeatSessionAllEntities } from './ui/RepeatSessionAllEntities';
 
 type REPEAT_TYPE = 'en' | 'ua' | 'all';

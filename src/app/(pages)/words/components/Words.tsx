@@ -1,16 +1,16 @@
 'use client';
 
-import { wordsService } from '@/app/(pages)/words/model/services/words.service';
+import { wordsService } from '@/src/app/(pages)/words/model/services/words.service';
 import { useQuery } from '@tanstack/react-query';
 
-import Loader from '@/components/ui/loader/Loader';
+import Loader from '@/src/components/ui/loader/Loader';
 
 import { toast, Toaster } from 'sonner';
 
-import Error from '@/components/ui/error/Error';
-import { errorCatch } from '@/app/api/error';
+import Error from '@/src/components/ui/error/Error';
+import { errorCatch } from '@/src/app/api/error';
 import WordsList from './WordsList';
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
 import { useEffect, useState } from 'react';
 import { IWord } from '../model/types/word.types';
 

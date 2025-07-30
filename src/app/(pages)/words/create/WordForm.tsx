@@ -3,22 +3,22 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Input from '@/components/ui/input/Input';
-import Button from '@/components/ui/button/Button';
+import Input from '@/src/components/ui/input/Input';
+import Button from '@/src/components/ui/button/Button';
 import { useEffect, useState } from 'react';
 import { toast, Toaster } from 'sonner';
-import { wordsService } from '@/app/(pages)/words/model/services/words.service';
+import { wordsService } from '@/src/app/(pages)/words/model/services/words.service';
 import {
   IWord,
   IWordPostDto,
-} from '@/app/(pages)/words/model/types/word.types';
+} from '@/src/app/(pages)/words/model/types/word.types';
 import { useMutation } from '@tanstack/react-query';
-import { errorCatch } from '@/app/api/error';
-import Loader from '@/components/ui/loader/Loader';
-import Select, { SelectOption } from '@/components/ui/select/select';
+import { errorCatch } from '@/src/app/api/error';
+import Loader from '@/src/components/ui/loader/Loader';
+import Select, { SelectOption } from '@/src/components/ui/select/select';
 import { SentenceForm } from './SentenceForm';
 import { useRouter } from 'next/navigation';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import { ISentence } from '../model/types/sentence.types';
 
 const partOfSpeech: SelectOption[] = [

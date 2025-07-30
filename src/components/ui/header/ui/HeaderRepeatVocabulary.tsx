@@ -1,9 +1,9 @@
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 
 import Button from '../../button/Button';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { VocabularyTypes } from '@/app/(pages)/vocabulary/model/vocabularySlice';
+import { VocabularyTypes } from '@/src/app/(pages)/vocabulary/model/vocabularySlice';
 
 export const HeaderRepeatVocabulary = () => {
   const router = useRouter();

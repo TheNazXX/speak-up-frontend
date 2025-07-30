@@ -1,4 +1,4 @@
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
 

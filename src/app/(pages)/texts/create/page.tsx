@@ -1,5 +1,5 @@
-import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import TextsCreate from '@/components/texts/TextPageCreate';
+import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
+import TextsCreate from '@/src/components/texts/TextPageCreate';
 
 export default function TextsCreatePage() {
   return (

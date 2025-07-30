@@ -1,4 +1,4 @@
-import { IBase } from '@/app/types/root.types';
+import { IBase } from '@/src/app/types/root.types';
 import { ISentence } from './sentence.types';
 import { IPartOfSpeech } from './partOfSpeech';
 

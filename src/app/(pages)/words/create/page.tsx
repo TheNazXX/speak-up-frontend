@@ -1,5 +1,5 @@
-import DashboardLayout from "@/components/ui/dashboard-layout/DashboardLayout";
-import WordCreatePage from "./WordCreatePage";
+import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
+import WordCreatePage from './WordCreatePage';
 
 export default function WordsCreate() {
   return (

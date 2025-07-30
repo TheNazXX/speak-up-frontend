@@ -4,17 +4,15 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { PhraseForm } from '../../create/PhraseForm';
 import { phrasesService } from '../../model/services/phrases.service';
 import { Toaster, toast } from 'sonner';
-import Loader from '@/components/ui/loader/Loader';
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
-import Button from '@/components/ui/button/Button';
-import { Plus } from 'lucide-react';
-import { sentencesService } from '@/app/services/sentences/sentences.service';
+import Loader from '@/src/components/ui/loader/Loader';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
+import { sentencesService } from '@/src/app/services/sentences/sentences.service';
 import { useEffect, useState } from 'react';
 import {
   ISentence,
   ISentencePatchDto,
-} from '@/app/(pages)/words/model/types/sentence.types';
-import { SentencesEditForm } from '@/components/sentences/SentencesEditForm';
+} from '@/src/app/(pages)/words/model/types/sentence.types';
+import { SentencesEditForm } from '@/src/components/sentences/SentencesEditForm';
 import { IPhrase } from '../../model/types/phrase.types';
 
 const PhraseEditPage = ({ slug }: { slug: string }) => {

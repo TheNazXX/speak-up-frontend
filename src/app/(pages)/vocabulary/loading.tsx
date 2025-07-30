@@ -1,5 +1,5 @@
-import DashboardLayout from '@/components/ui/dashboard-layout/DashboardLayout';
-import Loader from '@/components/ui/loader/Loader';
+import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
+import Loader from '@/src/components/ui/loader/Loader';
 
 export default function Loading() {
   return (

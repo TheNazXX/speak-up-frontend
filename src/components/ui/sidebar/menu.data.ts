@@ -1,7 +1,7 @@
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import { IMenuItem } from './menu.interface';
 import { BookAudio, BookType, Boxes, SquareUser, Text } from 'lucide-react';
-import { VocabularyTypes } from '@/app/(pages)/vocabulary/model/vocabularySlice';
+import { VocabularyTypes } from '@/src/app/(pages)/vocabulary/model/vocabularySlice';
 
 export const VOCABULARY_TYPE_DEFAULT_SEARCH_PARAMS = `?type=${VocabularyTypes.WORDS}`;
 

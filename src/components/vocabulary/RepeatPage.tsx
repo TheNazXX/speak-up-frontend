@@ -1,7 +1,7 @@
 'use client';
 
-import { WithHeaderState } from '@/app/hoc/WithHeaderState';
-import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
+import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import clsx from 'clsx';
 import { format, isToday } from 'date-fns';
 import { Clock } from 'lucide-react';

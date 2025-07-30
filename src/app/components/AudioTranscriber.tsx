@@ -6,9 +6,9 @@ import {
   uploadAudio,
   requestTranscription,
   pollTranscription,
-} from '@/app/services/assembly-ai-service.service';
+} from '@/src/app/services/assembly-ai-service.service';
 import { Mic, Square } from 'lucide-react';
-import Button from '@/components/ui/button/Button';
+import Button from '@/src/components/ui/button/Button';
 
 export const AudioTranscriber = ({
   setText,
