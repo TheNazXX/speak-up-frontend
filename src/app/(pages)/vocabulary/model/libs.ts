@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
-import { IVocabularyByDate, IVocabularyItem } from './types';
+import { IVocabularyItem } from './types';
 
 export const transformVocabularyByDate = (
   data: IVocabularyItem[]
-): IVocabularyByDate => {
-  const phrasesSortedByDate: IVocabularyByDate = {};
+): Record<string, IVocabularyItem[]> => {
+  const phrasesSortedByDate: Record<string, IVocabularyItem[]> = {};
 
   data.forEach((item: IVocabularyItem) => {
     const date = format(new Date(item.createdAt), 'yyyy-MM-dd');
@@ -17,7 +17,7 @@ export const transformVocabularyByDate = (
 
   const sortedData = Object.keys(phrasesSortedByDate)
     .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
-    .reduce((acc: IVocabularyByDate, date: string) => {
+    .reduce((acc: Record<string, IVocabularyItem[]>, date: string) => {
       acc[date] = phrasesSortedByDate[date];
       return acc;
     }, {});
