@@ -15,14 +15,16 @@ import { animations } from '@/lib/motion';
 interface IVocabularyListProps {
   isInteractive?: boolean;
   data: IVocabularyItem[];
+  className?: string;
 }
 
 export const VocabularyList = ({
   data,
   isInteractive = true,
+  className = '',
 }: IVocabularyListProps) => {
   return (
-    <div className="flex flex-wrap gap-x-2 gap-y-4">
+    <div className={`flex flex-wrap gap-x-2 gap-y-4 ${className}`}>
       {data.map((item, idx) => (
         <motion.div key={item.en} {...animations.appearance(idx * 0.1)}>
           <TooltipProvider delayDuration={100}>
@@ -31,7 +33,7 @@ export const VocabularyList = ({
                 {isInteractive ? (
                   <Link
                     className="text-white px-2.5 py-1.5 bg-primary border border-gray rounded-xl leading-4 hover:opacity-60 transition-opacity text-[15px] relative whitespace-nowrapm"
-                    href={`${DASHBOARD_PAGES.PHRASES}/${item.en}`}
+                    href={`${DASHBOARD_PAGES.VOCABULARY}/${item.en}`}
                   >
                     {item.en}
                   </Link>
@@ -43,9 +45,7 @@ export const VocabularyList = ({
                 )}
               </TooltipTrigger>
               <TooltipContent className="bg-black rounded-2xl text-[12px] py-1 px-3">
-                <p>
-                  <p>{item.translate?.join(', ')}</p>
-                </p>
+                <p>{item.translate?.join(', ')}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

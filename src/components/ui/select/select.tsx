@@ -25,7 +25,7 @@ const selectVariants = cva(
 );
 
 export interface SelectOption {
-  value: string;
+  value: string | null;
   label: string;
 }
 
@@ -52,7 +52,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {...props}
       >
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option key={option.value} value={option.value || ""}>
             {option.label}
           </option>
         ))}

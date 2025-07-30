@@ -45,15 +45,13 @@ export const VocabularyListByDate = ({ data }: { data: IVocabularyByDate }) => {
                         <TooltipTrigger>
                           <Link
                             className="text-white px-2.5 py-1.5 bg-primary border border-gray rounded-xl leading-4 hover:opacity-60 transition-opacity text-[15px] relative whitespace-nowrapm"
-                            href={`${DASHBOARD_PAGES.PHRASES}/${item.en}`}
+                            href={`${DASHBOARD_PAGES.VOCABULARY}/${item.en}`}
                           >
                             {item.en}
                           </Link>
                         </TooltipTrigger>
                         <TooltipContent className="bg-black rounded-2xl text-[12px] py-1 px-3">
-                          <p>
-                            <p>{item.translate?.join(', ')}</p>
-                          </p>
+                          <p>{item.translate?.join(', ')}</p>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>

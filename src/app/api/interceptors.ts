@@ -7,10 +7,14 @@ import { errorCatch } from "./error";
 import { authService } from "../services/auth.service";
 
 const options: CreateAxiosDefaults = {
-  baseURL: "http://localhost:8080/api",
+  baseURL: "https://speak-up-backend-e2md.onrender.com/api",
+
   headers: {
     "Content-Type": "application/json",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
   },
+
   withCredentials: true,
 };
 
