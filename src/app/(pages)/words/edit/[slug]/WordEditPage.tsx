@@ -8,7 +8,7 @@ import { wordsService } from '../../model/services/words.service';
 import { useQuery } from '@tanstack/react-query';
 import { toast, Toaster } from 'sonner';
 import Loader from '@/src/components/ui/loader/Loader';
-import { SentencesEditForm } from '../../../../../components/sentences/SentencesEditForm';
+// import { SentencesEditForm } from '../../../../../components/sentences/SentencesEditForm';
 import { sentencesService } from '@/src/app/services/sentences/sentences.service';
 import { useMutation } from '@tanstack/react-query';
 
@@ -134,17 +134,18 @@ export default function WordEditPage({ slug }: { slug: string }) {
             {(sentencesIsFetching ||
               addSentenceMutationStatus === 'pending') && <Loader />}
             {!sentencesIsFetching && (
-              <SentencesEditForm
-                isFetch={
-                  addSentenceMutationStatus === 'pending' ||
-                  deleteSentenceMutationStatus === 'pending' ||
-                  updateSentenceStatus === 'pending'
-                }
-                sentences={localSentencesData}
-                onEditSentence={onEditSentence}
-                onDeleteSentence={onDeleteSentence}
-                onAddSentence={onAddSentence}
-              />
+              <></>
+              // <SentencesEditForm
+              //   isFetch={
+              //     addSentenceMutationStatus === 'pending' ||
+              //     deleteSentenceMutationStatus === 'pending' ||
+              //     updateSentenceStatus === 'pending'
+              //   }
+              //   sentences={localSentencesData}
+              //   onEditSentence={onEditSentence}
+              //   onDeleteSentence={onDeleteSentence}
+              //   onAddSentence={onAddSentence}
+              // />
             )}
           </div>
         </>
