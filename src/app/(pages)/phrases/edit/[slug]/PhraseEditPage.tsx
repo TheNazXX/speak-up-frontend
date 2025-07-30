@@ -12,7 +12,7 @@ import {
   ISentence,
   ISentencePatchDto,
 } from '@/src/app/(pages)/words/model/types/sentence.types';
-import { SentencesEditForm } from '../../../../../components/sentences/SentencesEditForm';
+// import { SentencesEditForm } from '../../../../../components/sentences/SentencesEditForm';
 import { IPhrase } from '../../model/types/phrase.types';
 
 const PhraseEditPage = ({ slug }: { slug: string }) => {
@@ -112,17 +112,18 @@ const PhraseEditPage = ({ slug }: { slug: string }) => {
         {sentencesIsFetching ||
           (addingPhraseMutationStatus === 'pending' && <Loader />)}
         {!sentencesIsFetching && (
-          <SentencesEditForm
-            sentences={localSentencesData}
-            onEditSentence={onEditSentence}
-            onAddSentence={onAddSentence}
-            onDeleteSentence={onDeleteSentence}
-            isFetch={
-              updateSentenceStatus === 'pending' ||
-              deletingSentenceStatus === 'pending' ||
-              addingPhraseMutationStatus === 'pending'
-            }
-          />
+          <></>
+          // <SentencesEditForm
+          //   sentences={localSentencesData}
+          //   onEditSentence={onEditSentence}
+          //   onAddSentence={onAddSentence}
+          //   onDeleteSentence={onDeleteSentence}
+          //   isFetch={
+          //     updateSentenceStatus === 'pending' ||
+          //     deletingSentenceStatus === 'pending' ||
+          //     addingPhraseMutationStatus === 'pending'
+          //   }
+          // />
         )}
       </div>
 
