@@ -2,7 +2,7 @@
 
 import { useSentences, IUseSentences } from '@/src/app/hook/useSentences';
 import { PhraseForm } from './PhraseForm';
-import { Sentences } from '@/src/components/sentences/Sentences';
+// import { Sentences } from '../../../../components/sentences/Sentences';
 
 export default function CreatePhrasePage() {
   const { sentences, onAddSentence, onResetSentences }: IUseSentences =
@@ -16,7 +16,7 @@ export default function CreatePhrasePage() {
         onResetSentences={onResetSentences}
       />
       <hr className="my-10 border-grayLight" />
-      <Sentences sentences={sentences} />
+      {/* <Sentences sentences={sentences} /> */}
     </>
   );
 }

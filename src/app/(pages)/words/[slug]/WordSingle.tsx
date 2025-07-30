@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
 import Link from 'next/link';
-import { Sentences } from '@/src/components/sentences/Sentences';
+// import { Sentences } from '../../../../components/sentences/Sentences';
 import { ISentence } from '../model/types/sentence.types';
 
 function WordSingle({ slug }: { slug: string }) {
@@ -110,13 +110,14 @@ function WordSingle({ slug }: { slug: string }) {
           {isFetching ? (
             <Loader />
           ) : !!localWordData?.sentences.length ? (
-            <Sentences
-              targetWord={localWordData.en}
-              sentences={localWordData?.sentences.map(
-                (sentence: ISentence) => sentence.text
-              )}
-            />
+            <></>
           ) : (
+            // <Sentences
+            //   targetWord={localWordData.en}
+            //   sentences={localWordData?.sentences.map(
+            //     (sentence: ISentence) => sentence.text
+            //   )}
+            // />
             <span className="text-[14px]">No sentences yet</span>
           )}
           <Toaster richColors expand={true} />
