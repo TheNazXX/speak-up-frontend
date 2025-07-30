@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import WordForm from './WordForm';
-import { Sentences } from '@/src/components/sentences/Sentences';
+import { Sentences } from '../../../../components/sentences/Sentences';
 import { IUseSentences, useSentences } from '@/src/app/hook/useSentences';
 
 export default function WordCreatePage() {

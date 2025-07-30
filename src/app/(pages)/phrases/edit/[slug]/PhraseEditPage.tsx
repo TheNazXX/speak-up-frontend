@@ -12,7 +12,7 @@ import {
   ISentence,
   ISentencePatchDto,
 } from '@/src/app/(pages)/words/model/types/sentence.types';
-import { SentencesEditForm } from '@/src/components/sentences/SentencesEditForm';
+import { SentencesEditForm } from '../../../../../components/sentences/SentencesEditForm';
 import { IPhrase } from '../../model/types/phrase.types';
 
 const PhraseEditPage = ({ slug }: { slug: string }) => {

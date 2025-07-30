@@ -8,7 +8,7 @@ import { wordsService } from '../../model/services/words.service';
 import { useQuery } from '@tanstack/react-query';
 import { toast, Toaster } from 'sonner';
 import Loader from '@/src/components/ui/loader/Loader';
-import { SentencesEditForm } from '@/src/components/sentences/SentencesEditForm';
+import { SentencesEditForm } from '../../../../../components/sentences/SentencesEditForm';
 import { sentencesService } from '@/src/app/services/sentences/sentences.service';
 import { useMutation } from '@tanstack/react-query';
 

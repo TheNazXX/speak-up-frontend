@@ -8,7 +8,7 @@ import Input from '@/src/components/ui/input/Input';
 import Button from '@/src/components/ui/button/Button';
 import { SentenceForm } from '../../words/create/SentenceForm';
 import { useSentences } from '@/src/app/hook/useSentences';
-import { Sentences } from '@/src/components/sentences/Sentences';
+
 import { useMutation } from '@tanstack/react-query';
 import { IPhrase, IPostPhraseDto } from '../model/types/phrase.types';
 import { phrasesService } from '../model/services/phrases.service';

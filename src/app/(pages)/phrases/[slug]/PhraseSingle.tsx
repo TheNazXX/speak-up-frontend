@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import { DASHBOARD_PAGES } from '@/src/config/pages-url.config';
 import { WithHeaderState } from '@/src/app/hoc/WithHeaderState';
 import Link from 'next/link';
-import { Sentences } from '@/src/components/sentences/Sentences';
+import { Sentences } from '../../../../components/sentences/Sentences';
 import { IPhrase } from '../model/types/phrase.types';
 import { phrasesService } from '../model/services/phrases.service';
 import { ISentence } from '@/src/app/(pages)/words/model/types/sentence.types';
