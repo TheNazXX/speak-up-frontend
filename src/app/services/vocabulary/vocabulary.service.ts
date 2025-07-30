@@ -29,10 +29,17 @@ class VocabularyService {
     return response;
   }
 
-  async createVocabulary(
+  async create(
     data: IVocabularyPostDto
   ): Promise<IResponse<IVocabularyItem>> {
     const response = await axiosClassic.post(this.BASE_URL, data);
+    return response.data;
+  }
+
+  async update(en: string,
+    data: IVocabularyPostDto
+  ): Promise<IResponse<IVocabularyItem>> {
+    const response = await axiosClassic.patch(`${this.BASE_URL}/${en}`, data);
     return response.data;
   }
 
@@ -50,6 +57,22 @@ class VocabularyService {
       `${this.BASE_URL}/${datesType}?${params.toString()}`
     );
 
+    return response.data;
+  }
+
+  async getVocabularyByEn(
+    en: string
+  ): Promise<IResponse<IVocabularyItem>> {
+
+    const response = await axiosClassic.get(
+      `${this.BASE_URL}/${en}`
+    );
+
+    return response;
+  }
+
+  async updateVocabularyRepeating(data: IVocabularyItem[]): Promise<IResponse<IVocabularyItem[]>> {
+    const response = await axiosClassic.patch(`${this.BASE_URL}/repeating`, data);
     return response.data;
   }
 }

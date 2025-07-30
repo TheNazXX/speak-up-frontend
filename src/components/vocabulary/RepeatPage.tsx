@@ -6,8 +6,7 @@ import clsx from 'clsx';
 import { format, isToday } from 'date-fns';
 import { Clock } from 'lucide-react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { string } from 'zod';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface IRepeatPageProsp {
   createdVocabularyDates: string[];
@@ -33,13 +32,14 @@ const RepeatPage = ({
           {createdVocabularyDates.map((date: string) => {
             return (
               <Link
+                key={date}
                 className={clsx(
                   'text-white px-2.5 py-1.5 bg-primary border border-gray rounded-xl leading-4 hover:opacity-60 transition-opacity text-[12px] font-medium relative whitespace-nowrapm',
                   isToday(new Date(date)) && 'border-green-600'
                 )}
                 href={`${DASHBOARD_PAGES.VOCABULARY_REPEAT_SESSION}?createdAt=${date}&type=${activeType}`}
               >
-                {format(new Date(date), 'yyyy MMM dd')}
+                {format(new Date(date), 'dd MMM yyyy ')}
               </Link>
             );
           })}
@@ -58,11 +58,13 @@ const RepeatPage = ({
           {repeatedVocabularyDates.map((date: string) => {
             return (
               <Link
+                key={date}
                 className={clsx(
                   'text-white px-2.5 py-1.5 bg-primary border border-gray rounded-xl leading-4 hover:opacity-60 transition-opacity text-[12px] font-medium relative whitespace-nowrapm',
                   isToday(new Date(date)) && 'border-green-600'
                 )}
                 href={`${DASHBOARD_PAGES.VOCABULARY_REPEAT_SESSION}?repeatedAt=${date}&type=${activeType}`}
+                onClick={() => useRouter().refresh()}
               >
                 {format(new Date(date), 'dd MMM yyyy')}
               </Link>

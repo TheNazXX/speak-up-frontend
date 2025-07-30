@@ -25,3 +25,6 @@ export default async function Page({ searchParams }: Props) {
     </DashboardLayout>
   );
 }
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;

@@ -51,8 +51,7 @@ export const QuickAddVocabulary = ({
   };
 
   const { mutate: createVocabularyMutation, status } = useMutation({
-    mutationFn: (data: IVocabularyPostDto) =>
-      vocabularyService.createVocabulary(data),
+    mutationFn: (data: IVocabularyPostDto) => vocabularyService.create(data),
     onSuccess: (data) => {
       toast.success(data.message);
       reset();

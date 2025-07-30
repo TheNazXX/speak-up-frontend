@@ -1,6 +1,6 @@
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 import { IMenuItem } from './menu.interface';
-import { BookAudio, Boxes, SquareUser, Text } from 'lucide-react';
+import { BookAudio, BookType, Boxes, SquareUser, Text } from 'lucide-react';
 import { VocabularyTypes } from '@/app/(pages)/vocabulary/model/vocabularySlice';
 
 export const VOCABULARY_TYPE_DEFAULT_SEARCH_PARAMS = `?type=${VocabularyTypes.WORDS}`;
@@ -14,6 +14,6 @@ export const MenuData: IMenuItem[] = [
   {
     label: 'Texts',
     url: DASHBOARD_PAGES.TEXTS,
-    icon: Text,
+    icon: BookType,
   },
 ];
