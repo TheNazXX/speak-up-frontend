@@ -45,7 +45,7 @@ export const RepeatSessionEntity = ({
 
   return (
     <div className="">
-      <div className="flex items-center gap-2 h-[42px]">
+      <div className="flex items-center gap-2 h-[42px] text-lg">
         <Repeat2 className={`${isError ? 'text-red-600' : 'text-green-600'}`} />{' '}
         <span>{entity.translate.join(', ')}</span>
         {isError && (
@@ -56,7 +56,7 @@ export const RepeatSessionEntity = ({
           </span>
         )}
       </div>
-      <div className="my-4 w-1/3">
+      <div className="my-4 md:w-1/3">
         <Input
           isError={isError}
           onChange={(e) => setAnswer(e.target.value)}
@@ -66,7 +66,7 @@ export const RepeatSessionEntity = ({
           placeholder="Type translation"
         />
       </div>
-      <div className="flex gap-4 w-1/3">
+      <div className="flex gap-4 md:w-1/3">
         <Button className="w-full" size={'sm'} onClick={handleSkip}>
           Skip
         </Button>

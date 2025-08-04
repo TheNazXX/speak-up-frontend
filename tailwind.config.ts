@@ -14,6 +14,7 @@ const config: Config = {
         0.5: '0.12rem',
         layout: '1rem',
         'big-layout': '2.3rem',
+        'small-layout': '1rem',
       },
       fontSize: {
         xs: '0.9rem',

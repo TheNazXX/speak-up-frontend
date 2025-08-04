@@ -20,6 +20,10 @@ const RepeatPage = ({
   const searchParams = useSearchParams();
   const activeType = searchParams.get('type');
 
+  const refresh = () => {
+    useRouter().refresh();
+  };
+
   return (
     <>
       <div className="mb-8">
@@ -64,7 +68,7 @@ const RepeatPage = ({
                   isToday(new Date(date)) && 'border-green-600'
                 )}
                 href={`${DASHBOARD_PAGES.VOCABULARY_REPEAT_SESSION}?repeatedAt=${date}&type=${activeType}`}
-                onClick={() => useRouter().refresh()}
+                onClick={refresh}
               >
                 {format(new Date(date), 'dd MMM yyyy')}
               </Link>
