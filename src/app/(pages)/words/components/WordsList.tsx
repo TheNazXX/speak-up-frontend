@@ -1,0 +1,100 @@
+import { IWord } from '@/src/app/(pages)/words/model/types/word.types';
+import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import { animations } from '@/src/lib/motion';
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
+import { useState } from 'react';
+import { repeatWordsService } from '@/src/app/services/repeat-words.service';
+import { errorCatch } from '@/src/app/api/error';
+import Button from '@/src/components/ui/button/Button';
+import Loader from '@/src/components/ui/loader/Loader';
+import { RefreshCcw } from 'lucide-react';
+import { WordsListRow } from './WordsListRow';
+
+interface IWordByDate {
+  [date: string]: IWord[];
+}
+
+export default function WordsList({ data }: { data: IWord[] }) {
+  const [localFetchingPost, setLocalFetchingPost] = useState<string>('');
+
+  const { mutate: postRepeatWords, status: postRepeatWordsStatus } =
+    useMutation({
+      mutationFn: (idx: string[]) => repeatWordsService.postWords(idx),
+      onSuccess: () => {
+        // push(DASHBOARD_PAGES.REPEAT_WORDS);
+        setLocalFetchingPost('');
+      },
+      onError: (error) => {
+        toast.error(errorCatch(error));
+        setLocalFetchingPost('');
+      },
+    });
+
+  const transformData = (data: IWord[]): IWordByDate => {
+    const wordsSortedByDate: IWordByDate = {};
+
+    data.forEach((item: IWord) => {
+      const date = format(new Date(item.createdAt), 'yyyy-MM-dd');
+      if (!wordsSortedByDate[date]) {
+        wordsSortedByDate[date] = [item];
+      } else {
+        wordsSortedByDate[date].push(item);
+      }
+    });
+
+    const sortedData = Object.keys(wordsSortedByDate)
+      .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
+      .reduce((acc: IWordByDate, date: string) => {
+        acc[date] = wordsSortedByDate[date];
+        return acc;
+      }, {});
+
+    return sortedData;
+  };
+
+  return (
+    <>
+      {Object.entries(transformData(data)).map(
+        ([date, words]: [string, IWord[]], idx: number) => {
+          return (
+            <motion.div
+              className="mb-4"
+              key={date}
+              {...animations.appearance(idx * 0.1)}
+            >
+              <div className="text-[16px] font-medium  text-grayLight">
+                <div className="flex gap-2.5 items-center">
+                  {postRepeatWordsStatus === 'pending' &&
+                  localFetchingPost === date ? (
+                    <Loader className="w-5 h-5" />
+                  ) : (
+                    <Button
+                      className="bg-primary hover:bg-primaryLight transition-all"
+                      size={'sm'}
+                      onClick={() => {
+                        postRepeatWords(words.map((word) => word.id));
+                        setLocalFetchingPost(date);
+                      }}
+                    >
+                      <RefreshCcw className="text-[#fff] w-4 h-4" />
+                    </Button>
+                  )}
+                  {date}
+                </div>
+              </div>
+              <div
+                key={date}
+                {...animations.appearance(idx * 0.1)}
+                className="flex flex-wrap gap-x-2 mb-6 border-b border-grayLight"
+              >
+                <WordsListRow words={words} />
+              </div>
+            </motion.div>
+          );
+        }
+      )}
+    </>
+  );
+}

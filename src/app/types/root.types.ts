@@ -1,0 +1,12 @@
+export interface IBase {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IResponse<T> {
+  status: number;
+  message?: string;
+  data?: T;
+  error?: string;
+}
