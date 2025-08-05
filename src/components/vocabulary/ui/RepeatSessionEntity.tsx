@@ -25,7 +25,7 @@ export const RepeatSessionEntity = ({
   const [isError, setIsError] = useState<boolean>(false);
 
   const handleCheckAnswer = () => {
-    if (answer.trim() === entity.en) {
+    if (answer.trim().toLocaleLowerCase() === entity.en) {
       toast.success('Right!');
       handleNextStep();
       handleEntity(entity, 'correct');
