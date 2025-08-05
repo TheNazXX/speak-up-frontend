@@ -136,7 +136,7 @@ export const VocabularyCreatePage = ({
         className="px-layout relative"
       >
         <div className="flex gap-10">
-          <div className="flex flex-col gap-3">
+          <div className="w-full flex flex-col gap-3">
             <div className="flex justify-between items-center">
               <div className="flex gap-2 items-center ">
                 <Pen className="w-4 h-4" />
@@ -164,7 +164,7 @@ export const VocabularyCreatePage = ({
             <hr className="bg-gray my-4" />
 
             <Input
-              className="w-96 mb-3"
+              className="md:w-96 mb-3"
               {...register('en')}
               variant={'dark'}
               placeholder="Your vocabulary"
@@ -172,14 +172,14 @@ export const VocabularyCreatePage = ({
             />
 
             <Input
-              className="w-96 mb-3"
+              className="md:w-96 mb-3"
               {...register('translate')}
               variant={'dark'}
               placeholder="Write the translate"
               isError={errors.hasOwnProperty('translate')}
             />
             <Select
-              className="mb-3"
+              className="mb-3 md:w-96"
               isError={errors.hasOwnProperty('partOfSpeech')}
               variant={'dark'}
               {...register('partOfSpeech')}
@@ -195,7 +195,7 @@ export const VocabularyCreatePage = ({
               }}
             />
 
-            <Button type="submit">
+            <Button className="md:w-96" type="submit">
               {mode === 'create' ? 'Create' : 'Update'}
             </Button>
           </div>
