@@ -86,8 +86,8 @@ export const RepeatSessionPage = ({ data }: { data: IVocabularyItem[] }) => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 w-full">
+      <div className="flex md:items-center sm:justify-between justify-center">
+        <div className="flex items-center gap-2 w-full flex-wrap">
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5" />
             <h3 className="text-[22px]/[25px]">Session</h3>
@@ -113,7 +113,7 @@ export const RepeatSessionPage = ({ data }: { data: IVocabularyItem[] }) => {
             </div>
           )}
 
-          <div className="flex gap-2 ml-auto">
+          <div className="flex gap-2 mt-2 md:mt-0 ml-auto mr-auto sm:mr-0 sm:w-max w-full">
             <Button
               size={'sm'}
               onClick={() => setRepeatType('en')}

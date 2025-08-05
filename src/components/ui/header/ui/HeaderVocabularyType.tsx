@@ -14,8 +14,8 @@ export const HeaderVocabularyType = () => {
   const activeType = useSearchParams().get('type');
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="border-r-2 border-primary mr-3 pr-4 flex items-center gap-2">
+    <div className="flex md:items-center gap-2 flex-wrap">
+      <div className="order-2 sm:order-1 md:border-r-2 border-primary sm:mr-3 sm:pr-4 pr-2 flex items-center gap-2">
         <Button
           size={'sm'}
           className="px-0 py-4 leading-[12px]"
@@ -35,7 +35,7 @@ export const HeaderVocabularyType = () => {
           <RefreshCcw />
         </Button>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="order-1 sm:order-2 flex items-center gap-2">
         <Button
           disabled={activeType === VocabularyTypes.WORDS}
           size={'md'}

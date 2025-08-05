@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { IMenuItem } from "./menu.interface";
-import { clsx } from "clsx";
+import Link from 'next/link';
+import { IMenuItem } from './menu.interface';
+import { clsx } from 'clsx';
 
 export default function MenuItem({
   item,
-  className = "",
+  className = '',
 }: {
   item: IMenuItem;
   className?: string;
@@ -14,11 +14,11 @@ export default function MenuItem({
       href={item.url}
       className={clsx(
         className,
-        "flex items-center gap-2.5 animate-opacity cursor-pointer py-2.5 px-layout transition-colors hover:bg-primaryLight text-sm"
+        'flex justify-start items-center gap-2.5 animate-opacity cursor-pointer py-2.5 px-layout transition-colors hover:bg-primaryLight text-sm'
       )}
     >
       <item.icon />
-      <span>{item.label}</span>
+      <span className="">{item.label}</span>
     </Link>
   );
 }

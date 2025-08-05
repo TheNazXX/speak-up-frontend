@@ -24,7 +24,7 @@ export const VocabularyList = ({
   className = '',
 }: IVocabularyListProps) => {
   return (
-    <div className={`flex flex-wrap gap-x-2 gap-y-4 ${className}`}>
+    <div className={`flex flex-wrap gap-x-2 gap-y-6 md:gap-y-4 ${className}`}>
       {data.map((item, idx) => (
         <motion.div key={item.en} {...animations.appearance(idx * 0.1)}>
           <TooltipProvider delayDuration={100}>
