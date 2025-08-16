@@ -14,7 +14,8 @@ export const RepeatQuiz = () => {
   const [repeatType, setRepeatType] = useState<'en' | 'ua'>('en');
   const count = 5;
 
-  const { data, isFetching, isError, refetch } = useRepeatingQuiz(count);
+  const { data, isFetching, isLoading, isError, refetch } =
+    useRepeatingQuiz(count);
   const list: IVocabularyItem[] = data?.data ?? [];
   const currentTarget = useMemo(() => getOldest(list), [list]);
 
@@ -48,6 +49,13 @@ export const RepeatQuiz = () => {
       },
     });
   };
+
+  if (isLoading)
+    return (
+      <div>
+        <Loader className="mx-auto" />
+      </div>
+    );
 
   if (isError)
     return (

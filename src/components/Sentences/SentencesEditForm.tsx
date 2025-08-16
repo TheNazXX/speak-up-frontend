@@ -1,7 +1,7 @@
 import { Brush, Edit, Save, Trash2 } from 'lucide-react';
 import Button from '../ui/button/Button';
 import { useEffect, useState } from 'react';
-import { ISentence } from '@/src/app/(pages)/words/model/types/sentence.types';
+
 import Input from '../ui/input/Input';
 import { Plus } from 'lucide-react';
 import Loader from '../ui/loader/Loader';
@@ -16,7 +16,7 @@ export const SentencesEditForm = ({
   onDeleteSentence,
   onAddSentence,
 }: {
-  sentences: ISentence[];
+  sentences: any;
   targetWord?: string;
   isFetch: boolean;
   onEditSentence: (id: string, text: string) => void;
@@ -99,7 +99,7 @@ export const SentencesEditForm = ({
         )}
       </div>
       <ul className="list-disc flex flex-col gap-2">
-        {sentences.map((sentece: ISentence, idx: number) => {
+        {sentences.map((sentece: any, idx: number) => {
           const highlightedText = targetWord
             ? sentece.text.replace(
                 new RegExp(`(${targetWord.split(' ')[1] || targetWord})`, 'gi'),

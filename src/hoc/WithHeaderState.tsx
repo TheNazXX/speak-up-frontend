@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import {
   changeHeaderState,
   HeaderPageState,
-} from '../../components/ui/header/model/headerSlice';
+} from '@/src/components/ui/header/model/headerSlice';
 
 export function WithHeaderState(
   Component: React.ComponentType<any>,

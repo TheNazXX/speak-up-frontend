@@ -1,6 +1,5 @@
 import { IPostText } from '../../components/texts/TextPageCreate';
 import { IText } from '../(pages)/texts/model/types/text.types';
-import { IWord } from '../(pages)/words/model/types/word.types';
 import { axiosClassic } from '../api/interceptors';
 import { IResponse } from '../types/root.types';
 

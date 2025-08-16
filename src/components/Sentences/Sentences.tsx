@@ -1,7 +1,4 @@
-import { Brush, Edit, Trash2 } from 'lucide-react';
-import Button from '../ui/button/Button';
 import { useState } from 'react';
-import { ISentence } from '@/src/app/(pages)/words/model/types/sentence.types';
 
 export const Sentences = ({
   sentences,
