@@ -1,4 +1,4 @@
-import { IVocabularyItem } from '@/src/app/(pages)/vocabulary/model/types';
+import { IVocabularyItem } from '@/src/app/entities/vocabularly/model/types';
 import Button from '@/src/components/ui/button/Button';
 import Input from '@/src/components/ui/input/Input';
 import { ArrowRight, Bookmark, Check, Repeat2 } from 'lucide-react';

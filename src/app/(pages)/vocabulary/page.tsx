@@ -1,7 +1,7 @@
 import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
 import VocabularyPage from '@/src/components/vocabulary/VocabularyPage';
-import { VocabularyTypes } from './model/vocabularySlice';
-import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
+import { VocabularyTypes } from '../../entities/vocabularly/model/vocabularySlice';
+import { vocabularyService } from '@/src/app/entities/vocabularly/api/vocabulary.service';
 
 type Props = {
   searchParams: {

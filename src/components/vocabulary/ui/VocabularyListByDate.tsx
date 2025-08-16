@@ -9,7 +9,7 @@ import {
 } from '@radix-ui/react-tooltip';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { IVocabularyItem } from '@/src/app/(pages)/vocabulary/model/types';
+import { IVocabularyItem } from '@/src/app/entities/vocabularly/model/types';
 import { animations } from '@/src/lib/motion';
 
 export interface IVocabularyByDate {

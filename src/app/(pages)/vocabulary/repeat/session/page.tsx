@@ -1,7 +1,7 @@
-import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
+import { vocabularyService } from '@/src/app/entities/vocabularly/api/vocabulary.service';
 import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
 import { RepeatSessionPage } from '@/src/components/vocabulary/RepeatSessionPage';
-import { VocabularyTypes } from '@/src/app/(pages)/vocabulary/model/vocabularySlice';
+import { VocabularyTypes } from '@/src/app/entities/vocabularly/model/vocabularySlice';
 
 type Props = {
   searchParams: {

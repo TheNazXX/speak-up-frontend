@@ -10,9 +10,9 @@ import { Check, Pen } from 'lucide-react';
 import {
   IVocabularyItem,
   IVocabularyPostDto,
-} from '@/src/app/(pages)/vocabulary/model/types';
+} from '@/src/app/entities/vocabularly/model/types';
 import { useMutation } from '@tanstack/react-query';
-import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
+import { vocabularyService } from '@/src/app/entities/vocabularly/api/vocabulary.service';
 import { toast, Toaster } from 'sonner';
 import { errorCatch } from '@/src/app/api/error';
 import Checkbox from '../ui/checkbox/Checkbox';

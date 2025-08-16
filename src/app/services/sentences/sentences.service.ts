@@ -1,4 +1,4 @@
-import { ISentence } from '@/src/app/(pages)/words/model/types/sentence.types';
+
 import { axiosClassic } from '@/src/app/api/interceptors';
 import { IResponse } from '@/src/app/types/root.types';
 
@@ -26,7 +26,7 @@ class SentencesService {
     return response;
   }
 
-  async delete(id: string): Promise<ISentence> {
+  async delete(id: string): Promise<any> {
     const response = await axiosClassic.delete(`${this.BASE_URL}/${id}`);
     return response.data;
   }

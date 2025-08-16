@@ -1,4 +1,4 @@
-import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
+import { vocabularyService } from '@/src/app/entities/vocabularly/api/vocabulary.service';
 import DashboardLayout from '@/src/components/ui/dashboard-layout/DashboardLayout';
 import { VocabularySinglePage } from '@/src/components/vocabulary/VocabularySinglePage';
 
