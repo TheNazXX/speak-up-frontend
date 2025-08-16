@@ -1,8 +1,8 @@
 import {
   IVocabularyItem,
   IVocabularyPostDto,
-} from '@/src/app/(pages)/vocabulary/model/types';
-import { VocabularyTypes } from '@/src/app/(pages)/vocabulary/model/vocabularySlice';
+} from '@/src/app/entities/vocabularly/model/types';
+import { VocabularyTypes } from '@/src/app/entities/vocabularly/model/vocabularySlice';
 import { axiosClassic } from '@/src/app/api/interceptors';
 import { IResponse } from '@/src/app/types/root.types';
 
@@ -75,6 +75,7 @@ class VocabularyService {
     const response = await axiosClassic.patch(`${this.BASE_URL}/repeating`, data);
     return response.data;
   }
+
 }
 
 export const vocabularyService = new VocabularyService();

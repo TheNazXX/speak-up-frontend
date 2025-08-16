@@ -9,7 +9,7 @@ import {
 } from '@radix-ui/react-tooltip';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { IVocabularyItem } from '@/src/app/(pages)/vocabulary/model/types';
+import { IVocabularyItem } from '@/src/app/entities/vocabularly/model/types';
 import { animations } from '@/src/lib/motion';
 
 interface IVocabularyListProps {
@@ -38,7 +38,7 @@ export const VocabularyList = ({
                     {item.en}
                   </Link>
                 ) : (
-                  <span className='className="text-white px-2.5 py-1.5 bg-primary border border-gray rounded-xl leading-4 hover:opacity-60 transition-opacity text-[15px] relative whitespace-nowrapm"'>
+                  <span className="text-white px-2.5 py-1.5 bg-primary border border-gray rounded-xl leading-4 hover:opacity-60 transition-opacity text-[15px] relative whitespace-nowrapm">
                     {' '}
                     {item.en}
                   </span>

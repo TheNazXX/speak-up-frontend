@@ -1,8 +1,8 @@
 import {
   IVocabularyPostDto,
   IVocabularyType,
-} from '@/src/app/(pages)/vocabulary/model/types';
-import { vocabularyService } from '@/src/app/services/vocabulary/vocabulary.service';
+} from '@/src/app/entities/vocabularly/model/types';
+import { vocabularyService } from '@/src/app/entities/vocabularly/api/vocabulary.service';
 import Button from '@/src/components/ui/button/Button';
 import Input from '@/src/components/ui/input/Input';
 import { useMutation } from '@tanstack/react-query';

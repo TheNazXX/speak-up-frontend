@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import {
   LOCAL_STORAGE_ACTIVE_VOCABULARY_KEY,
   VocabularyTypes,
-} from '@/src/app/(pages)/vocabulary/model/vocabularySlice';
+} from '@/src/app/entities/vocabularly/model/vocabularySlice';
 
 export const HeaderVocabularyType = () => {
   const router = useRouter();

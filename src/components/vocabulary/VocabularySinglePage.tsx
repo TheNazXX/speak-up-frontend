@@ -1,6 +1,6 @@
 'use client';
 
-import { IVocabularyItem } from '@/src/app/(pages)/vocabulary/model/types';
+import { IVocabularyItem } from '@/src/app/entities/vocabularly/model/types';
 import { Pen, Scroll, Settings, Trash } from 'lucide-react';
 import Button from '../ui/button/Button';
 import { useRouter } from 'next/navigation';
