@@ -9,8 +9,8 @@ class RepeatQuizService {
 
   constructor() {}
 
-  async getVocabularyRepeatingQuiz(count: number = 5): Promise<IResponse<IVocabularyItem[]>>{
-    const response = await axiosClassic.get(`${this.BASE_URL}?count=${count}`,);
+  async getVocabularyRepeatingQuiz(count: number = 5, type = 'word'): Promise<IResponse<IVocabularyItem[]>>{
+    const response = await axiosClassic.get(`${this.BASE_URL}?count=${count}&type=${type}`,);
     return response.data;
   }
 }
