@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRepeatingQuiz, useSubmitRepeatingAnswer } from '../model/queries';
 import { IVocabularyItem } from '@/src/app/entities/vocabularly/model/types';
 import { VocabularyButton } from '@/src/app/entities/vocabularly/ui/VocabularyButton';
@@ -11,11 +11,17 @@ import Loader from '@/src/components/ui/loader/Loader';
 import Button from '@/src/components/ui/button/Button';
 
 export const RepeatQuiz = () => {
+  const [repeatingEntities, setRepeatingEntities] = useState<
+    'word' | 'phrases'
+  >('word');
   const [repeatType, setRepeatType] = useState<'en' | 'ua'>('en');
   const count = 5;
 
-  const { data, isFetching, isLoading, isError, refetch } =
-    useRepeatingQuiz(count);
+  const { data, isFetching, isLoading, isError, refetch } = useRepeatingQuiz(
+    count,
+    repeatingEntities
+  );
+
   const list: IVocabularyItem[] = data?.data ?? [];
   const currentTarget = useMemo(() => getOldest(list), [list]);
 
@@ -27,6 +33,10 @@ export const RepeatQuiz = () => {
     if (!list.length) return [];
     return shuffle(list);
   }, [list, currentTarget?.id]);
+
+  useEffect(() => {
+    refetch();
+  }, [repeatingEntities]);
 
   const checkAnswer = (answer: IVocabularyItem) => {
     if (!currentTarget) return;
@@ -80,8 +90,22 @@ export const RepeatQuiz = () => {
         >
           UA
         </Button>
+
+        <Button
+          className="ml-auto"
+          onClick={() => setRepeatingEntities('word')}
+          disabled={repeatingEntities === 'word'}
+        >
+          Words
+        </Button>
+        <Button
+          onClick={() => setRepeatingEntities('phrases')}
+          disabled={repeatingEntities === 'phrases'}
+        >
+          Phrases
+        </Button>
       </div>
-      <div className="text-center pb-2 border-b mb-4">
+      <div className="text-center pb-2 border-b my-4">
         <h4 className="text-lg">
           {repeatType === 'en'
             ? currentTarget.en
